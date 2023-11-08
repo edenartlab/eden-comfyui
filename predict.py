@@ -17,7 +17,8 @@ import websocket
 from PIL import Image
 from urllib.error import URLError
 import random
-
+from PIL import Image
+import io
 
 class CogOutput(BaseModel):
     files: List[Path]
@@ -27,6 +28,15 @@ class CogOutput(BaseModel):
     progress: Optional[float] = None
     isFinal: bool = False
 
+class AttrDict(dict):
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(f"'AttrDict' object has no attribute '{key}'")
+
+    def __setattr__(self, key, value):
+        self[key] = value
 
 class Predictor(BasePredictor):
 
@@ -72,9 +82,15 @@ class Predictor(BasePredictor):
         with urllib.request.urlopen("http://{}/view?{}".format(self.server_address, url_values)) as response:
             return response.read()
 
-    def get_images(self, ws, prompt, client_id):
+    def get_video(self, filename, subfolder):
+        data = {'gifs': [{'filename': filename, 'subfolder': subfolder, 'type': 'output', 'format': 'video/h264-mp4'}]}
+        url_values = urllib.parse.urlencode(data)
+        with urllib.request.urlopen("http://{}/view?{}".format(self.server_address, url_values)) as response:
+            return response.read()
+
+    def get_output(self, ws, prompt, client_id):
         prompt_id = self.queue_prompt(prompt, client_id)['prompt_id']
-        output_images = {}
+        output_paths = {}
         while True:
             out = ws.recv()
             if isinstance(out, str):
@@ -85,6 +101,9 @@ class Predictor(BasePredictor):
                         break #Execution is done
             else:
                 continue #previews are binary data
+        
+        # hardcoded for now: TODO make this more flexible
+        output_dir = "ComfyUI/output"
 
         history = self.get_history(prompt_id)[prompt_id]
         for o in history['outputs']:
@@ -93,79 +112,154 @@ class Predictor(BasePredictor):
                 print("node output: ", node_output)
 
                 if 'images' in node_output:
-                    images_output = []
+                    outputs = []
                     for image in node_output['images']:
                         image_data = self.get_image(image['filename'], image['subfolder'], image['type'])
-                        images_output.append(image_data)
-                output_images[node_id] = images_output
+                        outputs.append(image_data)
+                
+                if 'gifs' in node_output:
+                    outputs = []
+                    for video in node_output['gifs']:
+                        filename, subfolder = video['filename'], video['subfolder']
+                        # get full video path:
+                        video_path = os.path.join(output_dir, subfolder, filename)
+                        outputs.append(video_path)
+                        
+                output_paths[node_id] = outputs
 
-        return output_images
+        return output_paths
 
     def get_history(self, prompt_id):
         with urllib.request.urlopen("http://{}/history/{}".format(self.server_address, prompt_id)) as response:
             return json.loads(response.read())
-    
-    # TODO: add dynamic fields based on the workflow selected
-    def predict(
-        self,
-        input_prompt: str = Input(description="Prompt", default="beautiful scenery nature glass bottle landscape, purple galaxy bottle"),
-        negative_prompt: str = Input(description="Negative Prompt", default="text, watermark, ugly, blurry"),
-        steps: int = Input(
-            description="Steps",
-            default=30
-        ),
-        seed: int = Input(description="Sampling seed, leave Empty for Random", default=None),
-    ) -> Iterator[GENERATOR_OUTPUT_TYPE]:
-        """Run a single prediction on the model"""
-        if seed is None:
-            seed = int.from_bytes(os.urandom(3), "big")
-        print(f"Using seed: {seed}")
-        generator = torch.Generator("cuda").manual_seed(seed)
 
-        # queue prompt
-        img_output_path = self.get_workflow_output(
-            input_prompt = input_prompt,
-            negative_prompt = negative_prompt,
-            steps = steps,
-            seed = seed
-        )
+    def get_workflow_output(self, args):
+        
+        if args.mode == "vid2vid":
+            workflow_config = "./custom_workflows/eden_vid2vid_api.json"
 
-        if DEBUG_MODE:
-            yield Path(img_output_path)
-        else:
-            name = input_prompt
-            yield CogOutput(files=[Path(img_output_path)], name=name, thumbnails=[Path(img_output_path)], attributes=None, progress=1.0, isFinal=True)
-
-        # return Path(img_output_path)
-
-
-    def get_workflow_output(self, input_prompt, negative_prompt, steps, seed):
         # load config
-        prompt = None
-        workflow_config = "./custom_workflows/sdxl_txt2img.json"
         with open(workflow_config, 'r') as file:
             prompt = json.load(file)
 
-        if not prompt:
-            raise Exception('no workflow config found')
+        # video input:
+        prompt["55"]["inputs"]["video"] = args.input_video_path
+        prompt["55"]["inputs"]["frame_load_cap"]  = args.n_frames
 
-        # set input variables
-        prompt["6"]["inputs"]["text"] = input_prompt
-        prompt["7"]["inputs"]["text"] = negative_prompt
+        prompt["3"]["inputs"]["text"] = args.prompt
+        prompt["6"]["inputs"]["text"] = args.negative_prompt
 
-        prompt["3"]["inputs"]["seed"] = seed
-        prompt["3"]["inputs"]["steps"] = steps
+        # sampler:
+        prompt["7"]["inputs"]["steps"] = args.steps
+        prompt["7"]["inputs"]["cfg"]   = args.guidance_scale
+        prompt["7"]["inputs"]["seed"]  = args.seed
+
+        prompt["9"]["inputs"]["width"]  = args.width
+        prompt["9"]["inputs"]["height"] = args.height
+
+        # controlnet:
+        prompt["20"]["inputs"]["control_net_name"] = args.controlnet_type
+        prompt["24"]["inputs"]["strength"] = args.controlnet_strength
+
+        # pretty print final config:
+        print("------------------------------------------")
+        print("------------------------------------------")
+        print(json.dumps(prompt, indent=4, sort_keys=True))
 
         # start the process
         client_id = str(uuid.uuid4())
         ws = websocket.WebSocket()
         ws.connect("ws://{}/ws?clientId={}".format(self.server_address, client_id))
-        images = self.get_images(ws, prompt, client_id)
+        out_paths = self.get_output(ws, prompt, client_id)
 
-        for node_id in images:
-            for image_data in images[node_id]:
-                from PIL import Image
-                import io
-                image = Image.open(io.BytesIO(image_data))
-                image.save("out-"+node_id+".png")
-                return Path("out-"+node_id+".png")
+        for node_id in out_paths:
+            for out_path in out_paths[node_id]:
+                return Path(out_path)
+    
+    def predict(
+        self,
+        input_video_path: str = Input(
+                    description="Load source video from file, url, or base64 string", 
+                ),
+        prompt: str = Input(description="Prompt", default="the tree of life"),
+        negative_prompt: str = Input(description="Negative Prompt", default="nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast"),
+        steps: int = Input(
+            description="Steps",
+            default=20
+        ),
+        width: int = Input(
+            description="Width", 
+            ge=512, le=2048, default=512
+        ),
+        height: int = Input(
+            description="Height", 
+            ge=512, le=2048, default=512
+        ),
+
+        n_frames: int = Input(
+            description="Total number of frames (mode==interpolate)",
+            ge=16, le=64, default=16
+        ),
+
+        guidance_scale: float = Input(
+            description="Strength of text conditioning guidance", 
+            ge=1, le=20, default=7.5
+        ),
+
+        mode: str = Input(
+            description="Mode", default="vid2vid",
+            choices=["vid2vid"]
+        ),
+
+        controlnet_type: str = Input(
+            description="Controlnet type",
+            default="canny-edge",
+            choices=["canny-edge", "qr_monster"]
+        ),
+        controlnet_strength: float = Input(
+            description="Strength of controlnet guidance", 
+            ge=0.0, le=1.5, default=0.8
+        ),
+
+        seed: int = Input(description="Sampling seed, leave Empty for Random", default=None),
+
+    ) -> Iterator[GENERATOR_OUTPUT_TYPE]:
+        """Run a single prediction on the model"""
+        if seed is None:
+            seed = int.from_bytes(os.urandom(3), "big")
+        generator = torch.Generator("cuda").manual_seed(seed)
+
+        controlnet_map = {
+            "canny-edge": "control_sd15_canny.safetensors",
+            "qr_monster": "control_v1p_sd15_qrcode_monster.safetensors",
+        }
+
+        # gather args from the input fields:
+        args = {
+            "input_video_path": input_video_path,
+            "prompt": prompt,
+            "negative_prompt": negative_prompt,
+            "width": width,
+            "height": height,
+            "n_frames": n_frames,
+            "guidance_scale": guidance_scale,
+            "mode": mode,
+            "controlnet_type": controlnet_map[controlnet_type],
+            "controlnet_strength": controlnet_strength,
+            "steps": steps,
+            "seed": seed,
+        }
+
+        # Example usage:
+        args = AttrDict(args)
+
+        # queue prompt
+        output_path = self.get_workflow_output(args)
+        print("----------------------------------------------")
+        print("Received final output:")
+        print(output_path)
+
+        if DEBUG_MODE:
+            yield Path(output_path)
+        else:
+            yield CogOutput(files=[Path(output_path)], name=prompt, thumbnails=[Path(output_path)], attributes=None, progress=1.0, isFinal=True)

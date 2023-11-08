@@ -1,0 +1,66 @@
+** ComfyUI start up time: 2023-11-08 22:00:51.424693
+
+Prestartup times for custom nodes:
+   0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+
+Total VRAM 24240 MB, total RAM 128650 MB
+Set vram state to: NORMAL_VRAM
+Device: cuda:0 NVIDIA RTX A5000 : cudaMallocAsync
+VAE dtype: torch.bfloat16
+Using pytorch cross attention
+### Loading: ComfyUI-Manager (V0.40)
+## ComfyUI-Manager: installing dependencies
+ Collecting GitPython
+   Downloading GitPython-3.1.40-py3-none-any.whl (190 kB)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 5.0 MB/s eta 0:00:00
+ Collecting gitdb<5,>=4.0.1
+   Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 8.9 MB/s eta 0:00:00
+ Collecting smmap<6,>=3.0.1
+   Downloading smmap-5.0.1-py3-none-any.whl (24 kB)
+ Installing collected packages: smmap, gitdb, GitPython
+ Successfully installed GitPython-3.1.40 gitdb-4.0.11 smmap-5.0.1
+[!] WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[!] 
+[!] [notice] A new release of pip available: 22.2.1 -> 23.3.1
+[!] [notice] To update, run: pip install --upgrade pip
+## ComfyUI-Manager: installing dependencies done.
+### ComfyUI Revision: 1650 [a6c83b3c] | Released on '2023-11-05'
+
+Import times for custom nodes:
+   0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Advanced-ControlNet
+   0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-AnimateDiff-Evolved
+   0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite
+   2.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+
+Starting server
+
+To see the GUI go to: http://127.0.0.1:8188
+got prompt
+model_type EPS
+adm 0
+Using pytorch attention in VAE
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+Using pytorch attention in VAE
+missing {'cond_stage_model.clip_l.text_projection', 'cond_stage_model.clip_l.logit_scale'}
+left over keys: dict_keys(['cond_stage_model.clip_l.transformer.text_model.embeddings.position_ids'])
+[AnimateDiffEvo] - [0;32mINFO[0m - Loading motion module temporaldiff-v1-animatediff.safetensors
+[AnimateDiffEvo] - [0;32mINFO[0m - Using fp16, converting motion module to fp16
+Requested to load SD1ClipModel
+Loading 1 new model
+[] []
+[AnimateDiffEvo] - [0;32mINFO[0m - Regular AnimateDiff activated - latents passed in (4) less or equal to context_length 16.
+[AnimateDiffEvo] - [0;32mINFO[0m - Injecting motion module temporaldiff-v1-animatediff.safetensors version v1.
+Requested to load BaseModel
+Requested to load ControlNet
+Loading 2 new models
+100%|██████████| 20/20 [00:06<00:00,  3.24it/s]100%|██████████| 20/20 [00:06<00:00,  3.23it/s]
+[AnimateDiffEvo] - [0;32mINFO[0m - Ejecting motion module temporaldiff-v1-animatediff.safetensors version v1.
+[AnimateDiffEvo] - [0;32mINFO[0m - Cleaning motion module from unet.
+[AnimateDiffEvo] - [0;32mINFO[0m - Removing motion module temporaldiff-v1-animatediff.safetensors from cache
+Global Step: 840001
+Using pytorch attention in VAE
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+Using pytorch attention in VAE
+Leftover VAE keys ['model_ema.decay', 'model_ema.num_updates']
+Prompt executed in 9.43 seconds

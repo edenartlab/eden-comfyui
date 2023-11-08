@@ -1,0 +1,16 @@
+To run the cog server:
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/tests
+sudo sh run_cog_server.sh
+
+Run Comfy Raw:
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+conda activate comfy
+python main.py
+ssh -R 80:localhost:8188 serveo.net
+
+
+Run cog predict test:
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+sudo cog predict -i input_video_path="tests/videos/ram_dass.mp4"
+
+

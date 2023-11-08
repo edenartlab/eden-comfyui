@@ -1,0 +1,189 @@
+{
+  "2": {
+    "inputs": {
+      "vae_name": "vae-ft-mse-840000-ema-pruned.pt"
+    },
+    "class_type": "VAELoader"
+  },
+  "3": {
+    "inputs": {
+      "text": "the tree of life",
+      "clip": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "4": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "30",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer"
+  },
+  "6": {
+    "inputs": {
+      "text": "nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast",
+      "clip": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "7": {
+    "inputs": {
+      "seed": 44444444,
+      "steps": 20,
+      "cfg": 7,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "33",
+        0
+      ],
+      "positive": [
+        "24",
+        0
+      ],
+      "negative": [
+        "24",
+        1
+      ],
+      "latent_image": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "9": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": [
+        "55",
+        1
+      ]
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "10": {
+    "inputs": {
+      "samples": [
+        "7",
+        0
+      ],
+      "vae": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "20": {
+    "inputs": {
+      "control_net_name": "control_v1p_sd15_qrcode_monster.safetensors"
+    },
+    "class_type": "ControlNetLoaderAdvanced"
+  },
+  "24": {
+    "inputs": {
+      "strength": 0.75,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "3",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "control_net": [
+        "20",
+        0
+      ],
+      "image": [
+        "55",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced"
+  },
+  "30": {
+    "inputs": {
+      "ckpt_name": "photon.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "33": {
+    "inputs": {
+      "model_name": "temporaldiff-v1-animatediff.safetensors",
+      "beta_schedule": "sqrt_linear (AnimateDiff)",
+      "motion_scale": 1,
+      "apply_v2_models_properly": false,
+      "model": [
+        "30",
+        0
+      ],
+      "context_options": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffLoaderWithContext"
+  },
+  "34": {
+    "inputs": {
+      "context_length": 16,
+      "context_stride": 1,
+      "context_overlap": 4,
+      "context_schedule": "uniform",
+      "closed_loop": true
+    },
+    "class_type": "ADE_AnimateDiffUniformContextOptions"
+  },
+  "53": {
+    "inputs": {
+      "frame_rate": 8,
+      "loop_count": 0,
+      "filename_prefix": "AnimateDiff",
+      "format": "video/h264-mp4",
+      "pingpong": false,
+      "save_image": true,
+      "crf": 20,
+      "videopreview": {
+        "hidden": false,
+        "paused": false,
+        "params": {
+          "filename": "AnimateDiff_00002.mp4",
+          "subfolder": "",
+          "type": "output",
+          "format": "video/h264-mp4"
+        }
+      },
+      "images": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine"
+  },
+  "55": {
+    "inputs": {
+      "video": "/data/xander/Projects/cog/GitHub_repos/eden-comfyui/tests/videos/ram_dass.mp4",
+      "force_rate": 8,
+      "force_size": "Disabled",
+      "frame_load_cap": 16,
+      "skip_first_frames": 0,
+      "select_every_nth": 1
+    },
+    "class_type": "VHS_LoadVideoPath"
+  }
+}

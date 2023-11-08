@@ -1,0 +1,196 @@
+{
+  "2": {
+    "inputs": {
+      "vae_name": "vae-ft-mse-840000-ema-pruned.pt"
+    },
+    "class_type": "VAELoader"
+  },
+  "3": {
+    "inputs": {
+      "text": "colour photo of a wild and abandoned landscape with granite boulders at sunset, lichen, enigmatic, intricate textures, windswept, shadows, grasses, fluffy billowing clouded sky, sunbeams, wilderness backdrop, exceptionally detailed, ultra quality, photorealistic, 8k, award winning, 20mm, landscape photography, high contrast, Adobe RGB, vibrant, HDR, all in focus",
+      "clip": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "4": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "30",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer"
+  },
+  "6": {
+    "inputs": {
+      "text": "(worst quality, low quality: 1.4), cartoon, painting, 3d render, blurry, text, watermark",
+      "clip": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "7": {
+    "inputs": {
+      "seed": 44444444,
+      "steps": 35,
+      "cfg": 7,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "33",
+        0
+      ],
+      "positive": [
+        "24",
+        0
+      ],
+      "negative": [
+        "24",
+        1
+      ],
+      "latent_image": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "9": {
+    "inputs": {
+      "width": 1024,
+      "height": 576,
+      "batch_size": [
+        "50",
+        2
+      ]
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "10": {
+    "inputs": {
+      "samples": [
+        "7",
+        0
+      ],
+      "vae": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "20": {
+    "inputs": {
+      "control_net_name": "control_v1p_sd15_qrcode_monster.safetensors"
+    },
+    "class_type": "ControlNetLoaderAdvanced"
+  },
+  "24": {
+    "inputs": {
+      "strength": 0.41000000000000003,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "3",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "control_net": [
+        "20",
+        0
+      ],
+      "image": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced"
+  },
+  "30": {
+    "inputs": {
+      "ckpt_name": "photon.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "33": {
+    "inputs": {
+      "model_name": "temporaldiff-v1-animatediff.safetensors",
+      "beta_schedule": "sqrt_linear (AnimateDiff)",
+      "motion_scale": 1,
+      "apply_v2_models_properly": false,
+      "model": [
+        "30",
+        0
+      ],
+      "context_options": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffLoaderWithContext"
+  },
+  "34": {
+    "inputs": {
+      "context_length": 16,
+      "context_stride": 1,
+      "context_overlap": 4,
+      "context_schedule": "uniform",
+      "closed_loop": true
+    },
+    "class_type": "ADE_AnimateDiffUniformContextOptions"
+  },
+  "39": {
+    "inputs": {
+      "images": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "PreviewImage"
+  },
+  "50": {
+    "inputs": {
+      "directory": "gridball",
+      "image_load_cap": 64,
+      "skip_first_images": 0,
+      "select_every_nth": 1
+    },
+    "class_type": "VHS_LoadImages"
+  },
+  "53": {
+    "inputs": {
+      "frame_rate": 8,
+      "loop_count": 0,
+      "filename_prefix": "AnimateDiff",
+      "format": "video/h264-mp4",
+      "pingpong": false,
+      "save_image": true,
+      "crf": 20,
+      "videopreview": {
+        "hidden": false,
+        "paused": false,
+        "params": {
+          "filename": "AnimateDiff_00003_.mp4",
+          "subfolder": "",
+          "type": "output",
+          "format": "video/h264-mp4"
+        }
+      },
+      "images": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine"
+  }
+}
