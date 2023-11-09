@@ -1,7 +1,6 @@
 # don't push DEBUG_MODE = True to Replicate!
 DEBUG_MODE = False
 
-
 import subprocess
 import threading
 import time
@@ -14,6 +13,7 @@ import uuid
 import json
 import urllib
 import websocket
+import requests
 from PIL import Image
 from urllib.error import URLError
 import random
@@ -37,6 +37,61 @@ class AttrDict(dict):
 
     def __setattr__(self, key, value):
         self[key] = value
+
+def download(url, folder, filepath=None, timeout=600):    
+    """
+    Robustly download a file from a given URL to the specified folder, automatically infering the file extension.
+    
+    Args:
+        url (str):      The URL of the file to download.
+        folder (str):   The folder where the downloaded file should be saved.
+        filepath (str): (Optional) The path to the downloaded file. If None, the path will be inferred from the URL.
+        
+    Returns:
+        filepath (Path): The path to the downloaded file.
+
+    """
+    try:
+        if filepath is None:
+            # Guess file extension from URL itself
+            parsed_url_path = Path(url.split('/')[-1])
+            ext = parsed_url_path.suffix
+            
+            # If extension is not in URL, then use Content-Type
+            if not ext:
+                response = requests.head(url, allow_redirects=True)
+                content_type = response.headers.get('Content-Type')
+                ext = mimetypes.guess_extension(content_type) or ''
+            
+            filename = parsed_url_path.stem + ext  # Append extension only if needed
+            folder_path = Path(folder)
+            filepath = folder_path / filename
+        else:
+            folder_path = Path(os.path.dirname(filepath))
+        
+        os.makedirs(folder_path, exist_ok=True)
+        
+        if os.path.exists(filepath):
+            print(f"{filepath} already exists, skipping download..")
+            return filepath
+        
+        print(f"Downloading {url} to {filepath}...")
+        response = requests.get(url, stream=True, timeout=timeout)
+        response.raise_for_status()
+        
+        with open(filepath, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        
+        return filepath
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error downloading the file: {e}")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
 
 class Predictor(BasePredictor):
 
@@ -143,7 +198,7 @@ class Predictor(BasePredictor):
             prompt = json.load(file)
 
         # video input:
-        prompt["55"]["inputs"]["video"] = args.input_video_path
+        prompt["55"]["inputs"]["video"] = str(args.input_video_path)
         prompt["55"]["inputs"]["frame_load_cap"]  = args.n_frames
 
         prompt["3"]["inputs"]["text"] = args.prompt
@@ -164,7 +219,10 @@ class Predictor(BasePredictor):
         # pretty print final config:
         print("------------------------------------------")
         print("------------------------------------------")
-        print(json.dumps(prompt, indent=4, sort_keys=True))
+        print(prompt)
+        #print(json.dumps(prompt, indent=4, sort_keys=True))
+        print("------------------------------------------")
+        print("------------------------------------------")
 
         # start the process
         client_id = str(uuid.uuid4())
@@ -180,25 +238,26 @@ class Predictor(BasePredictor):
         self,
         input_video_path: str = Input(
                     description="Load source video from file, url, or base64 string", 
+                    default = "https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.mp4",
                 ),
         prompt: str = Input(description="Prompt", default="the tree of life"),
         negative_prompt: str = Input(description="Negative Prompt", default="nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast"),
         steps: int = Input(
             description="Steps",
-            default=20
+            default=25
         ),
         width: int = Input(
             description="Width", 
-            ge=512, le=2048, default=512
+            ge=512, le=2048, default=768
         ),
         height: int = Input(
             description="Height", 
-            ge=512, le=2048, default=512
+            ge=512, le=2048, default=768
         ),
 
         n_frames: int = Input(
             description="Total number of frames (mode==interpolate)",
-            ge=16, le=64, default=16
+            ge=16, le=64, default=32
         ),
 
         guidance_scale: float = Input(
@@ -206,19 +265,14 @@ class Predictor(BasePredictor):
             ge=1, le=20, default=7.5
         ),
 
-        mode: str = Input(
-            description="Mode", default="vid2vid",
-            choices=["vid2vid"]
-        ),
-
         controlnet_type: str = Input(
             description="Controlnet type",
-            default="canny-edge",
+            default="qr_monster",
             choices=["canny-edge", "qr_monster"]
         ),
         controlnet_strength: float = Input(
             description="Strength of controlnet guidance", 
-            ge=0.0, le=1.5, default=0.8
+            ge=0.0, le=1.5, default=0.6
         ),
 
         seed: int = Input(description="Sampling seed, leave Empty for Random", default=None),
@@ -234,6 +288,11 @@ class Predictor(BasePredictor):
             "qr_monster": "control_v1p_sd15_qrcode_monster.safetensors",
         }
 
+        # check if input_video_path exists on local filesystem:
+        if not os.path.exists(input_video_path):
+            # download video from url:
+            input_video_path = download(input_video_path, "tmp_vids")
+
         # gather args from the input fields:
         args = {
             "input_video_path": input_video_path,
@@ -243,7 +302,7 @@ class Predictor(BasePredictor):
             "height": height,
             "n_frames": n_frames,
             "guidance_scale": guidance_scale,
-            "mode": mode,
+            "mode": "vid2vid",
             "controlnet_type": controlnet_map[controlnet_type],
             "controlnet_strength": controlnet_strength,
             "steps": steps,
@@ -255,9 +314,6 @@ class Predictor(BasePredictor):
 
         # queue prompt
         output_path = self.get_workflow_output(args)
-        print("----------------------------------------------")
-        print("Received final output:")
-        print(output_path)
 
         if DEBUG_MODE:
             yield Path(output_path)

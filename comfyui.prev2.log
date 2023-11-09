@@ -1,4 +1,4 @@
-** ComfyUI start up time: 2023-11-08 21:59:13.239449
+** ComfyUI start up time: 2023-11-09 00:15:30.917357
 
 Prestartup times for custom nodes:
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
@@ -12,10 +12,10 @@ Using pytorch cross attention
 ## ComfyUI-Manager: installing dependencies
  Collecting GitPython
    Downloading GitPython-3.1.40-py3-none-any.whl (190 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 3.4 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 3.7 MB/s eta 0:00:00
  Collecting gitdb<5,>=4.0.1
    Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 6.8 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 8.4 MB/s eta 0:00:00
  Collecting smmap<6,>=3.0.1
    Downloading smmap-5.0.1-py3-none-any.whl (24 kB)
  Installing collected packages: smmap, gitdb, GitPython
@@ -49,18 +49,8 @@ left over keys: dict_keys(['cond_stage_model.clip_l.transformer.text_model.embed
 Requested to load SD1ClipModel
 Loading 1 new model
 [] []
-[AnimateDiffEvo] - [0;32mINFO[0m - Regular AnimateDiff activated - latents passed in (4) less or equal to context_length 16.
+[AnimateDiffEvo] - [0;32mINFO[0m - Sliding context window activated - latents passed in (19) greater than context_length 16.
 [AnimateDiffEvo] - [0;32mINFO[0m - Injecting motion module temporaldiff-v1-animatediff.safetensors version v1.
 Requested to load BaseModel
 Requested to load ControlNet
 Loading 2 new models
-100%|██████████| 20/20 [00:06<00:00,  3.22it/s]100%|██████████| 20/20 [00:06<00:00,  3.21it/s]
-[AnimateDiffEvo] - [0;32mINFO[0m - Ejecting motion module temporaldiff-v1-animatediff.safetensors version v1.
-[AnimateDiffEvo] - [0;32mINFO[0m - Cleaning motion module from unet.
-[AnimateDiffEvo] - [0;32mINFO[0m - Removing motion module temporaldiff-v1-animatediff.safetensors from cache
-Global Step: 840001
-Using pytorch attention in VAE
-Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
-Using pytorch attention in VAE
-Leftover VAE keys ['model_ema.decay', 'model_ema.num_updates']
-Prompt executed in 9.49 seconds
