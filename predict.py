@@ -241,7 +241,6 @@ class Predictor(BasePredictor):
                     default = "https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.mp4",
                 ),
         prompt: str = Input(description="Prompt", default="the tree of life"),
-        negative_prompt: str = Input(description="Negative Prompt", default="nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast"),
         steps: int = Input(
             description="Steps",
             default=25
@@ -260,11 +259,6 @@ class Predictor(BasePredictor):
             ge=16, le=64, default=32
         ),
 
-        guidance_scale: float = Input(
-            description="Strength of text conditioning guidance", 
-            ge=1, le=20, default=7.5
-        ),
-
         controlnet_type: str = Input(
             description="Controlnet type",
             default="qr_monster",
@@ -275,6 +269,11 @@ class Predictor(BasePredictor):
             ge=0.0, le=1.5, default=0.6
         ),
 
+        guidance_scale: float = Input(
+            description="Strength of text conditioning guidance", 
+            ge=1, le=20, default=7.5
+        ),
+        negative_prompt: str = Input(description="Negative Prompt", default="nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast"),
         seed: int = Input(description="Sampling seed, leave Empty for Random", default=None),
 
     ) -> Iterator[GENERATOR_OUTPUT_TYPE]:
