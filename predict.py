@@ -20,6 +20,28 @@ import random
 from PIL import Image
 import io
 
+import cv2
+import tempfile
+
+def save_first_frame_to_tempfile(video_path):
+    # Capture the video from the file
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        print("Error opening video file")
+        return
+
+    ret, frame = cap.read()
+    if not ret:
+        print("Error reading the first frame")
+        return
+
+    temp_file = tempfile.NamedTemporaryFile(suffix='.jpg', delete=False)
+    cv2.imwrite(temp_file.name, frame)
+    cap.release()
+
+    return temp_file.name
+
+
 class CogOutput(BaseModel):
     files: List[Path]
     name: Optional[str] = None
@@ -243,7 +265,7 @@ class Predictor(BasePredictor):
         prompt: str = Input(description="Prompt", default="the tree of life"),
         steps: int = Input(
             description="Steps",
-            default=25
+            ge=10, le=40, default=20
         ),
         width: int = Input(
             description="Width", 
@@ -256,7 +278,7 @@ class Predictor(BasePredictor):
 
         n_frames: int = Input(
             description="Total number of frames (mode==interpolate)",
-            ge=16, le=64, default=32
+            ge=16, le=264, default=32
         ),
 
         controlnet_type: str = Input(
@@ -317,4 +339,5 @@ class Predictor(BasePredictor):
         if DEBUG_MODE:
             yield Path(output_path)
         else:
-            yield CogOutput(files=[Path(output_path)], name=prompt, thumbnails=[Path(output_path)], attributes=None, progress=1.0, isFinal=True)
+            thumbnail_path = save_first_frame_to_tempfile(output_path)
+            yield CogOutput(files=[Path(output_path)], name=prompt, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)
