@@ -10,7 +10,7 @@ ssh -R 80:localhost:8188 serveo.net
 
 Run cog predict test:
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i input_video_path="https://github.com/edenartlab/eden-comfyui/blob/main/tests/videos/ezgif-3-a98b368c10.gif"
+sudo cog predict -i mode="vid2vid" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/spiralflower.gif" -i n_frames=16 -i width=512 -i height=512
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/spiralflower.gif"
+sudo cog predict -i mode="txt2vid" -i prompt="a hut in the mountains, winter landscape" -i n_frames=16 -i width=512 -i height=512

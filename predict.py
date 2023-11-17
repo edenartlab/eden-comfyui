@@ -214,29 +214,51 @@ class Predictor(BasePredictor):
         
         if args.mode == "vid2vid":
             workflow_config = "./custom_workflows/eden_vid2vid_api.json"
+            with open(workflow_config, 'r') as file:
+                prompt = json.load(file)
 
-        # load config
-        with open(workflow_config, 'r') as file:
-            prompt = json.load(file)
+            # video input:
+            prompt["55"]["inputs"]["video"] = str(args.input_video_path)
+            prompt["55"]["inputs"]["frame_load_cap"]  = args.n_frames
 
-        # video input:
-        prompt["55"]["inputs"]["video"] = str(args.input_video_path)
-        prompt["55"]["inputs"]["frame_load_cap"]  = args.n_frames
+            prompt["3"]["inputs"]["text"] = args.prompt
+            prompt["6"]["inputs"]["text"] = args.negative_prompt
 
-        prompt["3"]["inputs"]["text"] = args.prompt
-        prompt["6"]["inputs"]["text"] = args.negative_prompt
+            # sampler:
+            prompt["7"]["inputs"]["steps"] = args.steps
+            prompt["7"]["inputs"]["cfg"]   = args.guidance_scale
+            prompt["7"]["inputs"]["seed"]  = args.seed
 
-        # sampler:
-        prompt["7"]["inputs"]["steps"] = args.steps
-        prompt["7"]["inputs"]["cfg"]   = args.guidance_scale
-        prompt["7"]["inputs"]["seed"]  = args.seed
+            prompt["9"]["inputs"]["width"]  = args.width
+            prompt["9"]["inputs"]["height"] = args.height
 
-        prompt["9"]["inputs"]["width"]  = args.width
-        prompt["9"]["inputs"]["height"] = args.height
+            # controlnet:
+            prompt["20"]["inputs"]["control_net_name"] = args.controlnet_type
+            prompt["24"]["inputs"]["strength"] = args.controlnet_strength
 
-        # controlnet:
-        prompt["20"]["inputs"]["control_net_name"] = args.controlnet_type
-        prompt["24"]["inputs"]["strength"] = args.controlnet_strength
+        elif args.mode == "txt2vid":
+            workflow_config = "./custom_workflows/eden_txt2vid_api.json"
+            with open(workflow_config, 'r') as file:
+                prompt = json.load(file)
+
+            # video input:
+            prompt["9"]["inputs"]["batch_size"]  = args.n_frames
+
+            prompt["3"]["inputs"]["text"] = args.prompt
+            prompt["6"]["inputs"]["text"] = args.negative_prompt
+
+            # sampler:
+            prompt["7"]["inputs"]["steps"] = args.steps
+            prompt["7"]["inputs"]["cfg"]   = args.guidance_scale
+            prompt["7"]["inputs"]["seed"]  = args.seed
+
+            prompt["9"]["inputs"]["width"]  = args.width
+            prompt["9"]["inputs"]["height"] = args.height
+
+        else:
+            print(f"{args.mode} not supported..")
+            prompt = None
+
 
         # pretty print final config:
         print("------------------------------------------")
@@ -258,9 +280,13 @@ class Predictor(BasePredictor):
     
     def predict(
         self,
+        render_mode: str = Input(
+                    description="vid2vid of txt2vid", 
+                    default = "txt2vid",
+                ),
         input_video_path: str = Input(
                     description="Load source video from file, url, or base64 string", 
-                    default = "https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.mp4",
+                    default = None,
                 ),
         prompt: str = Input(description="Prompt", default="the tree of life"),
         steps: int = Input(
@@ -310,7 +336,7 @@ class Predictor(BasePredictor):
         }
 
         # check if input_video_path exists on local filesystem:
-        if not os.path.exists(input_video_path):
+        if input_video_path and (not os.path.exists(input_video_path)):
             # download video from url:
             input_video_path = download(input_video_path, "tmp_vids")
 
@@ -323,7 +349,7 @@ class Predictor(BasePredictor):
             "height": height,
             "n_frames": n_frames,
             "guidance_scale": guidance_scale,
-            "mode": "vid2vid",
+            "mode": render_mode,
             "controlnet_type": controlnet_map[controlnet_type],
             "controlnet_strength": controlnet_strength,
             "steps": steps,
@@ -339,5 +365,6 @@ class Predictor(BasePredictor):
         if DEBUG_MODE:
             yield Path(output_path)
         else:
-            thumbnail_path = save_first_frame_to_tempfile(output_path)
-            yield CogOutput(files=[Path(output_path)], name=prompt, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)
+            output_path = Path(output_path)
+            thumbnail_path = save_first_frame_to_tempfile(str(output_path))
+            yield CogOutput(files=[output_path], name=prompt, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)
