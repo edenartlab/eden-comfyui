@@ -41,6 +41,24 @@ def save_first_frame_to_tempfile(video_path):
 
     return temp_file.name
 
+import subprocess
+
+def reencode_video(input_file_path, output_file_path):
+    command = [
+        'ffmpeg',
+        '-i', input_file_path,    # Input file
+        '-c:v', 'libx264',        # Video codec
+        '-preset', 'medium',      # Compression-efficiency/quality tradeoff
+        '-c:a', 'aac',            # Audio codec
+        output_file_path          # Output file
+    ]
+
+    try:
+        subprocess.run(command, check=True)
+        print(f"Re-encoding completed: {output_file_path}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error during re-encoding: {e}")
+
 
 class CogOutput(BaseModel):
     files: List[Path]
@@ -338,7 +356,12 @@ class Predictor(BasePredictor):
         # check if input_video_path exists on local filesystem:
         if input_video_path and (not os.path.exists(input_video_path)):
             # download video from url:
-            input_video_path = download(input_video_path, "tmp_vids")
+            video_path = download(input_video_path, "tmp_vids")
+
+            # re-encode to .mp4 by default to avoid issues with the source video:
+            # create tmp_file and return path to it as string:
+            input_video_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
+            reencode_video(video_path, input_video_path)
 
         # gather args from the input fields:
         args = {
