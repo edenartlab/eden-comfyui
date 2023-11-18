@@ -22,6 +22,9 @@ import io
 
 import cv2
 import tempfile
+import subprocess
+import os
+import shlex
 
 def save_first_frame_to_tempfile(video_path):
     # Capture the video from the file
@@ -41,23 +44,40 @@ def save_first_frame_to_tempfile(video_path):
 
     return temp_file.name
 
-import subprocess
-
 def reencode_video(input_file_path, output_file_path):
-    command = [
-        'ffmpeg',
-        '-i', input_file_path,    # Input file
-        '-c:v', 'libx264',        # Video codec
-        '-preset', 'medium',      # Compression-efficiency/quality tradeoff
-        '-c:a', 'aac',            # Audio codec
-        output_file_path          # Output file
-    ]
+    input_file_path_str = str(input_file_path)  # Convert Path object to string
+
+    # Input validation
+    if not os.path.exists(input_file_path_str) or os.path.getsize(input_file_path_str) == 0:
+        print("Invalid input file.")
+        return
+
+    # Determine if the input is a GIF
+    is_gif = input_file_path_str.lower().endswith('.gif')
+
+    # Base FFmpeg command with scale filter, using triple quotes for clarity
+    base_command = f"""
+        ffmpeg -y -err_detect ignore_err -i "{input_file_path}" -vf "scale='min(2048,iw)':'min(2048,ih)':force_original_aspect_ratio=decrease"
+        -c:v libx264 -preset medium
+    """
+
+    # Exclude audio codec for GIF files
+    if not is_gif:
+        base_command += ' -c:a aac'
+
+    base_command += f' "{output_file_path}"'
 
     try:
-        subprocess.run(command, check=True)
+        # Run the command with a timeout (e.g., 300 seconds)
+        subprocess.run(shlex.split(base_command), check=True, timeout=300, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(f"Re-encoding completed: {output_file_path}")
+    except subprocess.TimeoutExpired:
+        print("Re-encoding timed out.")
     except subprocess.CalledProcessError as e:
-        print(f"Error during re-encoding: {e}")
+        print(f"Error during re-encoding: {e}\nOutput: {e.output}\nError: {e.stderr}")
+
+    # Optional: Retry with different settings if needed
+
 
 
 class CogOutput(BaseModel):
@@ -353,15 +373,14 @@ class Predictor(BasePredictor):
             "qr_monster": "control_v1p_sd15_qrcode_monster.safetensors",
         }
 
-        # check if input_video_path exists on local filesystem:
-        if input_video_path and (not os.path.exists(input_video_path)):
+        if input_video_path:
             # download video from url:
             video_path = download(input_video_path, "tmp_vids")
-
             # re-encode to .mp4 by default to avoid issues with the source video:
-            # create tmp_file and return path to it as string:
             input_video_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
             reencode_video(video_path, input_video_path)
+        elif args.mode == "vid2vid":
+            raise ValueError("An input video is required for vid2vid mode!")
 
         # gather args from the input fields:
         args = {
