@@ -1,0 +1,7 @@
+{
+  "prompt": {"node_id": "259", "field": "inputs", "subfield": "text"},
+  "negative_prompt": {"node_id": "260", "field": "inputs", "subfield": "text"},
+  "steps": {"node_id": "223", "field": "inputs", "subfield": "steps"},
+  "guidance_scale": {"node_id": "223", "field": "inputs", "subfield": "cfg"},
+  "seed": {"node_id": "223", "field": "inputs", "subfield": "seed"}
+}

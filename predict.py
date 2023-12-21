@@ -27,6 +27,10 @@ import os
 import shlex
 
 def save_first_frame_to_tempfile(video_path):
+    if not video_path.endswith('.mp4'):
+        # the path is not a video file, just return it
+        return video_path
+
     # Capture the video from the file
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -192,7 +196,6 @@ class Predictor(BasePredictor):
 
     def get_image(self, filename, subfolder, folder_type):
         data = {"filename": filename, "subfolder": subfolder, "type": folder_type}
-        print(folder_type)
         url_values = urllib.parse.urlencode(data)
         with urllib.request.urlopen("http://{}/view?{}".format(self.server_address, url_values)) as response:
             return response.read()
@@ -229,7 +232,11 @@ class Predictor(BasePredictor):
                 if 'images' in node_output:
                     outputs = []
                     for image in node_output['images']:
+                        print("-------")
+                        print(image)
                         image_data = self.get_image(image['filename'], image['subfolder'], image['type'])
+                        print(image_data)
+                        print(type(image_data))
                         outputs.append(image_data)
                 
                 if 'gifs' in node_output:
@@ -248,79 +255,59 @@ class Predictor(BasePredictor):
         with urllib.request.urlopen("http://{}/history/{}".format(self.server_address, prompt_id)) as response:
             return json.loads(response.read())
 
-    def get_workflow_output(self, args):
+    def get_workflow_output(self, args, verbose = False):
+        # Dynamically choose the JSON file based on workflow type
+        workflow_config_file = f"./custom_workflows/{args.mode}_api.json"
+        print(f"Loading workflow config from {workflow_config_file}...")
+
+        try:
+            with open(workflow_config_file, 'r') as file:
+                config = json.load(file)
+
+            # Load the base workflow configuration
+            input_config = f"./custom_workflows/{args.mode}_inputs.json"
+            print(f"Loading input config from {input_config}...")
+            with open(input_config, 'r') as file:
+                input_config = json.load(file)
+
+            # Populate the prompt dict using the config
+            for key, value in input_config.items():
+                arg_value = getattr(args, key, None)
+                if arg_value is not None:
+                    node_id = value["node_id"]
+                    field = value["field"]
+                    subfield = value["subfield"]
+                    print(f"Overriding {node_id} {field} {subfield} -- with -- {arg_value}")
+                    config[node_id][field][subfield] = arg_value
+
+        except FileNotFoundError:
+            print(f"{workflow_config_file} not found.")
+            config = None
+        except KeyError as e:
+            print(f"Key error: {e}")
+            config = None
         
-        if args.mode == "vid2vid":
-            workflow_config = "./custom_workflows/eden_vid2vid_api.json"
-            with open(workflow_config, 'r') as file:
-                prompt = json.load(file)
-
-            # video input:
-            prompt["55"]["inputs"]["video"] = str(args.input_video_path)
-            prompt["55"]["inputs"]["frame_load_cap"]  = args.n_frames
-
-            prompt["3"]["inputs"]["text"] = args.prompt
-            prompt["6"]["inputs"]["text"] = args.negative_prompt
-
-            # sampler:
-            prompt["7"]["inputs"]["steps"] = args.steps
-            prompt["7"]["inputs"]["cfg"]   = args.guidance_scale
-            prompt["7"]["inputs"]["seed"]  = args.seed
-
-            prompt["9"]["inputs"]["width"]  = args.width
-            prompt["9"]["inputs"]["height"] = args.height
-
-            # controlnet:
-            prompt["20"]["inputs"]["control_net_name"] = args.controlnet_type
-            prompt["24"]["inputs"]["strength"] = args.controlnet_strength
-
-        elif args.mode == "txt2vid":
-            workflow_config = "./custom_workflows/eden_txt2vid_api.json"
-            with open(workflow_config, 'r') as file:
-                prompt = json.load(file)
-
-            # video input:
-            prompt["9"]["inputs"]["batch_size"]  = args.n_frames
-
-            prompt["3"]["inputs"]["text"] = args.prompt
-            prompt["6"]["inputs"]["text"] = args.negative_prompt
-
-            # sampler:
-            prompt["7"]["inputs"]["steps"] = args.steps
-            prompt["7"]["inputs"]["cfg"]   = args.guidance_scale
-            prompt["7"]["inputs"]["seed"]  = args.seed
-
-            prompt["9"]["inputs"]["width"]  = args.width
-            prompt["9"]["inputs"]["height"] = args.height
-
-        else:
-            print(f"{args.mode} not supported..")
-            prompt = None
-
-
-        # pretty print final config:
-        print("------------------------------------------")
-        print("------------------------------------------")
-        print(prompt)
-        #print(json.dumps(prompt, indent=4, sort_keys=True))
-        print("------------------------------------------")
-        print("------------------------------------------")
+        if verbose:
+            # pretty print final config:
+            print("------------------------------------------")
+            print(json.dumps(config, indent=4, sort_keys=True))
+            print("------------------------------------------")
 
         # start the process
         client_id = str(uuid.uuid4())
         ws = websocket.WebSocket()
         ws.connect("ws://{}/ws?clientId={}".format(self.server_address, client_id))
-        out_paths = self.get_output(ws, prompt, client_id)
+        out_paths = self.get_output(ws, config, client_id)
 
         for node_id in out_paths:
             for out_path in out_paths[node_id]:
                 return Path(out_path)
-    
+
     def predict(
         self,
         render_mode: str = Input(
-                    description="vid2vid of txt2vid", 
-                    default = "txt2vid",
+                    description="eden_vid2vid, eden_txt2vid or makeitrad", 
+                    default = "eden_txt2vid",
                 ),
         input_video_path: str = Input(
                     description="Load source video from file, url, or base64 string", 
@@ -379,7 +366,7 @@ class Predictor(BasePredictor):
             # re-encode to .mp4 by default to avoid issues with the source video:
             input_video_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
             reencode_video(video_path, input_video_path)
-        elif args.mode == "vid2vid":
+        elif render_mode == "vid2vid":
             raise ValueError("An input video is required for vid2vid mode!")
 
         # gather args from the input fields:
@@ -401,12 +388,18 @@ class Predictor(BasePredictor):
         # Example usage:
         args = AttrDict(args)
 
-        # queue prompt
-        output_path = self.get_workflow_output(args)
+        # Run the ComfyUI job:
+        try:
+            output_path = self.get_workflow_output(args)
+        except Exception as e:
+            print(f"Error: {e}")
+            output_path = None
 
-        if DEBUG_MODE:
-            yield Path(output_path)
-        else:
-            output_path = Path(output_path)
-            thumbnail_path = save_first_frame_to_tempfile(str(output_path))
-            yield CogOutput(files=[output_path], name=prompt, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)
+        if output_path is None:
+            print(f'Returning {output_path}')
+            if DEBUG_MODE:
+                yield Path(output_path)
+            else:
+                output_path = Path(output_path)
+                thumbnail_path = save_first_frame_to_tempfile(str(output_path))
+                yield CogOutput(files=[output_path], name=prompt, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)

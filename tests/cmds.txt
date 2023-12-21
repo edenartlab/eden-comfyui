@@ -10,7 +10,10 @@ ssh -R 80:localhost:8188 serveo.net
 
 Run cog predict test:
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="vid2vid" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.gif" -i n_frames=16 -i width=512 -i height=512
+sudo cog predict -i render_mode="vid2vid" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.gif" -i n_frames=32 -i width=512 -i height=512
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="txt2vid" -i prompt="a hut in the mountains, winter landscape" -i n_frames=16 -i width=512 -i height=512
+sudo cog predict -i render_mode="eden_txt2vid" -i prompt="a winter landscape panorama" -i n_frames=32 -i width=768 -i height=512
+
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+sudo cog predict -i render_mode="makeitrad" -i prompt="a swimming pool in the style of embedding:makeitrad_embeddings"

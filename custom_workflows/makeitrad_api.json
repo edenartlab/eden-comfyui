@@ -1,0 +1,172 @@
+{
+  "4": {
+    "inputs": {
+      "ckpt_name": "juggernaut_XL2/juggernaut_v6.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "5": {
+    "inputs": {
+      "width": 768,
+      "height": 1344,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "50": {
+    "inputs": {
+      "width": 4095,
+      "height": 4096,
+      "crop_w": 0,
+      "crop_h": 0,
+      "target_width": 4096,
+      "target_height": 4096,
+      "text_g": [
+        "259",
+        0
+      ],
+      "text_l": [
+        "259",
+        0
+      ],
+      "clip": [
+        "248",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXL"
+  },
+  "65": {
+    "inputs": {
+      "width": 4096,
+      "height": 4096,
+      "crop_w": 0,
+      "crop_h": 0,
+      "target_width": 4096,
+      "target_height": 4096,
+      "text_g": [
+        "260",
+        0
+      ],
+      "text_l": [
+        "260",
+        0
+      ],
+      "clip": [
+        "248",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXL"
+  },
+  "208": {
+    "inputs": {
+      "lora_name": "makeitradStyle2_lora.safetensors",
+      "strength_model": 0.5,
+      "strength_clip": 0.5,
+      "model": [
+        "4",
+        0
+      ],
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "LoraLoader"
+  },
+  "218": {
+    "inputs": {
+      "width": 1344,
+      "height": 768,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "219": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "223": {
+    "inputs": {
+      "seed": 1044208109106942,
+      "steps": 25,
+      "cfg": 5,
+      "sampler_name": "dpmpp_2m_sde_gpu",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "248",
+        0
+      ],
+      "positive": [
+        "50",
+        0
+      ],
+      "negative": [
+        "65",
+        0
+      ],
+      "latent_image": [
+        "219",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "231": {
+    "inputs": {
+      "filename_prefix": "12-2023/kojiiG/kojiitestG",
+      "images": [
+        "232",
+        0
+      ]
+    },
+    "class_type": "SaveImage"
+  },
+  "232": {
+    "inputs": {
+      "samples": [
+        "223",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "248": {
+    "inputs": {
+      "lora_name": "indoor-outdoor_lora.safetensors",
+      "strength_model": 0.5,
+      "strength_clip": 0.5,
+      "model": [
+        "208",
+        0
+      ],
+      "clip": [
+        "208",
+        1
+      ]
+    },
+    "class_type": "LoraLoader"
+  },
+  "259": {
+    "inputs": {
+      "text": "a tree in the style of embedding:makeitrad_embeddings"
+    },
+    "class_type": "ttN text"
+  },
+  "260": {
+    "inputs": {
+      "text": "bad, low quality, ugly"
+    },
+    "class_type": "ttN text"
+  }
+}

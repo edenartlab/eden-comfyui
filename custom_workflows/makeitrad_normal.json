@@ -1,0 +1,1075 @@
+{
+  "last_node_id": 260,
+  "last_link_id": 477,
+  "nodes": [
+    {
+      "id": 61,
+      "type": "Reroute",
+      "pos": [
+        1190,
+        260
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 423,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "CLIP",
+          "links": [
+            93,
+            126
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Reroute_lora",
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 218,
+      "type": "EmptyLatentImage",
+      "pos": [
+        870.0611615509374,
+        404.1945842396128
+      ],
+      "size": {
+        "0": 210,
+        "1": 110
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "title": "Image and batch size",
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1344,
+        768,
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [
+        870.0611615509374,
+        244.194584239613
+      ],
+      "size": {
+        "0": 210,
+        "1": 110
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "title": "Image and batch size",
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        768,
+        1344,
+        1
+      ]
+    },
+    {
+      "id": 231,
+      "type": "SaveImage",
+      "pos": [
+        1170,
+        820
+      ],
+      "size": {
+        "0": 740,
+        "1": 710
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 464,
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "12-2023/kojiiG/kojiitestG"
+      ]
+    },
+    {
+      "id": 251,
+      "type": "Note",
+      "pos": [
+        -260,
+        780
+      ],
+      "size": {
+        "0": 490,
+        "1": 740
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "title": "Notes",
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "POSITIVE\n\n/* Interior or Exterior */\nIn the style of makeitrad, highly detailed, graphic illustration, almost photorealistic image of an {(interior:1.5)|(exterior:1.5)} extra wide angle Landscape mid-century architecture, indoor-outdoor living atrium, \n\n/* Location */\n{surrounded by overgrown plants, in the lush jungle, large leaves|\ncliff ocean front overlooking water, tropical plants|\ndesert (large rock formations:1.5), cactus, succulents and red sands|\nin the lush redwood forest with a running river|\nurban city suburbia, (house plants) and (outdoor topiaries:1.5)|\ndramatic winter snow capped rustic Montana mountains, trees|\nrolling green grass hills and colorful wild flowers},\n\n/* Time of Day */\nat {high noon|\ndawn light with hazy fog|\nnight red sunset|\ndark black night with large moon and stars}, \n\n/* Color Pallet */\n{MODEL PICKS|\norange accents|\nyellow and green accents|\nlight blue accents|\nlight pink accents},\n\n/* Clouds */\n{clouds|USE NEGATIVE PROMPT},\n\n/* Pool */\n{(pool:1.5)|USE NEGATIVE PROMPT},\n\n8k resolution, in the style of midcentury architectural greats. Post and beam, modern glossy, Kodak Portra 100.\n\nembedding:makeitrad_embeddings\nembedding:indoor-outdoor_embeddings\n\n/* Resolution */\nTall-768x1344\nWide-1344x768\nSquare-1024x1024\n\n\n-------\nNEGATIVE:\n\n/* Clouds */\nclouds,\n\n/* Pool */\npool,\n\nnude, naked, poorly drawn face, ugly, tiling, out of frame, extra limbs, disfigured, deformed body, blurry, blurred, watermark, text, grainy, signature, cut off, draft, cars"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 50,
+      "type": "CLIPTextEncodeSDXL",
+      "pos": [
+        1326,
+        226
+      ],
+      "size": {
+        "0": 210,
+        "1": 220
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 93
+        },
+        {
+          "name": "text_g",
+          "type": "STRING",
+          "link": 476,
+          "widget": {
+            "name": "text_g"
+          },
+          "slot_index": 1
+        },
+        {
+          "name": "text_l",
+          "type": "STRING",
+          "link": 475,
+          "widget": {
+            "name": "text_l"
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            346
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "CLIPTextEncode",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXL"
+      },
+      "widgets_values": [
+        4095,
+        4096,
+        0,
+        0,
+        4096,
+        4096,
+        "In the style of makeitrad, highly detailed, graphic illustration, almost photorealistic image of an (interior:1.5) extra wide angle Landscape mid-century architecture, indoor-outdoor living atrium, \n\ndesert (large rock formations:1.5), cactus, succulents and red sands,\n\nhigh noon,\n\nclouds,\n\npool,\n\n8k resolution, in the style of midcentury architectural greats. Post and beam, modern glossy, Kodak Portra 100.\n\nembedding:makeitrad_embeddings\nembedding:indoor-outdoor_embeddings",
+        "In the style of makeitrad, highly detailed, graphic illustration, almost photorealistic image of an (interior:1.5) extra wide angle Landscape mid-century architecture, indoor-outdoor living atrium, \n\ndesert (large rock formations:1.5), cactus, succulents and red sands,\n\nhigh noon,\n\nclouds,\n\npool,\n\n8k resolution, in the style of midcentury architectural greats. Post and beam, modern glossy, Kodak Portra 100.\n\nembedding:makeitrad_embeddings\nembedding:indoor-outdoor_embeddings"
+      ]
+    },
+    {
+      "id": 65,
+      "type": "CLIPTextEncodeSDXL",
+      "pos": [
+        1330,
+        490
+      ],
+      "size": {
+        "0": 210,
+        "1": 220
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 126
+        },
+        {
+          "name": "text_g",
+          "type": "STRING",
+          "link": 473,
+          "widget": {
+            "name": "text_g"
+          },
+          "slot_index": 1
+        },
+        {
+          "name": "text_l",
+          "type": "STRING",
+          "link": 472,
+          "widget": {
+            "name": "text_l"
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            347
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "CLIPTextEncode",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeSDXL"
+      },
+      "widgets_values": [
+        4096,
+        4096,
+        0,
+        0,
+        4096,
+        4096,
+        "nude, naked, poorly drawn face, ugly, tiling, out of frame, extra limbs, disfigured, deformed body, blurry, blurred, watermark, text, grainy, signature, cut off, draft, cars",
+        "nude, naked, poorly drawn face, ugly, tiling, out of frame, extra limbs, disfigured, deformed body, blurry, blurred, watermark, text, grainy, signature, cut off, draft, cars"
+      ]
+    },
+    {
+      "id": 219,
+      "type": "EmptyLatentImage",
+      "pos": [
+        870.0611615509374,
+        564.1945842396127
+      ],
+      "size": {
+        "0": 210,
+        "1": 110
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            471
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Image and batch size",
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 16,
+      "type": "PrimitiveNode",
+      "pos": [
+        311,
+        1280
+      ],
+      "size": {
+        "0": 440,
+        "1": 180
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 0,
+          "widget": {
+            "name": "value"
+          }
+        }
+      ],
+      "title": "Negative Prompt",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 256,
+      "type": "Reroute",
+      "pos": [
+        884,
+        1095
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 474,
+          "slot_index": 0,
+          "widget": {
+            "name": "value"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "STRING",
+          "links": [
+            472,
+            473
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 260,
+      "type": "ttN text",
+      "pos": [
+        328,
+        1168
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            474
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "neg_prompt",
+      "properties": {
+        "Node name for S&R": "ttN text"
+      },
+      "widgets_values": [
+        "bad, low quality, ugly"
+      ]
+    },
+    {
+      "id": 255,
+      "type": "Reroute",
+      "pos": [
+        885,
+        794
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 477,
+          "slot_index": 0,
+          "widget": {
+            "name": "value"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "STRING",
+          "links": [
+            475,
+            476
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 259,
+      "type": "ttN text",
+      "pos": [
+        317,
+        888
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 6,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            477
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "pos prompt",
+      "properties": {
+        "Node name for S&R": "ttN text"
+      },
+      "widgets_values": [
+        "a tree in the style of embedding:makeitrad_embeddings"
+      ]
+    },
+    {
+      "id": 158,
+      "type": "Reroute",
+      "pos": [
+        1200,
+        710
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 471,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "LATENT",
+          "links": [
+            348
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Reroute_resolution",
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 223,
+      "type": "KSampler",
+      "pos": [
+        1575,
+        229
+      ],
+      "size": {
+        "0": 320,
+        "1": 262
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 345
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 346
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 347
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 348
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            367
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1044208109106942,
+        "randomize",
+        25,
+        5,
+        "dpmpp_2m_sde_gpu",
+        "karras",
+        1
+      ]
+    },
+    {
+      "id": 208,
+      "type": "LoraLoader",
+      "pos": [
+        -186,
+        -119
+      ],
+      "size": {
+        "0": 430,
+        "1": 130
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 419
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 418
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            420
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            421
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "makeitradStyle2_lora.safetensors",
+        0.5,
+        0.5
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -804,
+        -82
+      ],
+      "size": {
+        "0": 430,
+        "1": 100
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            419
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            418
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            368
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "juggernaut_XL2/juggernaut_v6.safetensors"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 232,
+      "type": "VAEDecode",
+      "pos": [
+        1650,
+        574
+      ],
+      "size": {
+        "0": 140,
+        "1": 50
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 367,
+          "slot_index": 0
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 368,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            464
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 31,
+      "type": "Reroute",
+      "pos": [
+        1451,
+        -43
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 422,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "MODEL",
+          "links": [
+            345
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Reroute_lora2",
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 248,
+      "type": "LoraLoader",
+      "pos": [
+        534,
+        -122
+      ],
+      "size": {
+        "0": 430,
+        "1": 130
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 420
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 421
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            422
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            423
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "indoor-outdoor_lora.safetensors",
+        0.5,
+        0.5
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    }
+  ],
+  "links": [
+    [
+      93,
+      61,
+      0,
+      50,
+      0,
+      "CLIP"
+    ],
+    [
+      126,
+      61,
+      0,
+      65,
+      0,
+      "CLIP"
+    ],
+    [
+      345,
+      31,
+      0,
+      223,
+      0,
+      "MODEL"
+    ],
+    [
+      346,
+      50,
+      0,
+      223,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      347,
+      65,
+      0,
+      223,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      348,
+      158,
+      0,
+      223,
+      3,
+      "LATENT"
+    ],
+    [
+      367,
+      223,
+      0,
+      232,
+      0,
+      "LATENT"
+    ],
+    [
+      368,
+      4,
+      2,
+      232,
+      1,
+      "VAE"
+    ],
+    [
+      418,
+      4,
+      1,
+      208,
+      1,
+      "CLIP"
+    ],
+    [
+      419,
+      4,
+      0,
+      208,
+      0,
+      "MODEL"
+    ],
+    [
+      420,
+      208,
+      0,
+      248,
+      0,
+      "MODEL"
+    ],
+    [
+      421,
+      208,
+      1,
+      248,
+      1,
+      "CLIP"
+    ],
+    [
+      422,
+      248,
+      0,
+      31,
+      0,
+      "*"
+    ],
+    [
+      423,
+      248,
+      1,
+      61,
+      0,
+      "*"
+    ],
+    [
+      464,
+      232,
+      0,
+      231,
+      0,
+      "IMAGE"
+    ],
+    [
+      471,
+      219,
+      0,
+      158,
+      0,
+      "*"
+    ],
+    [
+      472,
+      256,
+      0,
+      65,
+      2,
+      "STRING"
+    ],
+    [
+      473,
+      256,
+      0,
+      65,
+      1,
+      "STRING"
+    ],
+    [
+      474,
+      260,
+      0,
+      256,
+      0,
+      "*"
+    ],
+    [
+      475,
+      255,
+      0,
+      50,
+      2,
+      "STRING"
+    ],
+    [
+      476,
+      255,
+      0,
+      50,
+      1,
+      "STRING"
+    ],
+    [
+      477,
+      259,
+      0,
+      255,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Stage01",
+      "bounding": [
+        1161,
+        137,
+        747,
+        633
+      ],
+      "color": "#3f789e",
+      "font_size": 24
+    },
+    {
+      "title": "Input",
+      "bounding": [
+        265,
+        137,
+        530,
+        1381
+      ],
+      "color": "#8AA",
+      "font_size": 24
+    },
+    {
+      "title": "Size",
+      "bounding": [
+        826,
+        137,
+        302,
+        568
+      ],
+      "color": "#a1309b",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

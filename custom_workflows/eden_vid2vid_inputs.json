@@ -1,0 +1,11 @@
+{
+  "n_frames": {"node_id": "55", "field": "inputs", "subfield": "frame_load_cap"},
+  "prompt": {"node_id": "3", "field": "inputs", "subfield": "text"},
+  "negative_prompt": {"node_id": "6", "field": "inputs", "subfield": "text"},
+  "steps": {"node_id": "7", "field": "inputs", "subfield": "steps"},
+  "guidance_scale": {"node_id": "7", "field": "inputs", "subfield": "cfg"},
+  "seed": {"node_id": "7", "field": "inputs", "subfield": "seed"},
+  "width": {"node_id": "9", "field": "inputs", "subfield": "width"},
+  "height": {"node_id": "9", "field": "inputs", "subfield": "height"},
+  "input_video_path": {"node_id": "55", "field": "inputs", "subfield": "video"}
+}
