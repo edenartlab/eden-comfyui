@@ -227,17 +227,13 @@ class Predictor(BasePredictor):
         for o in history['outputs']:
             for node_id in history['outputs']:
                 node_output = history['outputs'][node_id]
-                print("node output: ", node_output)
 
                 if 'images' in node_output:
                     outputs = []
                     for image in node_output['images']:
-                        print("-------")
-                        print(image)
-                        image_data = self.get_image(image['filename'], image['subfolder'], image['type'])
-                        print(image_data)
-                        print(type(image_data))
-                        outputs.append(image_data)
+                        #image_data = self.get_image(image['filename'], image['subfolder'], image['type'])
+                        img_path = os.path.join(output_dir, image['subfolder'], image['filename'])
+                        outputs.append(img_path)
                 
                 if 'gifs' in node_output:
                     outputs = []
