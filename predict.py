@@ -380,8 +380,6 @@ class Predictor(BasePredictor):
             "steps": steps,
             "seed": seed,
         }
-
-        # Example usage:
         args = AttrDict(args)
 
         # Run the ComfyUI job:
@@ -392,15 +390,14 @@ class Predictor(BasePredictor):
             output_path = None
 
         if output_path is None:
-            print(f'Returning {output_path} (DEBUG mode)')
             if DEBUG_MODE:
+                print(f'Returning {output_path} (DEBUG mode)')
                 yield Path(output_path)
             else:
                 output_path = Path(output_path)
                 thumbnail_path = save_first_frame_to_tempfile(str(output_path))
                 print(f'Returning {output_path} and {thumbnail_path}')
                 yield CogOutput(files=[output_path], name=prompt, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)
-
         else:
             print(f"output_path was None...")
             yield CogOutput(files=[], progress=1.0, isFinal=True)
