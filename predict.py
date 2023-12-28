@@ -310,7 +310,13 @@ class Predictor(BasePredictor):
                     description="Load source video from file, url, or base64 string", 
                     default = None,
                 ),
+        input_image_path: str = Input(
+                    description="Load source image from file, url, or base64 string", 
+                    default = None,
+                ),
         prompt: str = Input(description="Prompt", default="the tree of life"),
+
+
         steps: int = Input(
             description="Steps",
             ge=10, le=40, default=25
@@ -336,9 +342,16 @@ class Predictor(BasePredictor):
         ),
         controlnet_strength: float = Input(
             description="Strength of controlnet guidance", 
-            ge=0.0, le=1.5, default=0.6
+            ge=0.0, le=1.5, default=0.8
         ),
-
+        denoise_strength: float = Input(
+            description="How much denoising to apply (1.0 = start from random noise, 0.0 = return input)", 
+            ge=0.0, le=1.0, default=1.0
+        ),
+        loop: bool = Input(
+            description="Try to make a loopable video",
+            default=True
+        ),
         guidance_scale: float = Input(
             description="Strength of text conditioning guidance", 
             ge=1, le=20, default=7.5
@@ -357,14 +370,23 @@ class Predictor(BasePredictor):
             "qr_monster": "control_v1p_sd15_qrcode_monster.safetensors",
         }
 
+        split_prompt_modes = ["eden_txt2vid"]
+        if render_mode in split_prompt_modes:
+            prompt = prompt.split('|')
+
+        # Hardcoded, manual checks:
         if input_video_path:
             # download video from url:
             video_path = download(input_video_path, "tmp_vids")
             # re-encode to .mp4 by default to avoid issues with the source video:
             input_video_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
             reencode_video(video_path, input_video_path)
-        elif render_mode == "vid2vid":
+        elif render_mode == "comfy_vid2vid":
             raise ValueError("An input video is required for vid2vid mode!")
+
+        if render_mode == "comfy_makeitrad":
+            if ("embedding:makeitrad_embeddings" not in prompt) and ("embedding:indoor-outdoor_embeddings" not in prompt)::
+                raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
 
         # gather args from the input fields:
         args = {
@@ -382,6 +404,8 @@ class Predictor(BasePredictor):
             "seed": seed,
         }
         args = AttrDict(args)
+
+
 
         # Run the ComfyUI job:
         try:

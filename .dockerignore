@@ -17,9 +17,15 @@ __pycache__
 /venv
 
 # Unused models:
+#checkpoints
 #ComfyUI/models/juggernaut_XL2
 ComfyUI/models/sdxl-v1.0
+ComfyUI/models/photon.safetensors
+
+#controlnet
 ComfyUI/models/controlnet/controlnet-luminance-sdxl-1.0
+ComfyUI/models/controlnet/control_sd15_canny.safetensors
+ComfyUI/models/controlnet/control_v1p_sd15_qrcode_monster.safetensors
 #ComfyUI/models/loras
 
 ComfyUI/custom_nodes/ComfyUI-AnimateDiff-Evolved/motion_lora
