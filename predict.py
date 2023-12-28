@@ -1,5 +1,6 @@
 # don't push DEBUG_MODE = True to Replicate!
 DEBUG_MODE = False
+#DEBUG_MODE = True
 
 import subprocess
 import threading
@@ -253,7 +254,7 @@ class Predictor(BasePredictor):
 
     def get_workflow_output(self, args, verbose = False):
         # Dynamically choose the JSON file based on workflow type
-        workflow_config_file = f"./custom_workflows/{args.mode}_api.json"
+        workflow_config_file = f"./custom_workflows/{args.render_mode}_api.json"
         print(f"Loading workflow config from {workflow_config_file}...")
 
         try:
@@ -261,7 +262,7 @@ class Predictor(BasePredictor):
                 config = json.load(file)
 
             # Load the base workflow configuration
-            input_config = f"./custom_workflows/{args.mode}_inputs.json"
+            input_config = f"./custom_workflows/{args.render_mode}_inputs.json"
             print(f"Loading input config from {input_config}...")
             with open(input_config, 'r') as file:
                 input_config = json.load(file)
@@ -302,8 +303,8 @@ class Predictor(BasePredictor):
     def predict(
         self,
         render_mode: str = Input(
-                    description="eden_vid2vid, eden_txt2vid or makeitrad", 
-                    default = "eden_txt2vid",
+                    description="comfy_txt2vid, comfy_img2vid, comfy_vid2vid, comfy_upscale, comfy_makeitrad", 
+                    default = "comfy_txt2vid",
                 ),
         input_video_path: str = Input(
                     description="Load source video from file, url, or base64 string", 
@@ -312,7 +313,7 @@ class Predictor(BasePredictor):
         prompt: str = Input(description="Prompt", default="the tree of life"),
         steps: int = Input(
             description="Steps",
-            ge=10, le=40, default=20
+            ge=10, le=40, default=25
         ),
         width: int = Input(
             description="Width", 
@@ -374,7 +375,7 @@ class Predictor(BasePredictor):
             "height": height,
             "n_frames": n_frames,
             "guidance_scale": guidance_scale,
-            "mode": render_mode,
+            "render_mode": render_mode,
             "controlnet_type": controlnet_map[controlnet_type],
             "controlnet_strength": controlnet_strength,
             "steps": steps,
@@ -389,7 +390,7 @@ class Predictor(BasePredictor):
             print(f"Error: {e}")
             output_path = None
 
-        if output_path is None:
+        if output_path is not None:
             if DEBUG_MODE:
                 print(f'Returning {output_path} (DEBUG mode)')
                 yield Path(output_path)

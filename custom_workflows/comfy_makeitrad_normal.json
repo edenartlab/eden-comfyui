@@ -1,6 +1,6 @@
 {
-  "last_node_id": 260,
-  "last_link_id": 477,
+  "last_node_id": 261,
+  "last_link_id": 482,
   "nodes": [
     {
       "id": 61,
@@ -14,7 +14,7 @@
         26
       ],
       "flags": {},
-      "order": 14,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -42,99 +42,6 @@
       }
     },
     {
-      "id": 218,
-      "type": "EmptyLatentImage",
-      "pos": [
-        870.0611615509374,
-        404.1945842396128
-      ],
-      "size": {
-        "0": 210,
-        "1": 110
-      },
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [],
-          "slot_index": 0
-        }
-      ],
-      "title": "Image and batch size",
-      "properties": {
-        "Node name for S&R": "EmptyLatentImage"
-      },
-      "widgets_values": [
-        1344,
-        768,
-        1
-      ]
-    },
-    {
-      "id": 5,
-      "type": "EmptyLatentImage",
-      "pos": [
-        870.0611615509374,
-        244.194584239613
-      ],
-      "size": {
-        "0": 210,
-        "1": 110
-      },
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [],
-          "slot_index": 0
-        }
-      ],
-      "title": "Image and batch size",
-      "properties": {
-        "Node name for S&R": "EmptyLatentImage"
-      },
-      "widgets_values": [
-        768,
-        1344,
-        1
-      ]
-    },
-    {
-      "id": 231,
-      "type": "SaveImage",
-      "pos": [
-        1170,
-        820
-      ],
-      "size": {
-        "0": 740,
-        "1": 710
-      },
-      "flags": {},
-      "order": 19,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 464,
-          "slot_index": 0
-        }
-      ],
-      "properties": {},
-      "widgets_values": [
-        "12-2023/kojiiG/kojiitestG"
-      ]
-    },
-    {
       "id": 251,
       "type": "Note",
       "pos": [
@@ -146,7 +53,7 @@
         "1": 740
       },
       "flags": {},
-      "order": 2,
+      "order": 0,
       "mode": 0,
       "title": "Notes",
       "properties": {
@@ -172,7 +79,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 15,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -239,7 +146,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 16,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -293,18 +200,210 @@
       ]
     },
     {
+      "id": 223,
+      "type": "KSampler",
+      "pos": [
+        1575,
+        229
+      ],
+      "size": {
+        "0": 320,
+        "1": 262
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 345
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 346
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 347
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 480
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            367
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1001336194005780,
+        "randomize",
+        25,
+        5,
+        "dpmpp_2m_sde_gpu",
+        "karras",
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -804,
+        -82
+      ],
+      "size": {
+        "0": 430,
+        "1": 100
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            419
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            418
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            368
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "juggernaut_XL2/juggernaut_v6.safetensors"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 31,
+      "type": "Reroute",
+      "pos": [
+        1451,
+        -43
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 422,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "MODEL",
+          "links": [
+            345
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Reroute_lora2",
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 232,
+      "type": "VAEDecode",
+      "pos": [
+        1650,
+        574
+      ],
+      "size": {
+        "0": 140,
+        "1": 50
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 367,
+          "slot_index": 0
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 368,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            464
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
       "id": 219,
       "type": "EmptyLatentImage",
       "pos": [
-        870.0611615509374,
-        564.1945842396127
+        407,
+        287
       ],
       "size": {
         "0": 210,
         "1": 110
       },
       "flags": {},
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -312,7 +411,7 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            471
+            480
           ],
           "slot_index": 0
         }
@@ -328,126 +427,18 @@
       ]
     },
     {
-      "id": 16,
-      "type": "PrimitiveNode",
-      "pos": [
-        311,
-        1280
-      ],
-      "size": {
-        "0": 440,
-        "1": 180
-      },
-      "flags": {
-        "collapsed": false
-      },
-      "order": 4,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [],
-          "slot_index": 0,
-          "widget": {
-            "name": "value"
-          }
-        }
-      ],
-      "title": "Negative Prompt",
-      "properties": {
-        "Run widget replace on values": false
-      },
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
-      "id": 256,
-      "type": "Reroute",
-      "pos": [
-        884,
-        1095
-      ],
-      "size": [
-        75,
-        26
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "",
-          "type": "*",
-          "link": 474,
-          "slot_index": 0,
-          "widget": {
-            "name": "value"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "",
-          "type": "STRING",
-          "links": [
-            472,
-            473
-          ],
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "showOutputText": false,
-        "horizontal": false
-      }
-    },
-    {
-      "id": 260,
-      "type": "ttN text",
-      "pos": [
-        328,
-        1168
-      ],
-      "size": {
-        "0": 400,
-        "1": 200
-      },
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "text",
-          "type": "STRING",
-          "links": [
-            474
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "title": "neg_prompt",
-      "properties": {
-        "Node name for S&R": "ttN text"
-      },
-      "widgets_values": [
-        "bad, low quality, ugly"
-      ]
-    },
-    {
       "id": 255,
       "type": "Reroute",
       "pos": [
-        885,
-        794
+        841,
+        566
       ],
       "size": [
         75,
         26
       ],
       "flags": {},
-      "order": 10,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -477,137 +468,45 @@
       }
     },
     {
-      "id": 259,
-      "type": "ttN text",
-      "pos": [
-        317,
-        888
-      ],
-      "size": {
-        "0": 400,
-        "1": 200
-      },
-      "flags": {
-        "collapsed": false
-      },
-      "order": 6,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "text",
-          "type": "STRING",
-          "links": [
-            477
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "title": "pos prompt",
-      "properties": {
-        "Node name for S&R": "ttN text"
-      },
-      "widgets_values": [
-        "a tree in the style of embedding:makeitrad_embeddings"
-      ]
-    },
-    {
-      "id": 158,
+      "id": 256,
       "type": "Reroute",
       "pos": [
-        1200,
-        710
+        877,
+        839
       ],
       "size": [
         75,
         26
       ],
       "flags": {},
-      "order": 8,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
           "name": "",
           "type": "*",
-          "link": 471,
-          "slot_index": 0
+          "link": 482,
+          "slot_index": 0,
+          "widget": {
+            "name": "value"
+          }
         }
       ],
       "outputs": [
         {
           "name": "",
-          "type": "LATENT",
+          "type": "STRING",
           "links": [
-            348
+            472,
+            473
           ],
           "slot_index": 0
         }
       ],
-      "title": "Reroute_resolution",
       "properties": {
         "showOutputText": false,
         "horizontal": false
       }
-    },
-    {
-      "id": 223,
-      "type": "KSampler",
-      "pos": [
-        1575,
-        229
-      ],
-      "size": {
-        "0": 320,
-        "1": 262
-      },
-      "flags": {},
-      "order": 17,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 345
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 346
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 347
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 348
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            367
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "KSampler"
-      },
-      "widgets_values": [
-        1044208109106942,
-        "randomize",
-        25,
-        5,
-        "dpmpp_2m_sde_gpu",
-        "karras",
-        1
-      ]
     },
     {
       "id": 208,
@@ -621,7 +520,7 @@
         "1": 130
       },
       "flags": {},
-      "order": 11,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -667,138 +566,6 @@
       "bgcolor": "#593930"
     },
     {
-      "id": 4,
-      "type": "CheckpointLoaderSimple",
-      "pos": [
-        -804,
-        -82
-      ],
-      "size": {
-        "0": 430,
-        "1": 100
-      },
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            419
-          ],
-          "slot_index": 0
-        },
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            418
-          ],
-          "slot_index": 1
-        },
-        {
-          "name": "VAE",
-          "type": "VAE",
-          "links": [
-            368
-          ],
-          "slot_index": 2
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CheckpointLoaderSimple"
-      },
-      "widgets_values": [
-        "juggernaut_XL2/juggernaut_v6.safetensors"
-      ],
-      "color": "#332922",
-      "bgcolor": "#593930"
-    },
-    {
-      "id": 232,
-      "type": "VAEDecode",
-      "pos": [
-        1650,
-        574
-      ],
-      "size": {
-        "0": 140,
-        "1": 50
-      },
-      "flags": {
-        "collapsed": false
-      },
-      "order": 18,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 367,
-          "slot_index": 0
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 368,
-          "slot_index": 1
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            464
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "VAEDecode"
-      }
-    },
-    {
-      "id": 31,
-      "type": "Reroute",
-      "pos": [
-        1451,
-        -43
-      ],
-      "size": [
-        75,
-        26
-      ],
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "",
-          "type": "*",
-          "link": 422,
-          "slot_index": 0
-        }
-      ],
-      "outputs": [
-        {
-          "name": "",
-          "type": "MODEL",
-          "links": [
-            345
-          ],
-          "slot_index": 0
-        }
-      ],
-      "title": "Reroute_lora2",
-      "properties": {
-        "showOutputText": false,
-        "horizontal": false
-      }
-    },
-    {
       "id": 248,
       "type": "LoraLoader",
       "pos": [
@@ -810,7 +577,7 @@
         "1": 130
       },
       "flags": {},
-      "order": 12,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -854,6 +621,107 @@
       ],
       "color": "#332922",
       "bgcolor": "#593930"
+    },
+    {
+      "id": 260,
+      "type": "ttN text",
+      "pos": [
+        343,
+        848
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            482
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "neg_prompt",
+      "properties": {
+        "Node name for S&R": "ttN text",
+        "ttNnodeVersion": "1.0.0"
+      },
+      "widgets_values": [
+        "bad, low quality, ugly"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 259,
+      "type": "ttN text",
+      "pos": [
+        347,
+        546
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            477
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "pos prompt",
+      "properties": {
+        "Node name for S&R": "ttN text",
+        "ttNnodeVersion": "1.0.0"
+      },
+      "widgets_values": [
+        "a tree in the style of embedding:makeitrad_embeddings"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 231,
+      "type": "SaveImage",
+      "pos": [
+        1170,
+        820
+      ],
+      "size": {
+        "0": 740,
+        "1": 710
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 464,
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "makeitrad"
+      ]
     }
   ],
   "links": [
@@ -896,14 +764,6 @@
       223,
       2,
       "CONDITIONING"
-    ],
-    [
-      348,
-      158,
-      0,
-      223,
-      3,
-      "LATENT"
     ],
     [
       367,
@@ -978,14 +838,6 @@
       "IMAGE"
     ],
     [
-      471,
-      219,
-      0,
-      158,
-      0,
-      "*"
-    ],
-    [
       472,
       256,
       0,
@@ -1000,14 +852,6 @@
       65,
       1,
       "STRING"
-    ],
-    [
-      474,
-      260,
-      0,
-      256,
-      0,
-      "*"
     ],
     [
       475,
@@ -1030,6 +874,22 @@
       259,
       0,
       255,
+      0,
+      "*"
+    ],
+    [
+      480,
+      219,
+      0,
+      223,
+      3,
+      "LATENT"
+    ],
+    [
+      482,
+      260,
+      0,
+      256,
       0,
       "*"
     ]
@@ -1055,17 +915,6 @@
         1381
       ],
       "color": "#8AA",
-      "font_size": 24
-    },
-    {
-      "title": "Size",
-      "bounding": [
-        826,
-        137,
-        302,
-        568
-      ],
-      "color": "#a1309b",
       "font_size": 24
     }
   ],
