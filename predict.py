@@ -157,6 +157,22 @@ def download(url, folder, filepath=None, timeout=600):
         print(f"An error occurred: {e}")
         return None
 
+def format_prompt(prompt, n_frames):
+    prompts = prompt.split('|')
+    n_frames_per_prompt = n_frames // len(prompts)
+
+    prompt = ""
+    for i, p in enumerate(prompts):
+        frame = str(i * n_frames_per_prompt)
+        prompt += f"\"{frame}\" : \"{p}\",\n"
+
+    # Removing the last comma and newline
+    prompt = prompt.rstrip(',\n')
+    print("Final prompt string:")
+    print(prompt)
+
+    return prompt
+    
 
 class Predictor(BasePredictor):
 
@@ -303,20 +319,18 @@ class Predictor(BasePredictor):
     def predict(
         self,
         render_mode: str = Input(
-                    description="comfy_txt2vid, comfy_img2vid, comfy_vid2vid, comfy_upscale, comfy_makeitrad", 
+                    description="comfy_txt2vid, comfy_img2vid, comfy_vid2vid (not ready yet), comfy_upscale (not ready yet), comfy_makeitrad (not ready yet)", 
                     default = "comfy_txt2vid",
                 ),
-        input_video_path: str = Input(
-                    description="Load source video from file, url, or base64 string", 
-                    default = None,
-                ),
+        prompt: str = Input(description="| separated list of prompts for txt2vid)", default="the tree of life|New York city skyline, sunset"),
         input_image_path: str = Input(
-                    description="Load source image from file, url, or base64 string", 
+                    description="Input image (for img2vid / upscale). Load source image from file, url, or base64 string", 
                     default = None,
                 ),
-        prompt: str = Input(description="Prompt", default="the tree of life"),
-
-
+        input_video_path: str = Input(
+                    description="For vid2vid. Load source video from file, url, or base64 string", 
+                    default = None,
+                ),
         steps: int = Input(
             description="Steps",
             ge=10, le=40, default=25
@@ -331,27 +345,31 @@ class Predictor(BasePredictor):
         ),
 
         n_frames: int = Input(
-            description="Total number of frames (mode==interpolate)",
-            ge=16, le=264, default=32
+            description="Total number of frames (txt2vid, vid2vid, img2vid)",
+            ge=16, le=264, default=40
         ),
 
-        controlnet_type: str = Input(
-            description="Controlnet type",
-            default="qr_monster",
-            choices=["canny-edge", "qr_monster"]
-        ),
-        controlnet_strength: float = Input(
-            description="Strength of controlnet guidance", 
-            ge=0.0, le=1.5, default=0.8
-        ),
-        denoise_strength: float = Input(
-            description="How much denoising to apply (1.0 = start from random noise, 0.0 = return input)", 
-            ge=0.0, le=1.0, default=1.0
-        ),
-        loop: bool = Input(
-            description="Try to make a loopable video",
-            default=True
-        ),
+        # controlnet_type: str = Input(
+        #     description="Controlnet type (this param does nothing right now)",
+        #     default="qr_monster",
+        #     choices=["canny-edge", "qr_monster"]
+        # ),
+
+        # controlnet_strength: float = Input(
+        #     description="Strength of controlnet guidance", 
+        #     ge=0.0, le=1.5, default=0.8
+        # ),
+
+        # denoise_strength: float = Input(
+        #     description="How much denoising to apply (1.0 = start from random noise, 0.0 = return input)", 
+        #     ge=0.0, le=1.0, default=1.0
+        # ),
+
+        # loop: bool = Input(
+        #     description="Try to make a loopable video",
+        #     default=True
+        # ),
+
         guidance_scale: float = Input(
             description="Strength of text conditioning guidance", 
             ge=1, le=20, default=7.5
@@ -370,9 +388,9 @@ class Predictor(BasePredictor):
             "qr_monster": "control_v1p_sd15_qrcode_monster.safetensors",
         }
 
-        split_prompt_modes = ["eden_txt2vid"]
-        if render_mode in split_prompt_modes:
-            prompt = prompt.split('|')
+        split_prompt_modes = ["comfy_txt2vid"]
+        if render_mode in split_prompt_modes:  # For now, just equally space the prompts!
+            prompt = format_prompt(prompt, n_frames)
 
         # Hardcoded, manual checks:
         if input_video_path:
@@ -384,9 +402,13 @@ class Predictor(BasePredictor):
         elif render_mode == "comfy_vid2vid":
             raise ValueError("An input video is required for vid2vid mode!")
 
+        if input_image_path:
+            input_image_path = download(input_image_path, "tmp_imgs")
+
         if render_mode == "comfy_makeitrad":
-            if ("embedding:makeitrad_embeddings" not in prompt) and ("embedding:indoor-outdoor_embeddings" not in prompt)::
+            if ("embedding:makeitrad_embeddings" not in prompt) and ("embedding:indoor-outdoor_embeddings" not in prompt):
                 raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
+
 
         # gather args from the input fields:
         args = {
@@ -396,19 +418,17 @@ class Predictor(BasePredictor):
             "width": width,
             "height": height,
             "n_frames": n_frames,
+            "n_frames2": n_frames, # temporary hack for comfy_txt2vid where this field is needed twice
             "guidance_scale": guidance_scale,
             "render_mode": render_mode,
-            "controlnet_type": controlnet_map[controlnet_type],
-            "controlnet_strength": controlnet_strength,
+            #"controlnet_type": controlnet_map[controlnet_type],
+            #"controlnet_strength": controlnet_strength,
             "steps": steps,
             "seed": seed,
         }
         args = AttrDict(args)
-
-
-
-        # Run the ComfyUI job:
-        try:
+        
+        try: # Run the ComfyUI job:
             output_path = self.get_workflow_output(args)
         except Exception as e:
             print(f"Error: {e}")

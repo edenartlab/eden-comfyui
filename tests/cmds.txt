@@ -15,5 +15,20 @@ sudo cog predict -i render_mode="vid2vid" -i input_video_path="https://storage.g
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i render_mode="eden_txt2vid" -i prompt="a winter landscape panorama" -i n_frames=32 -i width=768 -i height=512
 
+
+
+###################### COMFY ##########################
+
+
+
+
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i render_mode="comfy_makeitrad" -i prompt="a swimming pool in the style of embedding:makeitrad_embeddings" -i width="512"
+
+
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+sudo cog predict -i render_mode="comfy_img2vid" -i input_image_path="https://en.wikipedia.org/wiki/Christmas_tree#/media/File:A1_Christmas_Tree_photo.jpg" -i width="512"
+
+
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+sudo cog predict -i render_mode="comfy_txt2vid" -i prompt="a big elephant|a super fast racecar" -i n_frames="32" -i width="512" -i height="512"

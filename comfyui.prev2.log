@@ -1,4 +1,8 @@
-** ComfyUI start up time: 2023-12-28 23:11:51.726871
+** ComfyUI startup time: 2023-12-29 23:00:27.996684
+** Platform: Linux
+** Python version: 3.10.6 (main, Dec 21 2023, 14:28:54) [GCC 11.4.0]
+** Python executable: /root/.pyenv/versions/3.10.6/bin/python
+** Log path: /src/comfyui.log
 
 Prestartup times for custom nodes:
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
@@ -8,26 +12,27 @@ Set vram state to: NORMAL_VRAM
 Device: cuda:0 NVIDIA RTX A5000 : cudaMallocAsync
 VAE dtype: torch.bfloat16
 Using pytorch cross attention
-### Loading: ComfyUI-Manager (V1.0.1)
+[VideoHelperSuite] - [0;33mWARNING[0m - Failed to import imageio_ffmpeg
+### Loading: ComfyUI-Manager (V1.17.1)
 ## ComfyUI-Manager: installing dependencies
  Collecting GitPython
    Downloading GitPython-3.1.40-py3-none-any.whl (190 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 3.8 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 2.4 MB/s eta 0:00:00
  Collecting matrix-client==0.4.0
    Downloading matrix_client-0.4.0-py2.py3-none-any.whl (43 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 9.8 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 15.6 MB/s eta 0:00:00
  Collecting urllib3~=1.21
    Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 14.4 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 9.4 MB/s eta 0:00:00
  Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
  Collecting gitdb<5,>=4.0.1
    Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 11.9 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 10.3 MB/s eta 0:00:00
  Collecting smmap<6,>=3.0.1
    Downloading smmap-5.0.1-py3-none-any.whl (24 kB)
+ Requirement already satisfied: certifi>=2017.4.17 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2023.11.17)
  Requirement already satisfied: idna<4,>=2.5 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.6)
  Requirement already satisfied: charset-normalizer<4,>=2 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.3.2)
- Requirement already satisfied: certifi>=2017.4.17 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2023.11.17)
  Installing collected packages: urllib3, smmap, gitdb, matrix-client, GitPython
    Attempting uninstall: urllib3
      Found existing installation: urllib3 2.1.0
@@ -39,12 +44,23 @@ Using pytorch cross attention
 [!] [notice] A new release of pip available: 22.2.1 -> 23.3.2
 [!] [notice] To update, run: pip install --upgrade pip
 ## ComfyUI-Manager: installing dependencies done.
-### ComfyUI Revision: 1699 [0cf4e869] | Released on '2023-11-17'
+### ComfyUI Revision: 1863 [12e822c6] | Released on '2023-12-28'
+FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json[36;20m[comfyui_controlnet_aux] | INFO -> Using ckpts path: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux/ckpts[0m
+
+FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json[36;20m[comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
+
+FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json[36;20m[comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
+
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 
 
 Full error log from comfyui_controlnet_aux: 
 Traceback (most recent call last):
-  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/__init__.py", line 33, in load_nodes
+  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/__init__.py", line 32, in load_nodes
     module = importlib.import_module(
   File "/root/.pyenv/versions/3.10.6/lib/python3.10/importlib/__init__.py", line 126, in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
@@ -56,16 +72,16 @@ Traceback (most recent call last):
   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
   File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/node_wrappers/dwpose.py", line 5, in <module>
     from controlnet_aux.dwpose import DwposeDetector, AnimalposeDetector
-  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/src/controlnet_aux/dwpose/__init__.py", line 16, in <module>
-    from . import util
-  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/src/controlnet_aux/dwpose/util.py", line 3, in <module>
-    import matplotlib
-ModuleNotFoundError: No module named 'matplotlib'
+  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/src/controlnet_aux/dwpose/__init__.py", line 19, in <module>
+    from .hand import Hand
+  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/src/controlnet_aux/dwpose/hand.py", line 10, in <module>
+    from skimage.measure import label
+ModuleNotFoundError: No module named 'skimage'
 
 
 
 [36;20m[comfyui_controlnet_aux] | INFO -> Some nodes failed to load:
-	Failed to import module dwpose because ModuleNotFoundError: No module named 'matplotlib'
+	Failed to import module dwpose because ModuleNotFoundError: No module named 'skimage'
 
 Check that you properly installed the dependencies.
 If you think this is a bug, please report it on the github page (https://github.com/Fannovel16/comfyui_controlnet_aux/issues)[0m
@@ -75,7 +91,7 @@ Could not find efficiency nodes
 
 Full error log from comfyui_controlnet_aux: 
 Traceback (most recent call last):
-  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/__init__.py", line 33, in load_nodes
+  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/__init__.py", line 32, in load_nodes
     module = importlib.import_module(
   File "/root/.pyenv/versions/3.10.6/lib/python3.10/importlib/__init__.py", line 126, in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
@@ -87,75 +103,44 @@ Traceback (most recent call last):
   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
   File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/node_wrappers/dwpose.py", line 5, in <module>
     from controlnet_aux.dwpose import DwposeDetector, AnimalposeDetector
-  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/src/controlnet_aux/dwpose/__init__.py", line 16, in <module>
-    from . import util
-  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/src/controlnet_aux/dwpose/util.py", line 3, in <module>
-    import matplotlib
-ModuleNotFoundError: No module named 'matplotlib'
+  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/src/controlnet_aux/dwpose/__init__.py", line 19, in <module>
+    from .hand import Hand
+  File "/src/ComfyUI/custom_nodes/comfyui_controlnet_aux/src/controlnet_aux/dwpose/hand.py", line 10, in <module>
+    from skimage.measure import label
+ModuleNotFoundError: No module named 'skimage'
 
 
 
 [36;20m[comfyui_controlnet_aux] | INFO -> Some nodes failed to load:
-	Failed to import module dwpose because ModuleNotFoundError: No module named 'matplotlib'
+	Failed to import module dwpose because ModuleNotFoundError: No module named 'skimage'
 
 Check that you properly installed the dependencies.
 If you think this is a bug, please report it on the github page (https://github.com/Fannovel16/comfyui_controlnet_aux/issues)[0m
 Loaded ControlNetPreprocessors nodes from /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
+No module named 'control'
 Could not find AnimateDiff nodes
 Loaded IPAdapter nodes from /src/ComfyUI/custom_nodes/ComfyUI_IPAdapter_plus
 Traceback (most recent call last):
-  File "/src/ComfyUI/nodes.py", line 1735, in load_custom_node
+  File "/src/ComfyUI/nodes.py", line 1813, in load_custom_node
     module_spec.loader.exec_module(module)
   File "<frozen importlib._bootstrap_external>", line 883, in exec_module
   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
   File "/src/ComfyUI/custom_nodes/comfyui-art-venture/__init__.py", line 10, in <module>
     from .modules.nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
-  File "/src/ComfyUI/custom_nodes/comfyui-art-venture/modules/nodes.py", line 55, in <module>
+  File "/src/ComfyUI/custom_nodes/comfyui-art-venture/modules/nodes.py", line 54, in <module>
     from .inpaint import (
   File "/src/ComfyUI/custom_nodes/comfyui-art-venture/modules/inpaint/__init__.py", line 1, in <module>
     from .nodes import NODE_CLASS_MAPPINGS, NODE_DISPLAY_NAME_MAPPINGS
   File "/src/ComfyUI/custom_nodes/comfyui-art-venture/modules/inpaint/nodes.py", line 7, in <module>
     from .sam.nodes import SAMLoader, GetSAMEmbedding, SAMEmbeddingToImage
-  File "/src/ComfyUI/custom_nodes/comfyui-art-venture/modules/inpaint/sam/nodes.py", line 4, in <module>
+  File "/src/ComfyUI/custom_nodes/comfyui-art-venture/modules/inpaint/sam/nodes.py", line 5, in <module>
     from segment_anything import SamPredictor, sam_model_registry
 ModuleNotFoundError: No module named 'segment_anything'
 
 Cannot import /src/ComfyUI/custom_nodes/comfyui-art-venture module for custom nodes: No module named 'segment_anything'
-WARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
-Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
-To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
-Collecting matplotlib
-  Downloading matplotlib-3.8.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.6/11.6 MB 15.8 MB/s eta 0:00:00
-Collecting pyparsing>=2.3.1
-  Downloading pyparsing-3.1.1-py3-none-any.whl (103 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.1/103.1 kB 14.7 MB/s eta 0:00:00
-Collecting kiwisolver>=1.3.1
-  Downloading kiwisolver-1.4.5-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 16.8 MB/s eta 0:00:00
-Requirement already satisfied: pillow>=8 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matplotlib) (10.1.0)
-Collecting contourpy>=1.0.1
-  Downloading contourpy-1.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (310 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 310.7/310.7 kB 12.5 MB/s eta 0:00:00
-Requirement already satisfied: numpy<2,>=1.21 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matplotlib) (1.26.2)
-Collecting cycler>=0.10
-  Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
-Collecting fonttools>=4.22.0
-  Downloading fonttools-4.47.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.6 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 13.3 MB/s eta 0:00:00
-Requirement already satisfied: packaging>=20.0 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matplotlib) (23.2)
-Requirement already satisfied: python-dateutil>=2.7 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matplotlib) (2.8.2)
-Requirement already satisfied: six>=1.5 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from python-dateutil>=2.7->matplotlib) (1.16.0)
-Installing collected packages: pyparsing, kiwisolver, fonttools, cycler, contourpy, matplotlib
-Successfully installed contourpy-1.2.0 cycler-0.12.1 fonttools-4.47.0 kiwisolver-1.4.5 matplotlib-3.8.2 pyparsing-3.1.1
-WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-
-[notice] A new release of pip available: 22.2.1 -> 23.3.2
-[notice] To update, run: pip install --upgrade pip
-generated new fontManager
-[34mComfyroll Custom Nodes: [92mLoaded[0m
-Note: NumExpr detected 48 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
-NumExpr defaulting to 8 threads.
+------------------------------------------------
+[34mComfyroll Custom Nodes v1.55 : [92m 165 Nodes Loaded[0m
+------------------------------------------------
 [34mFizzleDorf Custom Nodes: [92mLoaded[0m
 [92m[tinyterraNodes] [32mLoaded[0m
 
@@ -164,32 +149,17 @@ Import times for custom nodes:
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUi_NNLatentUpscale
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Advanced-ControlNet
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-AnimateDiff-Evolved
-   0.0 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
+   0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Frame-Interpolation
+   0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_essentials
+   0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_Comfyroll_CustomNodes
    0.0 seconds (IMPORT FAILED): /src/ComfyUI/custom_nodes/comfyui-art-venture
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_tinyterraNodes
    0.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite
-   0.2 seconds: /src/ComfyUI/custom_nodes/ComfyUI_FizzNodes
-   2.8 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
-  10.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI_Comfyroll_CustomNodes
+   0.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI_FizzNodes
+   0.5 seconds: /src/ComfyUI/custom_nodes/eden_comfy_pipelines
+   1.0 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
+   2.9 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
 
 Starting server
 
 To see the GUI go to: http://127.0.0.1:8188
-got prompt
-model_type EPS
-adm 2816
-Using pytorch attention in VAE
-Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
-Using pytorch attention in VAE
-missing {'cond_stage_model.clip_l.text_projection', 'cond_stage_model.clip_l.logit_scale'}
-left over keys: dict_keys(['cond_stage_model.clip_l.transformer.text_model.embeddings.position_ids'])
-Requested to load SDXLClipModel
-Loading 1 new model
-Requested to load SDXL
-Loading 1 new model
-/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/torchsde/_brownian/brownian_interval.py:608: UserWarning: Should have tb<=t1 but got tb=14.614643096923828 and t1=14.614643.
-  warnings.warn(f"Should have {tb_name}<=t1 but got {tb_name}={tb} and t1={self._end}.")
-/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/torchsde/_brownian/brownian_interval.py:599: UserWarning: Should have ta>=t0 but got ta=0.02916753850877285 and t0=0.029168.
-  warnings.warn(f"Should have ta>=t0 but got ta={ta} and t0={self._start}.")
-100%|██████████| 25/25 [00:02<00:00, 10.25it/s]100%|██████████| 25/25 [00:02<00:00,  9.37it/s]
-Prompt executed in 5.30 seconds

@@ -4,3 +4,5 @@ __pycache__
 ComfyUI
 models
 tmp_vids
+tmp_imgs
+cache

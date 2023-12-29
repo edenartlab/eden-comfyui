@@ -1,0 +1,6 @@
+{
+  "width": {"node_id": "36", "field": "inputs", "subfield": "width"},
+  "height": {"node_id": "36", "field": "inputs", "subfield": "height"},
+  "n_frames": {"node_id": "39", "field": "inputs", "subfield": "amount"},
+  "input_image_path": {"node_id": "34", "field": "inputs", "subfield": "image"}
+}

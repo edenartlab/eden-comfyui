@@ -1,0 +1,179 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "realisticVisionV60B1_v60B1VAE.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "8": {
+    "inputs": {
+      "text": "nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "9": {
+    "inputs": {
+      "seed": 0,
+      "steps": 30,
+      "cfg": 7.5,
+      "sampler_name": "dpmpp_2m_sde_gpu",
+      "scheduler": "exponential",
+      "denoise": 1,
+      "model": [
+        "15",
+        0
+      ],
+      "positive": [
+        "16",
+        0
+      ],
+      "negative": [
+        "8",
+        0
+      ],
+      "latent_image": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "10": {
+    "inputs": {
+      "width": 768,
+      "height": 512,
+      "batch_size": 64
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "11": {
+    "inputs": {
+      "samples": [
+        "9",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "14": {
+    "inputs": {
+      "context_length": 16,
+      "context_stride": 1,
+      "context_overlap": 4,
+      "context_schedule": "uniform",
+      "closed_loop": true
+    },
+    "class_type": "ADE_AnimateDiffUniformContextOptions"
+  },
+  "15": {
+    "inputs": {
+      "model_name": "v3_sd15_mm.ckpt",
+      "beta_schedule": "sqrt_linear (AnimateDiff)",
+      "motion_scale": 1.1,
+      "apply_v2_models_properly": true,
+      "model": [
+        "26",
+        0
+      ],
+      "context_options": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffLoaderWithContext"
+  },
+  "16": {
+    "inputs": {
+      "text": "\"0\" :\"a liminal dark room with a faint light at the end, brutalist bunker\",\n\"64\":\"a dark, brutalist bunker overgrown with twisting ivy, roots, backlit\"",
+      "max_frames": 64,
+      "print_output": true,
+      "pre_text": "",
+      "app_text": "",
+      "start_frame": 0,
+      "pw_a": 0,
+      "pw_b": 0,
+      "pw_c": 0,
+      "pw_d": 0,
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "BatchPromptSchedule"
+  },
+  "18": {
+    "inputs": {
+      "model_name": "RealESRGAN_x2plus.pth"
+    },
+    "class_type": "UpscaleModelLoader"
+  },
+  "19": {
+    "inputs": {
+      "upscale_model": [
+        "18",
+        0
+      ],
+      "image": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel"
+  },
+  "20": {
+    "inputs": {
+      "ckpt_name": "rife47.pth",
+      "clear_cache_after_n_frames": 10,
+      "multiplier": 2,
+      "fast_mode": true,
+      "ensemble": true,
+      "scale_factor": 1,
+      "cache_in_fp16": true,
+      "frames": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "RIFE VFI"
+  },
+  "26": {
+    "inputs": {
+      "lora_name": "v3_sd15_adapter.ckpt",
+      "strength_model": 0.8,
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly"
+  },
+  "33": {
+    "inputs": {
+      "frame_rate": 14,
+      "loop_count": 0,
+      "filename_prefix": "txt2vid",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 20,
+      "save_metadata": true,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  }
+}

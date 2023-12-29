@@ -25,7 +25,9 @@ build:
     - tqdm
     - numexpr
     - psutil
+    - matplotlib
     - websocket-client==1.6.3
+    - clip-interrogator==0.6.0 # needed for CLIP-interrogator Eden ComfyUI node
 
 
 # predict.py defines how predictions are run on your model
