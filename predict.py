@@ -413,6 +413,7 @@ class Predictor(BasePredictor):
         # gather args from the input fields:
         args = {
             "input_video_path": input_video_path,
+            "input_image_path": input_image_path,
             "prompt": prompt,
             "negative_prompt": negative_prompt,
             "width": width,

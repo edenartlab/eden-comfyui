@@ -27,7 +27,7 @@ sudo cog predict -i render_mode="comfy_makeitrad" -i prompt="a swimming pool in 
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i render_mode="comfy_img2vid" -i input_image_path="https://en.wikipedia.org/wiki/Christmas_tree#/media/File:A1_Christmas_Tree_photo.jpg" -i width="512"
+sudo cog predict -i render_mode="comfy_img2vid" -i input_image_path="https://en.wikipedia.org/wiki/Christmas_tree#/media/File:A1_Christmas_Tree_photo.jpg" -i width="512" -i height="512" -i n_frames="16"
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI

@@ -26,7 +26,6 @@ ComfyUI/input/*
 ComfyUI/models/sdxl-v1.0
 ComfyUI/models/photon.safetensors
 
-
 #controlnet
 ComfyUI/models/controlnet/controlnet-luminance-sdxl-1.0
 ComfyUI/models/controlnet/control_sd15_canny.safetensors

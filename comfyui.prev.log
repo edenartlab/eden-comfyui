@@ -1,6 +1,6 @@
-** ComfyUI startup time: 2023-12-29 23:00:58.051293
+** ComfyUI startup time: 2023-12-30 02:03:57.456388
 ** Platform: Linux
-** Python version: 3.10.6 (main, Dec 21 2023, 14:28:54) [GCC 11.4.0]
+** Python version: 3.10.6 (main, Dec 30 2023, 01:15:30) [GCC 11.4.0]
 ** Python executable: /root/.pyenv/versions/3.10.6/bin/python
 ** Log path: /src/comfyui.log
 
@@ -17,22 +17,22 @@ Using pytorch cross attention
 ## ComfyUI-Manager: installing dependencies
  Collecting GitPython
    Downloading GitPython-3.1.40-py3-none-any.whl (190 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 2.6 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 3.1 MB/s eta 0:00:00
  Collecting matrix-client==0.4.0
    Downloading matrix_client-0.4.0-py2.py3-none-any.whl (43 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 6.1 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 5.8 MB/s eta 0:00:00
+ Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
  Collecting urllib3~=1.21
    Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 6.3 MB/s eta 0:00:00
- Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 5.2 MB/s eta 0:00:00
  Collecting gitdb<5,>=4.0.1
    Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 8.5 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 8.8 MB/s eta 0:00:00
  Collecting smmap<6,>=3.0.1
    Downloading smmap-5.0.1-py3-none-any.whl (24 kB)
+ Requirement already satisfied: certifi>=2017.4.17 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2023.11.17)
  Requirement already satisfied: charset-normalizer<4,>=2 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.3.2)
  Requirement already satisfied: idna<4,>=2.5 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.6)
- Requirement already satisfied: certifi>=2017.4.17 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2023.11.17)
  Installing collected packages: urllib3, smmap, gitdb, matrix-client, GitPython
    Attempting uninstall: urllib3
      Found existing installation: urllib3 2.1.0
@@ -52,8 +52,8 @@ FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
-[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
 
@@ -158,7 +158,7 @@ Import times for custom nodes:
    0.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI_FizzNodes
    0.5 seconds: /src/ComfyUI/custom_nodes/eden_comfy_pipelines
    1.1 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
-   3.6 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+   2.8 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
 
 Starting server
 
@@ -169,7 +169,7 @@ adm 2816
 Using pytorch attention in VAE
 Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
 Using pytorch attention in VAE
-missing {'cond_stage_model.clip_l.text_projection', 'cond_stage_model.clip_l.logit_scale'}
+missing {'cond_stage_model.clip_l.logit_scale', 'cond_stage_model.clip_l.text_projection'}
 left over keys: dict_keys(['cond_stage_model.clip_l.transformer.text_model.embeddings.position_ids'])
 Requested to load SDXLClipModel
 Loading 1 new model
@@ -179,7 +179,7 @@ Loading 1 new model
   warnings.warn(f"Should have {tb_name}<=t1 but got {tb_name}={tb} and t1={self._end}.")
 /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/torchsde/_brownian/brownian_interval.py:599: UserWarning: Should have ta>=t0 but got ta=0.02916753850877285 and t0=0.029168.
   warnings.warn(f"Should have ta>=t0 but got ta={ta} and t0={self._start}.")
-100%|██████████| 25/25 [00:02<00:00,  9.42it/s]
+100%|██████████| 25/25 [00:02<00:00, 10.25it/s]100%|██████████| 25/25 [00:02<00:00,  9.38it/s]
 Requested to load AutoencoderKL
 Loading 1 new model
-Prompt executed in 5.74 seconds
+Prompt executed in 5.96 seconds
