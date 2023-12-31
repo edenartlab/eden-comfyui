@@ -1,0 +1,6 @@
+{
+  "width": {"node_id": "36", "field": "inputs", "subfield": "width"},
+  "height": {"node_id": "36", "field": "inputs", "subfield": "height"},
+  "input_image_path": {"node_id": "24", "field": "inputs", "subfield": "image"},
+  "denoise_strength": {"node_id": "9", "field": "inputs", "subfield": "denoise"}
+}

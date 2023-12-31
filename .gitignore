@@ -6,3 +6,4 @@ models
 tmp_vids
 tmp_imgs
 cache
+clip_interrogator_model

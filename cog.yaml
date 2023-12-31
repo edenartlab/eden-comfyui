@@ -22,6 +22,8 @@ build:
     - pyyaml
     - Pillow
     - scipy
+    - imageio-ffmpeg
+    - scikit-image
     - tqdm
     - numexpr
     - psutil

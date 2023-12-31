@@ -1,0 +1,262 @@
+{
+  "3": {
+    "inputs": {
+      "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
+    },
+    "class_type": "IPAdapterModelLoader"
+  },
+  "4": {
+    "inputs": {
+      "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+    },
+    "class_type": "CLIPVisionLoader"
+  },
+  "5": {
+    "inputs": {
+      "weight": 0.75,
+      "noise": 0,
+      "weight_type": "original",
+      "start_at": 0,
+      "end_at": 0.7000000000000001,
+      "unfold_batch": false,
+      "ipadapter": [
+        "3",
+        0
+      ],
+      "clip_vision": [
+        "4",
+        0
+      ],
+      "image": [
+        "28",
+        0
+      ],
+      "model": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "IPAdapterApply"
+  },
+  "8": {
+    "inputs": {
+      "text": "pixelated, nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast",
+      "clip": [
+        "46",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "9": {
+    "inputs": {
+      "seed": 622142794638751,
+      "steps": 35,
+      "cfg": 7,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "exponential",
+      "denoise": 0.45,
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "39",
+        0
+      ],
+      "negative": [
+        "39",
+        1
+      ],
+      "latent_image": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "KSampler"
+  },
+  "11": {
+    "inputs": {
+      "samples": [
+        "9",
+        0
+      ],
+      "vae": [
+        "46",
+        2
+      ]
+    },
+    "class_type": "VAEDecode"
+  },
+  "24": {
+    "inputs": {
+      "image": "2991f15c1b3fc9e7d254008c6e57eecb3f2ce92e53cd5b634f2baa5fd0cbe347.jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage"
+  },
+  "28": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "top",
+      "sharpening": 0,
+      "image": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision"
+  },
+  "33": {
+    "inputs": {
+      "control_net_name": "control_v11p_sd15_canny_fp16.safetensors"
+    },
+    "class_type": "ControlNetLoader"
+  },
+  "34": {
+    "inputs": {
+      "mode": "fast",
+      "image": [
+        "28",
+        0
+      ]
+    },
+    "class_type": "CLIP_Interrogator"
+  },
+  "35": {
+    "inputs": {
+      "text": [
+        "34",
+        0
+      ],
+      "clip": [
+        "46",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "36": {
+    "inputs": {
+      "width": 1600,
+      "height": 1600,
+      "interpolation": "lanczos",
+      "keep_proportion": true,
+      "image": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "ImageResize+"
+  },
+  "37": {
+    "inputs": {
+      "pixels": [
+        "36",
+        0
+      ],
+      "vae": [
+        "46",
+        2
+      ]
+    },
+    "class_type": "VAEEncode"
+  },
+  "38": {
+    "inputs": {
+      "low_threshold": 50,
+      "high_threshold": 175,
+      "resolution": 1024,
+      "image": [
+        "55",
+        0
+      ]
+    },
+    "class_type": "CannyEdgePreprocessor"
+  },
+  "39": {
+    "inputs": {
+      "strength": 0.8,
+      "start_percent": 0,
+      "end_percent": 0.8,
+      "positive": [
+        "35",
+        0
+      ],
+      "negative": [
+        "8",
+        0
+      ],
+      "control_net": [
+        "33",
+        0
+      ],
+      "image": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced"
+  },
+  "43": {
+    "inputs": {
+      "model_name": "RealESRGAN_x4plus.pth"
+    },
+    "class_type": "UpscaleModelLoader"
+  },
+  "44": {
+    "inputs": {
+      "upscale_model": [
+        "43",
+        0
+      ],
+      "image": [
+        "68",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel"
+  },
+  "46": {
+    "inputs": {
+      "ckpt_name": "realisticVisionV60B1_v60B1VAE.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "55": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "interpolation": "lanczos",
+      "keep_proportion": true,
+      "image": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "ImageResize+"
+  },
+  "67": {
+    "inputs": {
+      "filename_prefix": "Upscaled",
+      "images": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "SaveImage"
+  },
+  "68": {
+    "inputs": {
+      "width": 768,
+      "height": 768,
+      "interpolation": "lanczos",
+      "keep_proportion": true,
+      "image": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "ImageResize+"
+  }
+}

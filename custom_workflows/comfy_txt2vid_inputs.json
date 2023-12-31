@@ -2,6 +2,6 @@
   "width": {"node_id": "10", "field": "inputs", "subfield": "width"},
   "height": {"node_id": "10", "field": "inputs", "subfield": "height"},
   "n_frames": {"node_id": "10", "field": "inputs", "subfield": "batch_size"},
-  "prompt": {"node_id": "16", "field": "inputs", "subfield": "text"},
+  "interpolation_texts": {"node_id": "16", "field": "inputs", "subfield": "text"},
   "n_frames2": {"node_id": "16", "field": "inputs", "subfield": "max_frames"}
 }

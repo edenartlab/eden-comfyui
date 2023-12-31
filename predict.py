@@ -1,6 +1,6 @@
 # don't push DEBUG_MODE = True to Replicate!
 DEBUG_MODE = False
-#DEBUG_MODE = True
+DEBUG_MODE = True
 
 import subprocess
 import threading
@@ -131,14 +131,15 @@ def download(url, folder, filepath=None, timeout=600):
             filename = parsed_url_path.stem + ext  # Append extension only if needed
             folder_path = Path(folder)
             filepath = folder_path / filename
+            filepath = str(filepath.absolute())
         else:
-            folder_path = Path(os.path.dirname(filepath))
+            folder_path = os.path.dirname(filepath)
         
         os.makedirs(folder_path, exist_ok=True)
         
         if os.path.exists(filepath):
             print(f"{filepath} already exists, skipping download..")
-            return filepath
+            return str(filepath)
         
         print(f"Downloading {url} to {filepath}...")
         response = requests.get(url, stream=True, timeout=timeout)
@@ -148,7 +149,7 @@ def download(url, folder, filepath=None, timeout=600):
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
         
-        return filepath
+        return str(filepath)
 
     except requests.exceptions.RequestException as e:
         print(f"Error downloading the file: {e}")
@@ -223,8 +224,9 @@ class Predictor(BasePredictor):
         with urllib.request.urlopen("http://{}/view?{}".format(self.server_address, url_values)) as response:
             return response.read()
 
-    def get_output(self, ws, prompt, client_id):
-        prompt_id = self.queue_prompt(prompt, client_id)['prompt_id']
+    def get_output(self, ws, config, client_id):
+        print("Sending job to ComfyUI server...")
+        prompt_id = self.queue_prompt(config, client_id)['prompt_id']
         output_paths = {}
         while True:
             out = ws.recv()
@@ -239,7 +241,6 @@ class Predictor(BasePredictor):
         
         # hardcoded for now: TODO make this more flexible
         output_dir = "ComfyUI/output"
-
         history = self.get_history(prompt_id)[prompt_id]
         for o in history['outputs']:
             for node_id in history['outputs']:
@@ -310,6 +311,7 @@ class Predictor(BasePredictor):
         client_id = str(uuid.uuid4())
         ws = websocket.WebSocket()
         ws.connect("ws://{}/ws?clientId={}".format(self.server_address, client_id))
+        print("Running pipeline...")
         out_paths = self.get_output(ws, config, client_id)
 
         for node_id in out_paths:
@@ -322,7 +324,8 @@ class Predictor(BasePredictor):
                     description="comfy_txt2vid, comfy_img2vid, comfy_vid2vid (not ready yet), comfy_upscale (not ready yet), comfy_makeitrad (not ready yet)", 
                     default = "comfy_txt2vid",
                 ),
-        prompt: str = Input(description="| separated list of prompts for txt2vid)", default="the tree of life|New York city skyline, sunset"),
+        text_input: str = Input(description="prompt", default=None),
+        interpolation_texts: str = Input(description="| separated list of prompts for txt2vid)", default=None),
         input_image_path: str = Input(
                     description="Input image (for img2vid / upscale). Load source image from file, url, or base64 string", 
                     default = None,
@@ -360,10 +363,10 @@ class Predictor(BasePredictor):
         #     ge=0.0, le=1.5, default=0.8
         # ),
 
-        # denoise_strength: float = Input(
-        #     description="How much denoising to apply (1.0 = start from random noise, 0.0 = return input)", 
-        #     ge=0.0, le=1.0, default=1.0
-        # ),
+        denoise_strength: float = Input(
+            description="How much denoising to apply (1.0 = start from full noise, 0.0 = return input image)", 
+            ge=0.0, le=1.0, default=1.0
+        ),
 
         # loop: bool = Input(
         #     description="Try to make a loopable video",
@@ -388,9 +391,9 @@ class Predictor(BasePredictor):
             "qr_monster": "control_v1p_sd15_qrcode_monster.safetensors",
         }
 
-        split_prompt_modes = ["comfy_txt2vid"]
-        if render_mode in split_prompt_modes:  # For now, just equally space the prompts!
-            prompt = format_prompt(prompt, n_frames)
+        if interpolation_texts:  # For now, just equally space the prompts!
+            interpolation_texts = format_prompt(interpolation_texts, n_frames)
+            text_input = interpolation_texts
 
         # Hardcoded, manual checks:
         if input_video_path:
@@ -403,10 +406,13 @@ class Predictor(BasePredictor):
             raise ValueError("An input video is required for vid2vid mode!")
 
         if input_image_path:
-            input_image_path = download(input_image_path, "tmp_imgs")
+            if os.path.exists(input_image_path):
+                input_image_path = str(input_image_path)
+            else:
+                input_image_path = download(input_image_path, "tmp_imgs")
 
         if render_mode == "comfy_makeitrad":
-            if ("embedding:makeitrad_embeddings" not in prompt) and ("embedding:indoor-outdoor_embeddings" not in prompt):
+            if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
                 raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
 
 
@@ -414,7 +420,8 @@ class Predictor(BasePredictor):
         args = {
             "input_video_path": input_video_path,
             "input_image_path": input_image_path,
-            "prompt": prompt,
+            "text_input": text_input,
+            "interpolation_texts": interpolation_texts,
             "negative_prompt": negative_prompt,
             "width": width,
             "height": height,
@@ -422,6 +429,7 @@ class Predictor(BasePredictor):
             "n_frames2": n_frames, # temporary hack for comfy_txt2vid where this field is needed twice
             "guidance_scale": guidance_scale,
             "render_mode": render_mode,
+            "denoise_strength": denoise_strength,
             #"controlnet_type": controlnet_map[controlnet_type],
             #"controlnet_strength": controlnet_strength,
             "steps": steps,
@@ -432,7 +440,7 @@ class Predictor(BasePredictor):
         try: # Run the ComfyUI job:
             output_path = self.get_workflow_output(args)
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error in self.get_workflow_output(): {e}")
             output_path = None
 
         if output_path is not None:
@@ -443,7 +451,7 @@ class Predictor(BasePredictor):
                 output_path = Path(output_path)
                 thumbnail_path = save_first_frame_to_tempfile(str(output_path))
                 print(f'Returning {output_path} and {thumbnail_path}')
-                yield CogOutput(files=[output_path], name=prompt, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)
+                yield CogOutput(files=[output_path], name=text_input, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)
         else:
             print(f"output_path was None...")
             yield CogOutput(files=[], progress=1.0, isFinal=True)
