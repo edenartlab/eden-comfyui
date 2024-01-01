@@ -1,6 +1,6 @@
 # don't push DEBUG_MODE = True to Replicate!
 DEBUG_MODE = False
-DEBUG_MODE = True
+#DEBUG_MODE = True
 
 import subprocess
 import threading
