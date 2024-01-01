@@ -1,4 +1,4 @@
-** ComfyUI startup time: 2023-12-31 15:47:24.715989
+** ComfyUI startup time: 2024-01-01 22:09:45.488517
 ** Platform: Linux
 ** Python version: 3.10.6 (main, Dec 30 2023, 01:15:30) [GCC 11.4.0]
 ** Python executable: /root/.pyenv/versions/3.10.6/bin/python
@@ -16,17 +16,17 @@ Using pytorch cross attention
 ## ComfyUI-Manager: installing dependencies
  Collecting GitPython
    Downloading GitPython-3.1.40-py3-none-any.whl (190 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 3.8 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 2.3 MB/s eta 0:00:00
  Collecting matrix-client==0.4.0
    Downloading matrix_client-0.4.0-py2.py3-none-any.whl (43 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 15.1 MB/s eta 0:00:00
- Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 4.3 MB/s eta 0:00:00
  Collecting urllib3~=1.21
    Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 16.6 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 4.4 MB/s eta 0:00:00
+ Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
  Collecting gitdb<5,>=4.0.1
    Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 9.8 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 5.6 MB/s eta 0:00:00
  Collecting smmap<6,>=3.0.1
    Downloading smmap-5.0.1-py3-none-any.whl (24 kB)
  Requirement already satisfied: charset-normalizer<4,>=2 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.3.2)
@@ -51,8 +51,8 @@ FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
-[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
 Downloading: "https://download.pytorch.org/models/mobilenet_v2-b0353104.pth" to /root/.cache/torch/hub/checkpoints/mobilenet_v2-b0353104.pth
@@ -91,6 +91,7 @@ Cannot import /src/ComfyUI/custom_nodes/comfyui-art-venture module for custom no
 Import times for custom nodes:
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_IPAdapter_plus
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUi_NNLatentUpscale
+   0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_FizzNodes
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Advanced-ControlNet
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-AnimateDiff-Evolved
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Frame-Interpolation
@@ -99,10 +100,9 @@ Import times for custom nodes:
    0.0 seconds (IMPORT FAILED): /src/ComfyUI/custom_nodes/comfyui-art-venture
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_tinyterraNodes
    0.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite
-   0.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI_FizzNodes
-   0.5 seconds: /src/ComfyUI/custom_nodes/eden_comfy_pipelines
-   2.5 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
-   2.8 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+   2.0 seconds: /src/ComfyUI/custom_nodes/eden_comfy_pipelines
+   3.1 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
+   3.4 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
 
 Starting server
 
@@ -115,7 +115,7 @@ adm 0
 Using pytorch attention in VAE
 Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
 Using pytorch attention in VAE
-missing {'cond_stage_model.clip_l.logit_scale', 'cond_stage_model.clip_l.text_projection'}
+missing {'cond_stage_model.clip_l.text_projection', 'cond_stage_model.clip_l.logit_scale'}
 left over keys: dict_keys(['cond_stage_model.clip_l.transformer.text_model.embeddings.position_ids'])
 [AnimateDiffEvo] - [0;32mINFO[0m - Loading motion module v3_sd15_mm.ckpt
 /src/ComfyUI/custom_nodes/ComfyUI_FizzNodes/BatchFuncs.py:128: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
@@ -581,7 +581,7 @@ Loading 2 new models
   warnings.warn(f"Should have {tb_name}<=t1 but got {tb_name}={tb} and t1={self._end}.")
 /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/torchsde/_brownian/brownian_interval.py:599: UserWarning: Should have ta>=t0 but got ta=0.0291675366461277 and t0=0.029168.
   warnings.warn(f"Should have ta>=t0 but got ta={ta} and t0={self._start}.")
-100%|██████████| 30/30 [01:15<00:00,  2.57s/it]100%|██████████| 30/30 [01:15<00:00,  2.53s/it]
+100%|██████████| 30/30 [01:15<00:00,  2.57s/it]100%|██████████| 30/30 [01:15<00:00,  2.52s/it]
 Requested to load AutoencoderKL
 Loading 1 new model
 Comfy-VFI: Clearing cache... Done cache clearing
@@ -589,4 +589,4 @@ Comfy-VFI: Clearing cache... Done cache clearing
 Comfy-VFI: Clearing cache... Done cache clearing
 Comfy-VFI done! 62 frames generated at resolution: torch.Size([1, 3, 1024, 1024])
 Comfy-VFI: Final clearing cache... Done cache clearing
-Prompt executed in 102.04 seconds
+Prompt executed in 103.36 seconds

@@ -27,6 +27,8 @@ import subprocess
 import os
 import shlex
 
+from nsfw_detection import lewd_detection
+
 def save_first_frame_to_tempfile(video_path):
     if not video_path.endswith('.mp4'):
         # the path is not a video file, just return it
@@ -159,20 +161,20 @@ def download(url, folder, filepath=None, timeout=600):
         return None
 
 def format_prompt(prompt, n_frames):
-    prompts = prompt.split('|')
-    n_frames_per_prompt = n_frames // len(prompts)
+    prompt_list = prompt.split('|')
+    n_frames_per_prompt = n_frames // len(prompt_list)
 
-    prompt = ""
-    for i, p in enumerate(prompts):
+    formatted_prompt = ""
+    for i, p in enumerate(prompt_list):
         frame = str(i * n_frames_per_prompt)
-        prompt += f"\"{frame}\" : \"{p}\",\n"
+        formatted_prompt += f"\"{frame}\" : \"{p}\",\n"
 
     # Removing the last comma and newline
-    prompt = prompt.rstrip(',\n')
+    formatted_prompt = formatted_prompt.rstrip(',\n')
     print("Final prompt string:")
-    print(prompt)
+    print(formatted_prompt)
 
-    return prompt
+    return prompt_list, formatted_prompt
     
 
 class Predictor(BasePredictor):
@@ -381,6 +383,7 @@ class Predictor(BasePredictor):
         seed: int = Input(description="Sampling seed, leave Empty for Random", default=None),
 
     ) -> Iterator[GENERATOR_OUTPUT_TYPE]:
+        t_start = time.time()
         """Run a single prediction on the model"""
         if seed is None:
             seed = int.from_bytes(os.urandom(3), "big")
@@ -392,8 +395,8 @@ class Predictor(BasePredictor):
         }
 
         if interpolation_texts:  # For now, just equally space the prompts!
-            interpolation_texts = format_prompt(interpolation_texts, n_frames)
             text_input = interpolation_texts
+            prompt_list, interpolation_texts = format_prompt(interpolation_texts, n_frames)
 
         # Hardcoded, manual checks:
         if input_video_path:
@@ -436,12 +439,16 @@ class Predictor(BasePredictor):
             "seed": seed,
         }
         args = AttrDict(args)
+
+        if not text_input:
+            text_input = render_mode
         
         try: # Run the ComfyUI job:
             output_path = self.get_workflow_output(args)
         except Exception as e:
             print(f"Error in self.get_workflow_output(): {e}")
             output_path = None
+
 
         if output_path is not None:
             if DEBUG_MODE:
@@ -450,8 +457,15 @@ class Predictor(BasePredictor):
             else:
                 output_path = Path(output_path)
                 thumbnail_path = save_first_frame_to_tempfile(str(output_path))
+
+                attributes = {}
+                attributes['nsfw_scores'] = lewd_detection([thumbnail_path])
+                attributes['job_time_seconds'] = time.time() - t_start
                 print(f'Returning {output_path} and {thumbnail_path}')
-                yield CogOutput(files=[output_path], name=text_input, thumbnails=[Path(thumbnail_path)], attributes=None, progress=1.0, isFinal=True)
+                print(f"text_input: {text_input}")
+                print(f"attributes: {attributes}")
+
+                yield CogOutput(files=[output_path], name=text_input, thumbnails=[Path(thumbnail_path)], attributes=attributes, progress=1.0, isFinal=True)
         else:
             print(f"output_path was None...")
             yield CogOutput(files=[], progress=1.0, isFinal=True)

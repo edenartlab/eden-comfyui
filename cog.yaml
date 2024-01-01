@@ -30,7 +30,10 @@ build:
     - matplotlib
     - websocket-client==1.6.3
     - clip-interrogator==0.6.0 # needed for CLIP-interrogator Eden ComfyUI node
+    - "tensorflow_addons==0.23.0" # needed for Bumble nsfw detection model
 
+  pre_install:
+    - pip install tensorflow==2.11.0
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"
