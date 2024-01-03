@@ -273,7 +273,7 @@ class Predictor(BasePredictor):
 
     def get_workflow_output(self, args, verbose = False):
         # Dynamically choose the JSON file based on workflow type
-        workflow_config_file = f"./custom_workflows/{args.render_mode}_api.json"
+        workflow_config_file = f"./custom_workflows/{args.mode}_api.json"
         print(f"Loading workflow config from {workflow_config_file}...")
 
         try:
@@ -281,7 +281,7 @@ class Predictor(BasePredictor):
                 config = json.load(file)
 
             # Load the base workflow configuration
-            input_config = f"./custom_workflows/{args.render_mode}_inputs.json"
+            input_config = f"./custom_workflows/{args.mode}_inputs.json"
             print(f"Loading input config from {input_config}...")
             with open(input_config, 'r') as file:
                 input_config = json.load(file)
@@ -322,13 +322,13 @@ class Predictor(BasePredictor):
 
     def predict(
         self,
-        render_mode: str = Input(
+        mode: str = Input(
                     description="comfy_txt2vid, comfy_img2vid, comfy_vid2vid (not ready yet), comfy_upscale (not ready yet), comfy_makeitrad (not ready yet)", 
                     default = "comfy_txt2vid",
                 ),
         text_input: str = Input(description="prompt", default=None),
         interpolation_texts: str = Input(description="| separated list of prompts for txt2vid)", default=None),
-        input_image_path: str = Input(
+        init_image: str = Input(
                     description="Input image (for img2vid / upscale). Load source image from file, url, or base64 string", 
                     default = None,
                 ),
@@ -405,16 +405,19 @@ class Predictor(BasePredictor):
             # re-encode to .mp4 by default to avoid issues with the source video:
             input_video_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
             reencode_video(video_path, input_video_path)
-        elif render_mode == "comfy_vid2vid":
+        elif mode == "comfy_vid2vid":
             raise ValueError("An input video is required for vid2vid mode!")
 
-        if input_image_path:
+        if init_image:
+            input_image_path = init_image
             if os.path.exists(input_image_path):
                 input_image_path = str(input_image_path)
             else:
                 input_image_path = download(input_image_path, "tmp_imgs")
+        else:
+            input_image_path = None
 
-        if render_mode == "comfy_makeitrad":
+        if mode == "comfy_makeitrad":
             if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
                 raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
 
@@ -431,7 +434,7 @@ class Predictor(BasePredictor):
             "n_frames": n_frames,
             "n_frames2": n_frames, # temporary hack for comfy_txt2vid where this field is needed twice
             "guidance_scale": guidance_scale,
-            "render_mode": render_mode,
+            "mode": mode,
             "denoise_strength": denoise_strength,
             #"controlnet_type": controlnet_map[controlnet_type],
             #"controlnet_strength": controlnet_strength,
@@ -441,7 +444,7 @@ class Predictor(BasePredictor):
         args = AttrDict(args)
 
         if not text_input:
-            text_input = render_mode
+            text_input = mode
         
         try: # Run the ComfyUI job:
             output_path = self.get_workflow_output(args)

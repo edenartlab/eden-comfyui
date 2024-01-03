@@ -1,4 +1,4 @@
-** ComfyUI startup time: 2024-01-01 22:00:15.764245
+** ComfyUI startup time: 2024-01-01 22:09:45.488517
 ** Platform: Linux
 ** Python version: 3.10.6 (main, Dec 30 2023, 01:15:30) [GCC 11.4.0]
 ** Python executable: /root/.pyenv/versions/3.10.6/bin/python
@@ -16,22 +16,22 @@ Using pytorch cross attention
 ## ComfyUI-Manager: installing dependencies
  Collecting GitPython
    Downloading GitPython-3.1.40-py3-none-any.whl (190 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 1.9 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 2.3 MB/s eta 0:00:00
  Collecting matrix-client==0.4.0
    Downloading matrix_client-0.4.0-py2.py3-none-any.whl (43 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 3.0 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 4.3 MB/s eta 0:00:00
  Collecting urllib3~=1.21
    Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 1.9 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 4.4 MB/s eta 0:00:00
  Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
  Collecting gitdb<5,>=4.0.1
    Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 1.0 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 5.6 MB/s eta 0:00:00
  Collecting smmap<6,>=3.0.1
    Downloading smmap-5.0.1-py3-none-any.whl (24 kB)
+ Requirement already satisfied: charset-normalizer<4,>=2 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.3.2)
  Requirement already satisfied: idna<4,>=2.5 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.6)
  Requirement already satisfied: certifi>=2017.4.17 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2023.11.17)
- Requirement already satisfied: charset-normalizer<4,>=2 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.3.2)
  Installing collected packages: urllib3, smmap, gitdb, matrix-client, GitPython
    Attempting uninstall: urllib3
      Found existing installation: urllib3 2.1.0
@@ -51,10 +51,10 @@ FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
-[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
-[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
-[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
 Downloading: "https://download.pytorch.org/models/mobilenet_v2-b0353104.pth" to /root/.cache/torch/hub/checkpoints/mobilenet_v2-b0353104.pth
 /src/ComfyUI/custom_nodes/comfyui_controlnet_aux/node_wrappers/dwpose.py:25: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
   warnings.warn("DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly")
@@ -102,7 +102,7 @@ Import times for custom nodes:
    0.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite
    2.0 seconds: /src/ComfyUI/custom_nodes/eden_comfy_pipelines
    3.1 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
-   3.7 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+   3.4 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
 
 Starting server
 
@@ -115,36 +115,478 @@ adm 0
 Using pytorch attention in VAE
 Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
 Using pytorch attention in VAE
-missing {'cond_stage_model.clip_l.logit_scale', 'cond_stage_model.clip_l.text_projection'}
+missing {'cond_stage_model.clip_l.text_projection', 'cond_stage_model.clip_l.logit_scale'}
 left over keys: dict_keys(['cond_stage_model.clip_l.transformer.text_model.embeddings.position_ids'])
-Requested to load CLIPVisionModelProjection
-Loading 1 new model
 [AnimateDiffEvo] - [0;32mINFO[0m - Loading motion module v3_sd15_mm.ckpt
-Interrogating image with mode fast
-Loading caption model blip-large...
-config.json: 100%|██████████| 4.60k/4.60k [00:00<00:00, 17.5MB/s]
-model.safetensors: 100%|█████████▉| 1.88G/1.88G [03:49<00:00, 8.28MB/s]model.safetensors: 100%|██████████| 1.88G/1.88G [03:49<00:00, 8.35MB/s]model.safetensors: 100%|██████████| 1.88G/1.88G [03:49<00:00, 8.18MB/s]
-preprocessor_config.json: 100%|██████████| 445/445 [00:00<00:00, 2.22MB/s]
-tokenizer_config.json: 100%|██████████| 527/527 [00:00<00:00, 3.19MB/s]
-vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.55MB/s]vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.55MB/s]
-tokenizer.json: 100%|██████████| 711k/711k [00:00<00:00, 2.70MB/s]tokenizer.json: 100%|██████████| 711k/711k [00:00<00:00, 2.69MB/s]
-special_tokens_map.json: 100%|██████████| 125/125 [00:00<00:00, 680kB/s]
-Loading CLIP model ViT-L-14/openai...
-Loaded CLIP model and data in 5.67 seconds.
-100%|██████████| 55/55 [00:00<00:00, 320.02it/s]
-Interogated prompt: there is a man with a very strange looking face and a weird looking eye, naoto hattori, mind-bending digital art, behance art, one reptilian eye, surrealistic digital artwork, 3d character realistic, cgsociety 9, behance 3d, realistic symmetrical eyes, highly detailed surreal vfx, fantasy art behance, behance favourite
+/src/ComfyUI/custom_nodes/ComfyUI_FizzNodes/BatchFuncs.py:128: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  cur_prompt_series[f] = ''
+/src/ComfyUI/custom_nodes/ComfyUI_FizzNodes/BatchFuncs.py:129: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  nxt_prompt_series[f] = ''
+
+ Max Frames:  32 
+ frame index:  0 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  1.0 
+
+
+ Max Frames:  32 
+ frame index:  1 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.9375 
+
+
+ Max Frames:  32 
+ frame index:  2 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.875 
+
+
+ Max Frames:  32 
+ frame index:  3 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.8125 
+
+
+ Max Frames:  32 
+ frame index:  4 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.75 
+
+
+ Max Frames:  32 
+ frame index:  5 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.6875 
+
+
+ Max Frames:  32 
+ frame index:  6 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.625 
+
+
+ Max Frames:  32 
+ frame index:  7 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.5625 
+
+
+ Max Frames:  32 
+ frame index:  8 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.5 
+
+
+ Max Frames:  32 
+ frame index:  9 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.4375 
+
+
+ Max Frames:  32 
+ frame index:  10 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.375 
+
+
+ Max Frames:  32 
+ frame index:  11 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.3125 
+
+
+ Max Frames:  32 
+ frame index:  12 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.25 
+
+
+ Max Frames:  32 
+ frame index:  13 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.1875 
+
+
+ Max Frames:  32 
+ frame index:  14 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.125 
+
+
+ Max Frames:  32 
+ frame index:  15 
+ Current Prompt:  a big elephant 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.0625 
+
+
+ Max Frames:  32 
+ frame index:  16 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  1.0 
+
+
+ Max Frames:  32 
+ frame index:  17 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.9375 
+
+
+ Max Frames:  32 
+ frame index:  18 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.875 
+
+
+ Max Frames:  32 
+ frame index:  19 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.8125 
+
+
+ Max Frames:  32 
+ frame index:  20 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.75 
+
+
+ Max Frames:  32 
+ frame index:  21 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.6875 
+
+
+ Max Frames:  32 
+ frame index:  22 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.625 
+
+
+ Max Frames:  32 
+ frame index:  23 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.5625 
+
+
+ Max Frames:  32 
+ frame index:  24 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.5 
+
+
+ Max Frames:  32 
+ frame index:  25 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.4375 
+
+
+ Max Frames:  32 
+ frame index:  26 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.375 
+
+
+ Max Frames:  32 
+ frame index:  27 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.3125 
+
+
+ Max Frames:  32 
+ frame index:  28 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.25 
+
+
+ Max Frames:  32 
+ frame index:  29 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.1875 
+
+
+ Max Frames:  32 
+ frame index:  30 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.125 
+
+
+ Max Frames:  32 
+ frame index:  31 
+ Current Prompt:  a super fast racecar 
+ Next Prompt:  a super fast racecar 
+ Strength :  0.0625 
+
 Requested to load SD1ClipModel
 Loading 1 new model
-Requested to load AutoencoderKL
-Loading 1 new model
-[AnimateDiffEvo] - [0;32mINFO[0m - Regular AnimateDiff activated - latents passed in (16) less or equal to context_length 16.
+
+ Max Frames:  32 
+ frame index:  0 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  1.0 
+
+
+ Max Frames:  32 
+ frame index:  1 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.9375 
+
+
+ Max Frames:  32 
+ frame index:  2 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.875 
+
+
+ Max Frames:  32 
+ frame index:  3 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.8125 
+
+
+ Max Frames:  32 
+ frame index:  4 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.75 
+
+
+ Max Frames:  32 
+ frame index:  5 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.6875 
+
+
+ Max Frames:  32 
+ frame index:  6 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.625 
+
+
+ Max Frames:  32 
+ frame index:  7 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.5625 
+
+
+ Max Frames:  32 
+ frame index:  8 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.5 
+
+
+ Max Frames:  32 
+ frame index:  9 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.4375 
+
+
+ Max Frames:  32 
+ frame index:  10 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.375 
+
+
+ Max Frames:  32 
+ frame index:  11 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.3125 
+
+
+ Max Frames:  32 
+ frame index:  12 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.25 
+
+
+ Max Frames:  32 
+ frame index:  13 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.1875 
+
+
+ Max Frames:  32 
+ frame index:  14 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.125 
+
+
+ Max Frames:  32 
+ frame index:  15 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.0625 
+
+
+ Max Frames:  32 
+ frame index:  16 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  1.0 
+
+
+ Max Frames:  32 
+ frame index:  17 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.9375 
+
+
+ Max Frames:  32 
+ frame index:  18 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.875 
+
+
+ Max Frames:  32 
+ frame index:  19 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.8125 
+
+
+ Max Frames:  32 
+ frame index:  20 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.75 
+
+
+ Max Frames:  32 
+ frame index:  21 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.6875 
+
+
+ Max Frames:  32 
+ frame index:  22 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.625 
+
+
+ Max Frames:  32 
+ frame index:  23 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.5625 
+
+
+ Max Frames:  32 
+ frame index:  24 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.5 
+
+
+ Max Frames:  32 
+ frame index:  25 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.4375 
+
+
+ Max Frames:  32 
+ frame index:  26 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.375 
+
+
+ Max Frames:  32 
+ frame index:  27 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.3125 
+
+
+ Max Frames:  32 
+ frame index:  28 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.25 
+
+
+ Max Frames:  32 
+ frame index:  29 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.1875 
+
+
+ Max Frames:  32 
+ frame index:  30 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.125 
+
+
+ Max Frames:  32 
+ frame index:  31 
+ Current Prompt:   
+ Next Prompt:   
+ Strength :  0.0625 
+
+[AnimateDiffEvo] - [0;32mINFO[0m - Sliding context window activated - latents passed in (32) greater than context_length 16.
 [AnimateDiffEvo] - [0;32mINFO[0m - Using motion module v3_sd15_mm.ckpt version v3.
 Requested to load BaseModel
-Requested to load SparseControlNet
 Requested to load AnimateDiffModel
-Loading 3 new models
-100%|██████████| 25/25 [00:27<00:00,  1.12s/it]100%|██████████| 25/25 [00:27<00:00,  1.11s/it]
+Loading 2 new models
+/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/torchsde/_brownian/brownian_interval.py:608: UserWarning: Should have tb<=t1 but got tb=25.1461124420166 and t1=25.146112.
+  warnings.warn(f"Should have {tb_name}<=t1 but got {tb_name}={tb} and t1={self._end}.")
+/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/torchsde/_brownian/brownian_interval.py:599: UserWarning: Should have ta>=t0 but got ta=0.0291675366461277 and t0=0.029168.
+  warnings.warn(f"Should have ta>=t0 but got ta={ta} and t0={self._start}.")
+100%|██████████| 30/30 [01:15<00:00,  2.57s/it]100%|██████████| 30/30 [01:15<00:00,  2.52s/it]
+Requested to load AutoencoderKL
+Loading 1 new model
 Comfy-VFI: Clearing cache... Done cache clearing
-Comfy-VFI done! 30 frames generated at resolution: torch.Size([1, 3, 1024, 1024])
+Comfy-VFI: Clearing cache... Done cache clearing
+Comfy-VFI: Clearing cache... Done cache clearing
+Comfy-VFI done! 62 frames generated at resolution: torch.Size([1, 3, 1024, 1024])
 Comfy-VFI: Final clearing cache... Done cache clearing
-Prompt executed in 291.97 seconds
+Prompt executed in 103.36 seconds
