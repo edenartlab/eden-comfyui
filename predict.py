@@ -5,7 +5,7 @@ DEBUG_MODE = False
 import subprocess
 import threading
 import time
-from cog import BasePredictor, BaseModel, Path, Input
+from cog import BasePredictor, BaseModel, Input, Path as cogPath
 from typing import Iterator, Optional, List
 import os
 import torch
@@ -18,9 +18,7 @@ import requests
 from PIL import Image
 from urllib.error import URLError
 import random
-from PIL import Image
 import io
-
 import cv2
 import tempfile
 import subprocess
@@ -28,6 +26,12 @@ import os
 import shlex
 
 from nsfw_detection import lewd_detection
+
+if DEBUG_MODE:
+    debug_output_dir = "/src/tests/debug_output"
+    if os.path.exists(debug_output_dir):
+        shutil.rmtree(debug_output_dir)
+    os.makedirs(debug_output_dir, exist_ok=True)
 
 def save_first_frame_to_tempfile(video_path):
     if not video_path.endswith('.mp4'):
@@ -88,9 +92,9 @@ def reencode_video(input_file_path, output_file_path):
 
 
 class CogOutput(BaseModel):
-    files: List[Path]
+    files: List[cogPath]
     name: Optional[str] = None
-    thumbnails: Optional[List[Path]] = None
+    thumbnails: Optional[List[cogPath]] = None
     attributes: Optional[dict] = None
     progress: Optional[float] = None
     isFinal: bool = False
@@ -121,7 +125,7 @@ def download(url, folder, filepath=None, timeout=600):
     try:
         if filepath is None:
             # Guess file extension from URL itself
-            parsed_url_path = Path(url.split('/')[-1])
+            parsed_url_path = cogPath(url.split('/')[-1])
             ext = parsed_url_path.suffix
             
             # If extension is not in URL, then use Content-Type
@@ -131,7 +135,7 @@ def download(url, folder, filepath=None, timeout=600):
                 ext = mimetypes.guess_extension(content_type) or ''
             
             filename = parsed_url_path.stem + ext  # Append extension only if needed
-            folder_path = Path(folder)
+            folder_path = cogPath(folder)
             filepath = folder_path / filename
             filepath = str(filepath.absolute())
         else:
@@ -179,7 +183,7 @@ def format_prompt(prompt, n_frames):
 
 class Predictor(BasePredictor):
 
-    GENERATOR_OUTPUT_TYPE = Path if DEBUG_MODE else CogOutput
+    GENERATOR_OUTPUT_TYPE = cogPath if DEBUG_MODE else CogOutput
 
     def setup(self):
         # start server
@@ -318,12 +322,12 @@ class Predictor(BasePredictor):
 
         for node_id in out_paths:
             for out_path in out_paths[node_id]:
-                return Path(out_path)
+                return cogPath(out_path)
 
     def predict(
         self,
         mode: str = Input(
-                    description="comfy_txt2vid, comfy_img2vid, comfy_vid2vid (not ready yet), comfy_upscale (not ready yet), comfy_makeitrad (not ready yet)", 
+                    description="comfy_txt2vid, comfy_img2vid, comfy_vid2vid, comfy_upscale, comfy_makeitrad", 
                     default = "comfy_txt2vid",
                 ),
         text_input: str = Input(description="prompt", default=None),
@@ -354,26 +358,31 @@ class Predictor(BasePredictor):
             ge=16, le=264, default=40
         ),
 
+        n_samples: int = Input(
+            description="batch size",
+            ge=1, le=4, default=1
+        ),
+
         # controlnet_type: str = Input(
         #     description="Controlnet type (this param does nothing right now)",
         #     default="qr_monster",
         #     choices=["canny-edge", "qr_monster"]
         # ),
 
-        # controlnet_strength: float = Input(
-        #     description="Strength of controlnet guidance", 
-        #     ge=0.0, le=1.5, default=0.8
-        # ),
+        controlnet_strength: float = Input(
+            description="Strength of controlnet guidance", 
+            ge=0.0, le=1.5, default=0.8
+        ),
 
         denoise_strength: float = Input(
             description="How much denoising to apply (1.0 = start from full noise, 0.0 = return input image)", 
             ge=0.0, le=1.0, default=1.0
         ),
 
-        # loop: bool = Input(
-        #     description="Try to make a loopable video",
-        #     default=True
-        # ),
+        loop: bool = Input(
+            description="Try to make a loopable video",
+            default=False
+        ),
 
         guidance_scale: float = Input(
             description="Strength of text conditioning guidance", 
@@ -387,12 +396,22 @@ class Predictor(BasePredictor):
         """Run a single prediction on the model"""
         if seed is None:
             seed = int.from_bytes(os.urandom(3), "big")
-        generator = torch.Generator("cuda").manual_seed(seed)
 
         controlnet_map = {
             "canny-edge": "control_sd15_canny.safetensors",
             "qr_monster": "control_v1p_sd15_qrcode_monster.safetensors",
         }
+        if mode == "comfy_txt2vid":
+            if not interpolation_texts:
+                raise ValueError("You forgot to enter the interpolation texts!")
+
+        if mode == "comfy_makeitrad":
+            if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
+                raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
+
+        if mode in ["comfy_txt2vid", "comfy_img2vid"]: # these modes use a 2x_upscaler:
+            width = width // 2
+            height = height // 2
 
         if interpolation_texts:  # For now, just equally space the prompts!
             text_input = interpolation_texts
@@ -415,12 +434,9 @@ class Predictor(BasePredictor):
             else:
                 input_image_path = download(input_image_path, "tmp_imgs")
         else:
+            if mode in ["comfy_upscale", "comfy_img2vid"]:
+                raise ValueError("An input image is required for upscale and img2vid modes!")
             input_image_path = None
-
-        if mode == "comfy_makeitrad":
-            if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
-                raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
-
 
         # gather args from the input fields:
         args = {
@@ -437,38 +453,57 @@ class Predictor(BasePredictor):
             "mode": mode,
             "denoise_strength": denoise_strength,
             #"controlnet_type": controlnet_map[controlnet_type],
-            #"controlnet_strength": controlnet_strength,
+            "controlnet_strength": controlnet_strength,
             "steps": steps,
             "seed": seed,
+            "loop": loop,
         }
         args = AttrDict(args)
 
         if not text_input:
             text_input = mode
         
+        output_paths = []
         try: # Run the ComfyUI job:
-            output_path = self.get_workflow_output(args)
+            print(f"Running {mode} comfy pipeline {n_samples} times!")
+            for i in range(n_samples):
+                output_path = self.get_workflow_output(args)
+                output_paths.append(str(output_path))
+                args.seed += 1
+
         except Exception as e:
             print(f"Error in self.get_workflow_output(): {e}")
-            output_path = None
+            output_paths = [""] * n_samples
 
+        if DEBUG_MODE:
+            prediction_name = f"{mode}_{seed}_{n_samples}"
+            os.makedirs(debug_output_dir, exist_ok=True)
 
-        if output_path is not None:
-            if DEBUG_MODE:
-                print(f'Returning {output_path} (DEBUG mode)')
-                yield Path(output_path)
-            else:
-                output_path = Path(output_path)
-                thumbnail_path = save_first_frame_to_tempfile(str(output_path))
+            for index in range(n_samples):
+                    save_path = os.path.join(debug_output_dir, prediction_name + f"_{index}.jpg")
+                    Image.new("RGB", (512, 512), "black").save(save_path)
 
-                attributes = {}
-                attributes['nsfw_scores'] = lewd_detection([thumbnail_path])
-                attributes['job_time_seconds'] = time.time() - t_start
-                print(f'Returning {output_path} and {thumbnail_path}')
-                print(f"text_input: {text_input}")
-                print(f"attributes: {attributes}")
+            print(f'Returning {output_paths} (DEBUG mode)')
+            # Save the outputs to disk:
+            for index, output_path in enumerate(output_paths):
+                if output_path is not "":
+                    shutil.copy(output_path, os.path.join(debug_output_dir, prediction_name + f"_{index}.jpg"))
 
-                yield CogOutput(files=[output_path], name=text_input, thumbnails=[Path(thumbnail_path)], attributes=attributes, progress=1.0, isFinal=True)
+            yield [cogPath(output_path) for output_path in output_paths]
         else:
-            print(f"output_path was None...")
-            yield CogOutput(files=[], progress=1.0, isFinal=True)
+            thumbnail_paths = [save_first_frame_to_tempfile(output_path) if output_path is not "" else "" for output_path in output_paths]
+
+            attributes = {}
+            attributes['n_samples']   = n_samples
+            attributes['nsfw_scores'] = lewd_detection(thumbnail_paths)
+            attributes['job_time_seconds'] = time.time() - t_start
+            attributes['seeds']       = [args.seed - n_samples + i for i in range(n_samples)]
+
+            print(f'Returning {output_paths} and {thumbnail_paths}')
+            print(f"text_input: {text_input}")
+            print(f"attributes: {attributes}")
+
+            output_paths    = [cogPath(output_path) for output_path in output_paths]
+            thumbnail_paths = [cogPath(thumbnail_path) for thumbnail_path in thumbnail_paths]
+
+            yield CogOutput(files=output_paths, name=text_input, thumbnails=thumbnail_paths, attributes=attributes, progress=1.0, isFinal=True)

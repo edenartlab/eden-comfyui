@@ -18,7 +18,7 @@ sudo cog predict -i mode="comfy_makeitrad" -i text_input="a swimming pool in the
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="comfy_img2vid" -i input_image_path="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="512" -i height="512" -i n_frames="16"
+sudo cog predict -i mode="comfy_img2vid" -i init_image="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="512" -i height="512" -i n_frames="16"
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
@@ -26,4 +26,4 @@ sudo cog predict -i mode="comfy_txt2vid" -i interpolation_texts="a big elephant|
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="comfy_upscale" -i input_image_path="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="1600" -i height="1600" -i denoise_strength="0.6"
+sudo cog predict -i mode="comfy_upscale" -i init_image="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="1600" -i height="1600" -i denoise_strength="0.6"

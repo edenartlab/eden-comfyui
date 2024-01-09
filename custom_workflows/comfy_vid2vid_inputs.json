@@ -1,0 +1,11 @@
+{
+  "width": {"node_id": "96", "field": "inputs", "subfield": "width"},
+  "height": {"node_id": "96", "field": "inputs", "subfield": "height"},
+  "n_frames": {"node_id": "15", "field": "inputs", "subfield": "frame_load_cap"},
+  "input_video_path": {"node_id": "15", "field": "inputs", "subfield": "video"},
+  "input_image_path": {"node_id": "54", "field": "inputs", "subfield": "image"},
+  "controlnet_strength": {"node_id": "132", "field": "inputs", "subfield": "strength"},
+  "seed": {"node_id": "58", "field": "inputs", "subfield": "seed"},
+  "denoise_strength": {"node_id": "58", "field": "inputs", "subfield": "denoise"},
+  "loop": {"node_id": "66", "field": "inputs", "subfield": "closed_loop"}
+}
