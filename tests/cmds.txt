@@ -9,6 +9,11 @@ python main.py
 ssh -R 80:localhost:8188 serveo.net
 
 
+
+
+      "save_output": true,
+
+      
 ###################### COMFY ##########################
 
 
@@ -27,3 +32,7 @@ sudo cog predict -i mode="comfy_txt2vid" -i interpolation_texts="a big elephant|
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i mode="comfy_upscale" -i init_image="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="1600" -i height="1600" -i denoise_strength="0.6"
+
+
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+sudo cog predict -i mode="comfy_vid2vid" -i init_image="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.gif" -i width="1024" -i height="1024" -i denoise_strength="0.9"

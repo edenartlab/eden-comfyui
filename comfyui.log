@@ -1,4 +1,4 @@
-** ComfyUI startup time: 2024-01-09 16:49:05.659632
+** ComfyUI startup time: 2024-01-10 18:23:32.593136
 ** Platform: Linux
 ** Python version: 3.10.6 (main, Jan  9 2024, 13:34:03) [GCC 11.4.0]
 ** Python executable: /root/.pyenv/versions/3.10.6/bin/python
@@ -15,18 +15,18 @@ Using pytorch cross attention
 ### Loading: ComfyUI-Manager (V1.17.1)
 ## ComfyUI-Manager: installing dependencies
  Collecting GitPython
-   Downloading GitPython-3.1.40-py3-none-any.whl (190 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 190.6/190.6 kB 1.2 MB/s eta 0:00:00
+   Downloading GitPython-3.1.41-py3-none-any.whl (196 kB)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.4/196.4 kB 2.1 MB/s eta 0:00:00
  Collecting matrix-client==0.4.0
    Downloading matrix_client-0.4.0-py2.py3-none-any.whl (43 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 2.4 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 2.8 MB/s eta 0:00:00
  Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
  Collecting urllib3~=1.21
    Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 3.1 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 4.6 MB/s eta 0:00:00
  Collecting gitdb<5,>=4.0.1
    Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 5.3 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 7.9 MB/s eta 0:00:00
  Collecting smmap<6,>=3.0.1
    Downloading smmap-5.0.1-py3-none-any.whl (24 kB)
  Requirement already satisfied: idna<4,>=2.5 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.6)
@@ -37,7 +37,7 @@ Using pytorch cross attention
      Found existing installation: urllib3 2.1.0
      Uninstalling urllib3-2.1.0:
        Successfully uninstalled urllib3-2.1.0
- Successfully installed GitPython-3.1.40 gitdb-4.0.11 matrix-client-0.4.0 smmap-5.0.1 urllib3-1.26.18
+ Successfully installed GitPython-3.1.41 gitdb-4.0.11 matrix-client-0.4.0 smmap-5.0.1 urllib3-1.26.18
 [!] WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
 [!] 
 [!] [notice] A new release of pip available: 22.2.1 -> 23.3.2
@@ -45,16 +45,17 @@ Using pytorch cross attention
 ## ComfyUI-Manager: installing dependencies done.
 ### ComfyUI Revision: 1863 [12e822c6] | Released on '2023-12-28'
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
-[36;20m[comfyui_controlnet_aux] | INFO -> Using ckpts path: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux/ckpts[0m
-[36;20m[comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
-[36;20m[comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
-[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
-[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
+Searge-SDXL v4.3.1 in /src/ComfyUI/custom_nodes/SeargeSDXL
+[36;20m[comfyui_controlnet_aux] | INFO -> Using ckpts path: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux/ckpts[0m
+[36;20m[comfyui_controlnet_aux] | INFO -> Using symlinks: False[0m
+[36;20m[comfyui_controlnet_aux] | INFO -> Using ort providers: ['CUDAExecutionProvider', 'DirectMLExecutionProvider', 'OpenVINOExecutionProvider', 'ROCMExecutionProvider', 'CPUExecutionProvider', 'CoreMLExecutionProvider'][0m
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
 Downloading: "https://download.pytorch.org/models/mobilenet_v2-b0353104.pth" to /root/.cache/torch/hub/checkpoints/mobilenet_v2-b0353104.pth
 /src/ComfyUI/custom_nodes/comfyui_controlnet_aux/node_wrappers/dwpose.py:25: UserWarning: DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly
   warnings.warn("DWPose: Onnxruntime not found or doesn't come with acceleration providers, switch to OpenCV with CPU device. DWPose might run very slowly")
@@ -100,26 +101,54 @@ Import times for custom nodes:
    0.0 seconds (IMPORT FAILED): /src/ComfyUI/custom_nodes/comfyui-art-venture
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_tinyterraNodes
    0.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite
-   2.0 seconds: /src/ComfyUI/custom_nodes/eden_comfy_pipelines
-   2.4 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
-   3.3 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+   0.4 seconds: /src/ComfyUI/custom_nodes/SeargeSDXL
+   1.9 seconds: /src/ComfyUI/custom_nodes/eden_comfy_pipelines
+   2.9 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
+   3.5 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
 
 Starting server
 
 To see the GUI go to: http://127.0.0.1:8188
 got prompt
-Error handling request
-Traceback (most recent call last):
-  File "/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/aiohttp/web_protocol.py", line 452, in _handle_request
-    resp = await request_handler(request)
-  File "/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/aiohttp/web_app.py", line 543, in _handle
-    resp = await handler(request)
-  File "/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/aiohttp/web_middlewares.py", line 114, in impl
-    return await handler(request)
-  File "/src/ComfyUI/server.py", line 46, in cache_control
-    response: web.Response = await handler(request)
-  File "/src/ComfyUI/server.py", line 472, in post_prompt
-    valid = execution.validate_prompt(prompt)
-  File "/src/ComfyUI/execution.py", line 600, in validate_prompt
-    class_ = nodes.NODE_CLASS_MAPPINGS[prompt[x]['class_type']]
-KeyError: 'SeargePromptCombiner'
+/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+model_type EPS
+adm 0
+Using pytorch attention in VAE
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+Using pytorch attention in VAE
+missing {'cond_stage_model.clip_l.text_projection', 'cond_stage_model.clip_l.logit_scale'}
+left over keys: dict_keys(['cond_stage_model.clip_l.transformer.text_model.embeddings.position_ids'])
+[AnimateDiffEvo] - [0;32mINFO[0m - Loading motion module v3_sd15_mm.ckpt
+Requested to load CLIPVisionModelProjection
+Loading 1 new model
+Interrogating image with mode fast
+Loading caption model blip-large...
+config.json: 100%|██████████| 4.60k/4.60k [00:00<00:00, 18.8MB/s]
+model.safetensors: 100%|█████████▉| 1.88G/1.88G [03:55<00:00, 6.19MB/s]model.safetensors: 100%|██████████| 1.88G/1.88G [03:56<00:00, 6.42MB/s]model.safetensors: 100%|██████████| 1.88G/1.88G [03:56<00:00, 7.96MB/s]
+preprocessor_config.json: 100%|██████████| 445/445 [00:00<00:00, 2.93MB/s]
+tokenizer_config.json: 100%|██████████| 527/527 [00:00<00:00, 4.37MB/s]
+vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.50MB/s]vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.50MB/s]
+tokenizer.json: 100%|██████████| 711k/711k [00:00<00:00, 6.53MB/s]tokenizer.json: 100%|██████████| 711k/711k [00:00<00:00, 6.47MB/s]
+special_tokens_map.json: 100%|██████████| 125/125 [00:00<00:00, 871kB/s]
+Loading CLIP model ViT-L-14/openai...
+Loaded CLIP model and data in 4.38 seconds.
+100%|██████████| 55/55 [00:00<00:00, 324.10it/s]
+Interogated prompt: there is a man with a very strange looking face and a weird looking eye, naoto hattori, mind-bending digital art, behance art, one reptilian eye, surrealistic digital artwork, 3d character realistic, cgsociety 9, behance 3d, realistic symmetrical eyes, highly detailed surreal vfx, fantasy art behance, behance favourite
+Requested to load SD1ClipModel
+Loading 1 new model
+Requested to load AutoencoderKL
+Loading 1 new model
+[AnimateDiffEvo] - [0;32mINFO[0m - Sliding context window activated - latents passed in (40) greater than context_length 16.
+[AnimateDiffEvo] - [0;32mINFO[0m - Using motion module v3_sd15_mm.ckpt version v3.
+Requested to load BaseModel
+Requested to load SparseControlNet
+Requested to load AnimateDiffModel
+Loading 3 new models
+100%|██████████| 25/25 [01:42<00:00,  4.21s/it]100%|██████████| 25/25 [01:42<00:00,  4.12s/it]
+Comfy-VFI: Clearing cache... Done cache clearing
+Comfy-VFI: Clearing cache... Done cache clearing
+Comfy-VFI: Clearing cache... Done cache clearing
+Comfy-VFI done! 78 frames generated at resolution: torch.Size([1, 3, 1000, 1024])
+Comfy-VFI: Final clearing cache... Done cache clearing
+Prompt executed in 387.60 seconds

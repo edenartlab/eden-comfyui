@@ -409,7 +409,7 @@ class Predictor(BasePredictor):
             if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
                 raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
 
-        if mode in ["comfy_txt2vid", "comfy_img2vid"]: # these modes use a 2x_upscaler:
+        if mode in ["comfy_txt2vid", "comfy_img2vid", "comfy_vid2vid"]: # these modes use a 2x_upscaler:
             width = width // 2
             height = height // 2
 
@@ -420,12 +420,12 @@ class Predictor(BasePredictor):
         # Hardcoded, manual checks:
         if input_video_path:
             # download video from url:
-            video_path = download(input_video_path, "tmp_vids")
+            downloaded_video_path = download(input_video_path, "tmp_vids")
             # re-encode to .mp4 by default to avoid issues with the source video:
             input_video_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
-            reencode_video(video_path, input_video_path)
+            reencode_video(downloaded_video_path, input_video_path)
         elif mode == "comfy_vid2vid":
-            raise ValueError("An input video is required for vid2vid mode!")
+            raise ValueError("An input video/gif is required for vid2vid mode!")
 
         if init_image:
             input_image_path = init_image
@@ -475,6 +475,11 @@ class Predictor(BasePredictor):
             print(f"Error in self.get_workflow_output(): {e}")
             output_paths = [""] * n_samples
 
+        print("------------------------------------------")
+        print("Pipeline finished!")
+        print(f"Output paths: {output_paths}")
+        print("------------------------------------------")
+
         if DEBUG_MODE:
             prediction_name = f"{mode}_{seed}_{n_samples}"
             os.makedirs(debug_output_dir, exist_ok=True)
@@ -486,7 +491,7 @@ class Predictor(BasePredictor):
             print(f'Returning {output_paths} (DEBUG mode)')
             # Save the outputs to disk:
             for index, output_path in enumerate(output_paths):
-                if output_path is not "":
+                if output_path != "":
                     shutil.copy(output_path, os.path.join(debug_output_dir, prediction_name + f"_{index}.jpg"))
 
             yield [cogPath(output_path) for output_path in output_paths]
