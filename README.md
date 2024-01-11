@@ -7,7 +7,7 @@ The workflows used for this repo are found under:
     custom_workflows/*.json
 
 ## Usage:
-1. Manually install ComfyUI in the root directory of this repo
+1. `git clone https://github.com/comfyanonymous/ComfyUI.git` in the root directory of this repo
 2. Manually run your ComfyUI pipeline to verify everything works (`python main.py`), you can install all the custom nodes you need for your pipeline (this will clone the dependencies under ComfyUI/custom_nodes
 3. Download any required checkpoints and place them in the correct folders
 4. If you're adding a new pipeline, you need to:
