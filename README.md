@@ -2,7 +2,7 @@
 
 Any ComfyUI pipeline integrated here can easily be run on [Eden](https://eden.art/)
 
-This is an implementation of the ComfyUI workflow as a Cog model. [Cog packages machine learning models as standard containers.](https://github.com/replicate/cog)
+This is an implementation of the ComfyUI workflow as a Cog model [which packages machine learning models as standard containers.](https://github.com/replicate/cog)
 
 The workflows used for this repo are found under:
 
