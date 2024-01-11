@@ -346,11 +346,11 @@ class Predictor(BasePredictor):
         ),
         width: int = Input(
             description="Width", 
-            ge=512, le=2048, default=768
+            ge=512, le=2048, default=1280
         ),
         height: int = Input(
             description="Height", 
-            ge=512, le=2048, default=768
+            ge=512, le=2048, default=1280
         ),
 
         n_frames: int = Input(
@@ -371,7 +371,7 @@ class Predictor(BasePredictor):
 
         controlnet_strength: float = Input(
             description="Strength of controlnet guidance", 
-            ge=0.0, le=1.5, default=0.8
+            ge=0.0, le=1.5, default=0.85
         ),
 
         denoise_strength: float = Input(

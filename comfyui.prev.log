@@ -1,4 +1,4 @@
-** ComfyUI startup time: 2024-01-11 14:28:59.982005
+** ComfyUI startup time: 2024-01-11 14:46:58.094067
 ** Platform: Linux
 ** Python version: 3.10.6 (main, Jan  9 2024, 13:34:03) [GCC 11.4.0]
 ** Python executable: /root/.pyenv/versions/3.10.6/bin/python
@@ -12,37 +12,26 @@ Set vram state to: NORMAL_VRAM
 Device: cuda:0 NVIDIA RTX A5000 : cudaMallocAsync
 VAE dtype: torch.bfloat16
 Using pytorch cross attention
-------------------------------------------------------------------
-******************************************************************
-******************************************************************
-sys.path:
-['/src/ComfyUI/custom_nodes/eden_comfy_pipelines', '/src/ComfyUI/comfy', '/src/ComfyUI', '/root/.pyenv/versions/3.10.6/lib/python310.zip', '/root/.pyenv/versions/3.10.6/lib/python3.10', '/root/.pyenv/versions/3.10.6/lib/python3.10/lib-dynload', '/root/.pyenv/versions/3.10.6/lib/python3.10/site-packages', '/tmp/tmpkew3pzfu', '..']
-Importing clip_interrogator from:  /src/ComfyUI/custom_nodes/eden_comfy_pipelines/clip_utils/clip_interrogator.py
-/src/ComfyUI/custom_nodes/eden_comfy_pipelines/clip_utils/clip_interrogator.py
-******************************************************************
-******************************************************************
-------------------------------------------------------------------
-------------------------------------------------------------------
 ### Loading: ComfyUI-Manager (V1.17.1)
 ## ComfyUI-Manager: installing dependencies
  Collecting GitPython
    Downloading GitPython-3.1.41-py3-none-any.whl (196 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.4/196.4 kB 2.5 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.4/196.4 kB 3.4 MB/s eta 0:00:00
  Collecting matrix-client==0.4.0
    Downloading matrix_client-0.4.0-py2.py3-none-any.whl (43 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 6.2 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 kB 9.0 MB/s eta 0:00:00
+ Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
  Collecting urllib3~=1.21
    Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 8.3 MB/s eta 0:00:00
- Requirement already satisfied: requests~=2.22 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2.31.0)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 14.4 MB/s eta 0:00:00
  Collecting gitdb<5,>=4.0.1
    Downloading gitdb-4.0.11-py3-none-any.whl (62 kB)
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 10.0 MB/s eta 0:00:00
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 11.7 MB/s eta 0:00:00
  Collecting smmap<6,>=3.0.1
    Downloading smmap-5.0.1-py3-none-any.whl (24 kB)
  Requirement already satisfied: certifi>=2017.4.17 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (2023.11.17)
- Requirement already satisfied: idna<4,>=2.5 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.6)
  Requirement already satisfied: charset-normalizer<4,>=2 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.3.2)
+ Requirement already satisfied: idna<4,>=2.5 in /root/.pyenv/versions/3.10.6/lib/python3.10/site-packages (from requests~=2.22->matrix-client==0.4.0->-r /src/ComfyUI/custom_nodes/ComfyUI-Manager/requirements.txt (line 2)) (3.6)
  Installing collected packages: urllib3, smmap, gitdb, matrix-client, GitPython
    Attempting uninstall: urllib3
      Found existing installation: urllib3 2.1.0
@@ -59,8 +48,8 @@ FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 FETCH DATA from: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
-[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/alter-list.json
+[ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/model-list.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/extension-node-map.json
 [ComfyUI-Manager] default cache updated: https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/custom-node-list.json
 Searge-SDXL v4.3.1 in /src/ComfyUI/custom_nodes/SeargeSDXL
@@ -113,9 +102,9 @@ Import times for custom nodes:
    0.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI_tinyterraNodes
    0.1 seconds: /src/ComfyUI/custom_nodes/ComfyUI-VideoHelperSuite
    0.5 seconds: /src/ComfyUI/custom_nodes/SeargeSDXL
-   1.8 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
    1.9 seconds: /src/ComfyUI/custom_nodes/eden_comfy_pipelines
-   3.0 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
+   2.0 seconds: /src/ComfyUI/custom_nodes/comfyui_controlnet_aux
+   2.9 seconds: /src/ComfyUI/custom_nodes/ComfyUI-Manager
 
 Starting server
 
@@ -128,11 +117,32 @@ adm 0
 Using pytorch attention in VAE
 Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
 Using pytorch attention in VAE
-missing {'cond_stage_model.clip_l.logit_scale', 'cond_stage_model.clip_l.text_projection'}
+missing {'cond_stage_model.clip_l.text_projection', 'cond_stage_model.clip_l.logit_scale'}
 left over keys: dict_keys(['alphas_cumprod', 'alphas_cumprod_prev', 'betas', 'log_one_minus_alphas_cumprod', 'model_ema.decay', 'model_ema.num_updates', 'posterior_log_variance_clipped', 'posterior_mean_coef1', 'posterior_mean_coef2', 'posterior_variance', 'sqrt_alphas_cumprod', 'sqrt_one_minus_alphas_cumprod', 'sqrt_recip_alphas_cumprod', 'sqrt_recipm1_alphas_cumprod', 'cond_stage_model.clip_l.transformer.text_model.embeddings.position_ids'])
 Requested to load CLIPVisionModelProjection
 Loading 1 new model
 [AnimateDiffEvo] - [0;32mINFO[0m - Loading motion module v3_sd15_mm.ckpt
 Interrogating image with mode fast
 Loading caption model blip-large...
-config.json: 100%|██████████| 4.60k/4.60k [00:00<00:00, 18.6MB/s]
+Cache_dir: /src/ComfyUI/models/blip
+Loading CLIP model ViT-L-14/openai...
+Preprocessing trendings: 100%|██████████| 1/1 [00:00<00:00,  3.87it/s]Preprocessing trendings: 100%|██████████| 1/1 [00:00<00:00,  3.87it/s]
+Loaded CLIP model and data in 5.05 seconds.
+100%|██████████| 55/55 [00:00<00:00, 323.64it/s]
+Interogated prompt: there is a man with a very strange looking face and a weird looking eye, naoto hattori, mind-bending digital art, behance art, one reptilian eye, surrealistic digital artwork, 3d character realistic, cgsociety 9, behance 3d, realistic symmetrical eyes, highly detailed surreal vfx, fantasy art behance, behance favourite
+Requested to load SD1ClipModel
+Loading 1 new model
+Requested to load AutoencoderKL
+Loading 1 new model
+[AnimateDiffEvo] - [0;32mINFO[0m - Sliding context window activated - latents passed in (28) greater than context_length 16.
+[AnimateDiffEvo] - [0;32mINFO[0m - Using motion module v3_sd15_mm.ckpt version v3.
+Requested to load BaseModel
+Requested to load SparseControlNet
+Requested to load AnimateDiffModel
+Loading 3 new models
+100%|██████████| 25/25 [02:26<00:00,  5.94s/it]100%|██████████| 25/25 [02:26<00:00,  5.85s/it]
+Comfy-VFI: Clearing cache... Done cache clearing
+Comfy-VFI: Clearing cache... Done cache clearing
+Comfy-VFI done! 54 frames generated at resolution: torch.Size([1, 3, 1280, 1280])
+Comfy-VFI: Final clearing cache... Done cache clearing
+Prompt executed in 187.85 seconds

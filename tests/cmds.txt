@@ -23,11 +23,11 @@ sudo cog predict -i mode="makeitrad" -i text_input="a swimming pool in the style
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="img2vid" -i init_image="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="1280" -i height="1280" -i n_frames="28"
+sudo cog predict -i mode="img2vid" -i init_image="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="1024" -i height="1024" -i n_frames="28"
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="txt2vid" -i interpolation_texts="a big elephant|a super fast racecar" -i n_frames="32" -i width="1024" -i height="1024"
+sudo cog predict -i mode="txt2vid" -i interpolation_texts="a big elephant|a super fast racecar" -i n_frames="32" -i width="1280" -i height="1280"
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
