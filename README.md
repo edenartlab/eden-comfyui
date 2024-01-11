@@ -8,13 +8,14 @@ The workflows used for this repo are found under:
 
 ## Usage:
 1. Manually install ComfyUI in the root directory of this repo
-2. Manually run ComfyUI (`python main.py`) and install all the custom nodes you need for your pipeline (this will clone the dependencies under ComfyUI/custom_nodes
+2. Manually run your ComfyUI pipeline to verify everything works (`python main.py`), you can install all the custom nodes you need for your pipeline (this will clone the dependencies under ComfyUI/custom_nodes
 3. Download any required checkpoints and place them in the correct folders
 4. If you're adding a new pipeline, you need to:
     - create two new files under 'custom_workflows': yourname_api.json and yourname_inputs.json
     - the first file is simply your comfyUI workflow, exported as API format (make sure to delete all the preview nodes and make sure there is one single output node)
     - the second file maps the ComfyUI nodes to the cog inputs
     - update predict.py to accomodate for your new pipeline
+5. (after installing cog) build the cog image: ``cog build``
   
 ## Examples
 
