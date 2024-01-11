@@ -17,7 +17,7 @@ The workflows used for this repo are found under:
     - the first file is simply your comfyUI workflow, [exported as API format](https://github.com/comfyanonymous/ComfyUI/blob/master/script_examples/basic_api_example.py#L7C65-L7C65) (make sure to delete all the preview nodes in your pipeline and make sure there is one single output node that saves to disk)
     - the second file maps the ComfyUI input nodes to the cog inputs, you have to manually fill this in, it's a bit tedious, should be automate-able at some point
     - update predict.py to accomodate for your new pipeline
-5. (after installing cog) build the cog image: ``cog build`` and test your pipeline as the examples below show:
+5. (after installing cog) build the cog image: ``cog build`` and test your pipeline as the examples below show. (If you added custom models, make sure they're not ignored by .dockerignore when building the img)
   
 ## Examples
 
