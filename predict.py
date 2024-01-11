@@ -327,8 +327,8 @@ class Predictor(BasePredictor):
     def predict(
         self,
         mode: str = Input(
-                    description="comfy_txt2vid, comfy_img2vid, comfy_vid2vid, comfy_upscale, comfy_makeitrad", 
-                    default = "comfy_txt2vid",
+                    description="txt2vid, img2vid, vid2vid, upscale, makeitrad", 
+                    default = "txt2vid",
                 ),
         text_input: str = Input(description="prompt", default=None),
         interpolation_texts: str = Input(description="| separated list of prompts for txt2vid)", default=None),
@@ -401,15 +401,15 @@ class Predictor(BasePredictor):
             "canny-edge": "control_sd15_canny.safetensors",
             "qr_monster": "control_v1p_sd15_qrcode_monster.safetensors",
         }
-        if mode == "comfy_txt2vid":
+        if mode == "txt2vid":
             if not interpolation_texts:
                 raise ValueError("You forgot to enter the interpolation texts!")
 
-        if mode == "comfy_makeitrad":
+        if mode == "makeitrad":
             if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
                 raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
 
-        if mode in ["comfy_txt2vid", "comfy_img2vid", "comfy_vid2vid"]: # these modes use a 2x_upscaler:
+        if mode in ["txt2vid", "img2vid", "vid2vid"]: # these modes use a 2x_upscaler:
             width = width // 2
             height = height // 2
 
@@ -424,7 +424,7 @@ class Predictor(BasePredictor):
             # re-encode to .mp4 by default to avoid issues with the source video:
             input_video_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
             reencode_video(downloaded_video_path, input_video_path)
-        elif mode == "comfy_vid2vid":
+        elif mode == "vid2vid":
             raise ValueError("An input video/gif is required for vid2vid mode!")
 
         if init_image:
@@ -434,7 +434,7 @@ class Predictor(BasePredictor):
             else:
                 input_image_path = download(input_image_path, "tmp_imgs")
         else:
-            if mode in ["comfy_upscale", "comfy_img2vid"]:
+            if mode in ["upscale", "img2vid"]:
                 raise ValueError("An input image is required for upscale and img2vid modes!")
             input_image_path = None
 
