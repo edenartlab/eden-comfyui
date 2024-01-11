@@ -29,8 +29,8 @@ build:
     - psutil
     - matplotlib
     - websocket-client==1.6.3
-    - clip-interrogator==0.6.0 # needed for CLIP-interrogator Eden ComfyUI node
     - "tensorflow_addons==0.23.0" # needed for Bumble nsfw detection model
+    - open_clip_torch   # needed for CLIP_interrogator node
 
   pre_install:
     - pip install tensorflow==2.11.0

@@ -219,7 +219,7 @@
   },
   "46": {
     "inputs": {
-      "ckpt_name": "realisticVisionV60B1_v60B1VAE.safetensors"
+      "ckpt_name": "juggernaut_reborn.safetensors"
     },
     "class_type": "CheckpointLoaderSimple"
   },

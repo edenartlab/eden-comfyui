@@ -25,6 +25,7 @@ ComfyUI/input/*
 #ComfyUI/models/juggernaut_XL2
 ComfyUI/models/sdxl-v1.0
 ComfyUI/models/photon.safetensors
+ComfyUI/models/checkpoints/realisticVisionV60B1_v60B1VAE.safetensors
 
 #controlnet
 ComfyUI/models/controlnet/controlnet-luminance-sdxl-1.0

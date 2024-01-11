@@ -1581,7 +1581,7 @@
         "Node name for S&R": "CheckpointLoaderSimple"
       },
       "widgets_values": [
-        "realisticVisionV60B1_v60B1VAE.safetensors"
+        "juggernaut_reborn.safetensors"
       ]
     },
     {
