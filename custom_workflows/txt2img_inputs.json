@@ -1,0 +1,9 @@
+{
+  "text_input": {"node_id": "6", "field": "inputs", "subfield": "text"},
+  "negative_prompt": {"node_id": "7", "field": "inputs", "subfield": "text"},
+  "width": {"node_id": "5", "field": "inputs", "subfield": "width"},
+  "height": {"node_id": "5", "field": "inputs", "subfield": "height"},
+  "steps": {"node_id": "3", "field": "inputs", "subfield": "steps"},
+  "guidance_scale": {"node_id": "3", "field": "inputs", "subfield": "cfg"},
+  "seed": {"node_id": "3", "field": "inputs", "subfield": "seed"}
+}
