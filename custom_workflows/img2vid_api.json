@@ -74,9 +74,9 @@
       "seed": 257,
       "steps": 25,
       "cfg": 6,
-      "sampler_name": "euler_ancestral",
+      "sampler_name": "ddpm",
       "scheduler": "exponential",
-      "denoise": 0.9500000000000001,
+      "denoise": 1.0,
       "model": [
         "15",
         0
@@ -132,7 +132,7 @@
     "inputs": {
       "model_name": "v3_sd15_mm.ckpt",
       "beta_schedule": "sqrt_linear (AnimateDiff)",
-      "motion_scale": 1.1500000000000001,
+      "motion_scale": 1.15,
       "apply_v2_models_properly": true,
       "model": [
         "26",
@@ -165,7 +165,7 @@
   "27": {
     "inputs": {
       "image": [
-        "36",
+        "110",
         0
       ],
       "vae": [
@@ -200,7 +200,7 @@
   },
   "32": {
     "inputs": {
-      "spread": "center"
+      "spread": "uniform"
     },
     "class_type": "ACN_SparseCtrlSpreadMethodNode",
     "_meta": {
@@ -219,9 +219,9 @@
   },
   "35": {
     "inputs": {
-      "strength": 0.9,
+      "strength": 1.0,
       "start_percent": 0,
-      "end_percent": 1,
+      "end_percent": 0.7,
       "positive": [
         "59",
         0
@@ -250,6 +250,7 @@
       "height": 768,
       "interpolation": "lanczos",
       "keep_proportion": true,
+      "condition": "always",
       "image": [
         "34",
         0
@@ -396,6 +397,22 @@
     "class_type": "CLIP_Interrogator",
     "_meta": {
       "title": "CLIP Interrogator"
+    }
+  },
+  "110": {
+    "inputs": {
+      "image1": [
+        "36",
+        0
+      ],
+      "image2": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "ImageBatch",
+    "_meta": {
+      "title": "Batch Images"
     }
   }
 }

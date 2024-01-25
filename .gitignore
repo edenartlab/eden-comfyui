@@ -1,6 +1,7 @@
 __pycache__
 .cog
 *.log
+ComfyUI/*.log
 
 ComfyUI
 models
