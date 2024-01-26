@@ -3,13 +3,19 @@
     "inputs": {
       "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
     },
-    "class_type": "IPAdapterModelLoader"
+    "class_type": "IPAdapterModelLoader",
+    "_meta": {
+      "title": "Load IPAdapter Model"
+    }
   },
   "4": {
     "inputs": {
       "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
     },
-    "class_type": "CLIPVisionLoader"
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Load CLIP Vision"
+    }
   },
   "5": {
     "inputs": {
@@ -36,7 +42,10 @@
         0
       ]
     },
-    "class_type": "IPAdapterApply"
+    "class_type": "IPAdapterApply",
+    "_meta": {
+      "title": "Apply IPAdapter"
+    }
   },
   "8": {
     "inputs": {
@@ -46,11 +55,14 @@
         1
       ]
     },
-    "class_type": "CLIPTextEncode"
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
   },
   "9": {
     "inputs": {
-      "seed": 622142794638751,
+      "seed": 158346880828735,
       "steps": 35,
       "cfg": 7,
       "sampler_name": "euler_ancestral",
@@ -73,7 +85,10 @@
         0
       ]
     },
-    "class_type": "KSampler"
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
   },
   "11": {
     "inputs": {
@@ -86,14 +101,20 @@
         2
       ]
     },
-    "class_type": "VAEDecode"
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
   },
   "24": {
     "inputs": {
-      "image": "2991f15c1b3fc9e7d254008c6e57eecb3f2ce92e53cd5b634f2baa5fd0cbe347.jpg",
+      "image": "cba8f34335eefaddda6b2b4f34b4517b324b397534eca03efa34d2db391d5f0f (1).jpg",
       "upload": "image"
     },
-    "class_type": "LoadImage"
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
   },
   "28": {
     "inputs": {
@@ -105,13 +126,19 @@
         0
       ]
     },
-    "class_type": "PrepImageForClipVision"
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
   },
   "33": {
     "inputs": {
       "control_net_name": "control_v11p_sd15_canny_fp16.safetensors"
     },
-    "class_type": "ControlNetLoader"
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "Load ControlNet Model"
+    }
   },
   "34": {
     "inputs": {
@@ -121,33 +148,40 @@
         0
       ]
     },
-    "class_type": "CLIP_Interrogator"
+    "class_type": "CLIP_Interrogator",
+    "_meta": {
+      "title": "CLIP_Interrogator"
+    }
   },
   "35": {
     "inputs": {
-      "text": [
-        "34",
-        0
-      ],
+      "text": "",
       "clip": [
         "46",
         1
       ]
     },
-    "class_type": "CLIPTextEncode"
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
   },
   "36": {
     "inputs": {
-      "width": 1600,
-      "height": 1600,
+      "width": 2048,
+      "height": 2048,
       "interpolation": "lanczos",
       "keep_proportion": true,
+      "condition": "always",
       "image": [
         "44",
         0
       ]
     },
-    "class_type": "ImageResize+"
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
   },
   "37": {
     "inputs": {
@@ -160,7 +194,10 @@
         2
       ]
     },
-    "class_type": "VAEEncode"
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
   },
   "38": {
     "inputs": {
@@ -172,7 +209,10 @@
         0
       ]
     },
-    "class_type": "CannyEdgePreprocessor"
+    "class_type": "CannyEdgePreprocessor",
+    "_meta": {
+      "title": "Canny Edge"
+    }
   },
   "39": {
     "inputs": {
@@ -196,13 +236,19 @@
         0
       ]
     },
-    "class_type": "ControlNetApplyAdvanced"
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet (Advanced)"
+    }
   },
   "43": {
     "inputs": {
       "model_name": "RealESRGAN_x4plus.pth"
     },
-    "class_type": "UpscaleModelLoader"
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
   },
   "44": {
     "inputs": {
@@ -215,13 +261,19 @@
         0
       ]
     },
-    "class_type": "ImageUpscaleWithModel"
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
   },
   "46": {
     "inputs": {
       "ckpt_name": "juggernaut_reborn.safetensors"
     },
-    "class_type": "CheckpointLoaderSimple"
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
   },
   "55": {
     "inputs": {
@@ -229,12 +281,16 @@
       "height": 1024,
       "interpolation": "lanczos",
       "keep_proportion": true,
+      "condition": "always",
       "image": [
         "44",
         0
       ]
     },
-    "class_type": "ImageResize+"
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
   },
   "67": {
     "inputs": {
@@ -244,19 +300,26 @@
         0
       ]
     },
-    "class_type": "SaveImage"
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
   },
   "68": {
     "inputs": {
-      "width": 768,
-      "height": 768,
+      "width": 960,
+      "height": 960,
       "interpolation": "lanczos",
       "keep_proportion": true,
+      "condition": "always",
       "image": [
         "24",
         0
       ]
     },
-    "class_type": "ImageResize+"
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
   }
 }

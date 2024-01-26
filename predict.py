@@ -438,6 +438,10 @@ class Predictor(BasePredictor):
                 raise ValueError("An input image is required for upscale and img2vid modes!")
             input_image_path = None
 
+        if mode == "upscale":
+            # the UI form only exposes 'width' as 'Resolution' so just copy it over to height in this mode
+            height = width
+
         # gather args from the input fields:
         args = {
             "input_video_path": input_video_path,
