@@ -346,13 +346,12 @@ class Predictor(BasePredictor):
         ),
         width: int = Input(
             description="Width", 
-            ge=512, le=2048, default=1280
+            ge=512, le=3840, default=1280
         ),
         height: int = Input(
             description="Height", 
-            ge=512, le=2048, default=1280
+            ge=512, le=3840, default=1280
         ),
-
         n_frames: int = Input(
             description="Total number of frames (txt2vid, vid2vid, img2vid)",
             ge=16, le=264, default=40
