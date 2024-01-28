@@ -387,7 +387,10 @@ class Predictor(BasePredictor):
             description="Strength of text conditioning guidance", 
             ge=1, le=20, default=7.5
         ),
-        negative_prompt: str = Input(description="Negative Prompt", default="nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast"),
+        negative_prompt: str = Input(
+            description="Negative Prompt", 
+            default="nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast"
+        ),
         seed: int = Input(description="Sampling seed, leave Empty for Random", default=None),
 
     ) -> Iterator[GENERATOR_OUTPUT_TYPE]:

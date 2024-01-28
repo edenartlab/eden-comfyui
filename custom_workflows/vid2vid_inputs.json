@@ -7,5 +7,6 @@
   "controlnet_strength": {"node_id": "132", "field": "inputs", "subfield": "strength"},
   "seed": {"node_id": "58", "field": "inputs", "subfield": "seed"},
   "denoise_strength": {"node_id": "58", "field": "inputs", "subfield": "denoise"},
-  "loop": {"node_id": "66", "field": "inputs", "subfield": "closed_loop"}
+  "loop": {"node_id": "66", "field": "inputs", "subfield": "closed_loop"},
+  "negative_prompt": {"node_id": "7", "field": "inputs", "subfield": "text"}
 }

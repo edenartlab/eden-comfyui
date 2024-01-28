@@ -3,6 +3,7 @@
   "height": {"node_id": "10", "field": "inputs", "subfield": "height"},
   "n_frames": {"node_id": "10", "field": "inputs", "subfield": "batch_size"},
   "interpolation_texts": {"node_id": "16", "field": "inputs", "subfield": "text"},
+  "negative_prompt": {"node_id": "8", "field": "inputs", "subfield": "text"},
   "n_frames2": {"node_id": "16", "field": "inputs", "subfield": "max_frames"},
   "seed": {"node_id": "9", "field": "inputs", "subfield": "seed"}
 }
