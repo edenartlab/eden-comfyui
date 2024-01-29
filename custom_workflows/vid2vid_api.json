@@ -75,24 +75,14 @@
   },
   "15": {
     "inputs": {
-      "video": "video/15_97 (3).gif",
-      "force_rate": 0,
+      "video": "15_97.gif",
+      "force_rate": 8,
       "force_size": "Disabled",
+      "custom_width": 512,
+      "custom_height": 512,
       "frame_load_cap": 40,
       "skip_first_frames": 0,
-      "select_every_nth": 1,
-      "videopreview": {
-        "hidden": false,
-        "paused": false,
-        "params": {
-          "filename": "video/15_97 (3).gif",
-          "type": "input",
-          "format": "image"
-        }
-      },
-      "$$comfy_animation_preview": {
-        "height": 0
-      }
+      "select_every_nth": 1
     },
     "class_type": "VHS_LoadVideo",
     "_meta": {
@@ -149,7 +139,7 @@
   },
   "54": {
     "inputs": {
-      "image": "b59a83d8-a152-4e56-b6b7-a6c100dcd889__67092 (5).jpg",
+      "image": "b1428ba4793e0895b8a156f55bcea70e98cc83f927754727c6cc62da37083cac (1).jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -174,12 +164,12 @@
   },
   "58": {
     "inputs": {
-      "seed": 104,
+      "seed": 107,
       "steps": 25,
       "cfg": 7.5,
       "sampler_name": "euler_ancestral",
       "scheduler": "exponential",
-      "denoise": 0.9,
+      "denoise": 0.9500000000000001,
       "model": [
         "53",
         0
@@ -221,7 +211,6 @@
       "title": "RIFE VFI (recommend rife47 and rife49)"
     }
   },
-
   "60": {
     "inputs": {
       "frame_rate": 16,
@@ -330,6 +319,7 @@
       "height": 640,
       "interpolation": "lanczos",
       "keep_proportion": true,
+      "condition": "always",
       "image": [
         "15",
         0
@@ -358,7 +348,7 @@
     "inputs": {
       "strength": 0.9,
       "start_percent": 0,
-      "end_percent": 1,
+      "end_percent": 0.75,
       "positive": [
         "6",
         0
