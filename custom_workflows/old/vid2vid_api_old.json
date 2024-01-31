@@ -57,7 +57,7 @@
     "inputs": {
       "model_name": "v3_sd15_mm.ckpt",
       "beta_schedule": "sqrt_linear (AnimateDiff)",
-      "motion_scale": 1.1,
+      "motion_scale": 1.2,
       "apply_v2_models_properly": true,
       "model": [
         "91",
@@ -71,6 +71,22 @@
     "class_type": "ADE_AnimateDiffLoaderWithContext",
     "_meta": {
       "title": "AnimateDiff Loader 🎭🅐🅓"
+    }
+  },
+  "15": {
+    "inputs": {
+      "video": "15_97.gif",
+      "force_rate": 8,
+      "force_size": "Disabled",
+      "custom_width": 512,
+      "custom_height": 512,
+      "frame_load_cap": 40,
+      "skip_first_frames": 0,
+      "select_every_nth": 1
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
     }
   },
   "24": {
@@ -93,12 +109,12 @@
   },
   "53": {
     "inputs": {
-      "weight": 0.7000000000000001,
+      "weight": 0.9,
       "noise": 0,
       "weight_type": "original",
       "start_at": 0,
       "end_at": 1,
-      "unfold_batch": false,
+      "unfold_batch": true,
       "ipadapter": [
         "24",
         0
@@ -123,7 +139,7 @@
   },
   "54": {
     "inputs": {
-      "image": "frame_002.00000000000000_00007.jpg",
+      "image": "b1428ba4793e0895b8a156f55bcea70e98cc83f927754727c6cc62da37083cac (1).jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -148,12 +164,12 @@
   },
   "58": {
     "inputs": {
-      "seed": 237,
+      "seed": 107,
       "steps": 25,
-      "cfg": 8,
+      "cfg": 7.5,
       "sampler_name": "ddpm",
       "scheduler": "exponential",
-      "denoise": 1,
+      "denoise": 0.9500000000000001,
       "model": [
         "53",
         0
@@ -167,7 +183,7 @@
         1
       ],
       "latent_image": [
-        "253",
+        "95",
         0
       ]
     },
@@ -179,8 +195,8 @@
   "59": {
     "inputs": {
       "ckpt_name": "rife47.pth",
-      "clear_cache_after_n_frames": 24,
-      "multiplier": 3,
+      "clear_cache_after_n_frames": 10,
+      "multiplier": 2,
       "fast_mode": true,
       "ensemble": true,
       "scale_factor": 1,
@@ -193,6 +209,27 @@
     "class_type": "RIFE VFI",
     "_meta": {
       "title": "RIFE VFI (recommend rife47 and rife49)"
+    }
+  },
+  "60": {
+    "inputs": {
+      "frame_rate": 16,
+      "loop_count": 0,
+      "filename_prefix": "vid2vid",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 20,
+      "save_metadata": true,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
     }
   },
   "62": {
@@ -247,6 +284,19 @@
       "title": "LoraLoaderModelOnly"
     }
   },
+  "94": {
+    "inputs": {
+      "mode": "fast",
+      "image": [
+        "55",
+        0
+      ]
+    },
+    "class_type": "CLIP_Interrogator",
+    "_meta": {
+      "title": "CLIP_Interrogator"
+    }
+  },
   "95": {
     "inputs": {
       "pixels": [
@@ -263,11 +313,42 @@
       "title": "VAE Encode"
     }
   },
+  "96": {
+    "inputs": {
+      "width": 640,
+      "height": 640,
+      "interpolation": "lanczos",
+      "keep_proportion": true,
+      "condition": "always",
+      "image": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "127": {
+    "inputs": {
+      "safe": "enable",
+      "resolution": 640,
+      "image": [
+        "221",
+        0
+      ]
+    },
+    "class_type": "FakeScribblePreprocessor",
+    "_meta": {
+      "title": "Fake Scribble Lines (aka scribble_hed)"
+    }
+  },
   "132": {
     "inputs": {
-      "strength": 1.1,
+      "strength": 0.9,
       "start_percent": 0,
-      "end_percent": 0.8,
+      "end_percent": 0.75,
       "positive": [
         "6",
         0
@@ -281,7 +362,7 @@
         0
       ],
       "image": [
-        "180",
+        "127",
         0
       ]
     },
@@ -299,10 +380,24 @@
       "title": "Load Advanced ControlNet Model 🛂🅐🅒🅝"
     }
   },
+  "167": {
+    "inputs": {
+      "threshold": 64,
+      "resolution": 640,
+      "image": [
+        "169",
+        0
+      ]
+    },
+    "class_type": "Scribble_XDoG_Preprocessor",
+    "_meta": {
+      "title": "Scribble XDoG Lines"
+    }
+  },
   "169": {
     "inputs": {
       "coarse": "disable",
-      "resolution": 640,
+      "resolution": 512,
       "image": [
         "221",
         0
@@ -336,7 +431,7 @@
     "inputs": {
       "channel": "red",
       "image": [
-        "268",
+        "127",
         0
       ]
     },
@@ -349,7 +444,7 @@
     "inputs": {
       "channel": "red",
       "image": [
-        "169",
+        "167",
         0
       ]
     },
@@ -373,11 +468,11 @@
   "202": {
     "inputs": {
       "prompt1": [
-        "246",
+        "94",
         0
       ],
       "separator": ", ",
-      "prompt2": "4k, sharp details, high quality texture, professional photography"
+      "prompt2": "8k uhd, high quality, stunning composition"
     },
     "class_type": "SeargePromptCombiner",
     "_meta": {
@@ -389,7 +484,7 @@
       "pad_fraction": 0.14,
       "pad_location": "bottom",
       "image": [
-        "240",
+        "96",
         0
       ]
     },
@@ -410,104 +505,6 @@
     "class_type": "IMG_unpadder",
     "_meta": {
       "title": "IMG_Unpadder"
-    }
-  },
-  "237": {
-    "inputs": {
-      "frame_rate": 24,
-      "loop_count": 0,
-      "filename_prefix": "vid2vid",
-      "format": "video/h264-mp4",
-      "pix_fmt": "yuv420p",
-      "crf": 20,
-      "save_metadata": true,
-      "pingpong": false,
-      "save_output": true,
-      "images": [
-        "59",
-        0
-      ]
-    },
-    "class_type": "VHS_VideoCombine",
-    "_meta": {
-      "title": "Video Combine 🎥🅥🅗🅢"
-    }
-  },
-  "238": {
-    "inputs": {
-      "video": "great.mp4",
-      "force_rate": 8,
-      "force_size": "Disabled",
-      "custom_width": 512,
-      "custom_height": 512,
-      "frame_load_cap": 32,
-      "skip_first_frames": 0,
-      "select_every_nth": 1
-    },
-    "class_type": "VHS_LoadVideo",
-    "_meta": {
-      "title": "Load Video (Upload) 🎥🅥🅗🅢"
-    }
-  },
-  "240": {
-    "inputs": {
-      "width": 640,
-      "height": 640,
-      "interpolation": "lanczos",
-      "keep_proportion": true,
-      "condition": "always",
-      "image": [
-        "238",
-        0
-      ]
-    },
-    "class_type": "ImageResize+",
-    "_meta": {
-      "title": "🔧 Image Resize"
-    }
-  },
-  "246": {
-    "inputs": {
-      "mode": "fast",
-      "keep_model_alive": false,
-      "prepend_blip_caption": false,
-      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
-      "image": [
-        "55",
-        0
-      ]
-    },
-    "class_type": "CLIP_Interrogator",
-    "_meta": {
-      "title": "CLIP_Interrogator"
-    }
-  },
-  "253": {
-    "inputs": {
-      "output_type": "float16",
-      "verbose": true,
-      "latent": [
-        "95",
-        0
-      ]
-    },
-    "class_type": "LatentTypeConversion",
-    "_meta": {
-      "title": "LatentTypeConversion"
-    }
-  },
-  "268": {
-    "inputs": {
-      "safe": "enable",
-      "resolution": 640,
-      "image": [
-        "221",
-        0
-      ]
-    },
-    "class_type": "FakeScribblePreprocessor",
-    "_meta": {
-      "title": "Fake Scribble Lines (aka scribble_hed)"
     }
   }
 }

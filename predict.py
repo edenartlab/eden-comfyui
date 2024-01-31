@@ -141,7 +141,7 @@ def add_audio(generated_video, orig_video):
 
     # Prepare the FFmpeg command for adding audio
     command = f"""
-        ffmpeg -y -i "{generated_video}" -i "{orig_video}" -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 "{output_file}"
+        ffmpeg -y -i "{generated_video}" -i "{orig_video}" -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -shortest "{output_file}"
     """
 
     try:
