@@ -89,6 +89,69 @@ def reencode_video(input_file_path, output_file_path):
 
     # Optional: Retry with different settings if needed
 
+def reencode_video(input_file_path, output_file_path):
+    input_file_path_str = str(input_file_path)  # Convert Path object to string
+
+    # Input validation
+    if not os.path.exists(input_file_path_str) or os.path.getsize(input_file_path_str) == 0:
+        print("Invalid input file.")
+        return
+
+    # Determine if the input is a GIF
+    is_gif = input_file_path_str.lower().endswith('.gif')
+
+    # Base FFmpeg command with scale filter to ensure even dimensions
+    base_command = f"""
+        ffmpeg -y -err_detect ignore_err -i "{input_file_path_str}" -vf "scale='2*trunc(ovr/2)':'2*trunc(ohr/2)':force_original_aspect_ratio=decrease"
+        -c:v libx264 -preset medium
+    """
+
+    # Exclude audio codec for GIF files
+    if not is_gif:
+        base_command += ' -c:a aac'
+
+    base_command += f' "{output_file_path}"'
+
+    try:
+        # Run the command with a timeout (e.g., 300 seconds)
+        subprocess.run(shlex.split(base_command), check=True, timeout=300, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print(f"Re-encoding completed: {output_file_path}")
+    except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as e:
+        print(f"Error or timeout during re-encoding. Copying original file to output. Error: {e}")
+        shutil.copyfile(input_file_path_str, output_file_path)
+
+def has_audio(file_path):
+    """Check if a video file has an audio stream."""
+    command = f"ffprobe -v error -select_streams a -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 {file_path}"
+    result = subprocess.run(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    return len(result.stdout) > 0
+
+def add_audio(generated_video, orig_video):
+    """
+    Check if the original video has audio. If so, add it to the generated video using ffmpeg.
+    """
+    # Check if the original video has an audio stream
+    if not has_audio(orig_video):
+        print("Original video has no audio stream.")
+        return generated_video
+
+    # Split the filename and extension
+    file_root, file_ext = os.path.splitext(os.path.abspath(generated_video))
+    output_file = f"{file_root}_with_audio{file_ext}"
+
+    # Prepare the FFmpeg command for adding audio
+    command = f"""
+        ffmpeg -y -i "{generated_video}" -i "{orig_video}" -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 "{output_file}"
+    """
+
+    try:
+        # Run the command with a timeout (e.g., 300 seconds)
+        subprocess.run(shlex.split(command), check=True, timeout=300, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print(f"Audio added to video: {output_file}")
+        return output_file
+    except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as e:
+        print(f"Error or timeout during adding audio. Error: {e}")
+        return generated_video
 
 
 class CogOutput(BaseModel):
@@ -320,8 +383,13 @@ class Predictor(BasePredictor):
         print("Running pipeline...")
         out_paths = self.get_output(ws, config, client_id)
 
+        # Grab the pipeline output:
         for node_id in out_paths:
             for out_path in out_paths[node_id]:
+                
+                if args.input_video_path and args.mode == "vid2vid": # the input was a video, if it had audio, add it back to the output video:
+                    out_path = add_audio(out_path, args.input_video_path)
+
                 return cogPath(out_path)
 
     def predict(
@@ -480,6 +548,8 @@ class Predictor(BasePredictor):
         except Exception as e:
             print(f"Error in self.get_workflow_output(): {e}")
             output_paths = [""] * n_samples
+
+
 
         print("------------------------------------------")
         print("Pipeline finished!")

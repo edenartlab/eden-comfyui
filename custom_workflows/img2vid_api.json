@@ -389,6 +389,9 @@
   "76": {
     "inputs": {
       "mode": "fast",
+      "keep_model_alive": false,
+      "prepend_blip_caption": true,
+      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
       "image": [
         "57",
         0
@@ -396,7 +399,7 @@
     },
     "class_type": "CLIP_Interrogator",
     "_meta": {
-      "title": "CLIP Interrogator"
+      "title": "CLIP_Interrogator"
     }
   },
   "110": {

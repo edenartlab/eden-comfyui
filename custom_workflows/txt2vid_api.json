@@ -20,7 +20,7 @@
       "seed": 0,
       "steps": 30,
       "cfg": 7.5,
-      "sampler_name": "dpmpp_2m_sde_gpu",
+      "sampler_name": "ddpm",
       "scheduler": "exponential",
       "denoise": 1,
       "model": [
