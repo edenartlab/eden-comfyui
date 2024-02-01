@@ -3,15 +3,23 @@ cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/tests
 sudo sh run_cog_server.sh
 
 Run Comfy Raw:
+
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 conda activate comfy
-python main.py
+python main.py --port=8188
 ssh -R 80:localhost:8188 serveo.net
 
 
+# Run a second comfy instance:
+
+export CUDA_VISIBLE_DEVICES=3
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+conda activate comfy
+python main.py --port=8189
+ssh -R 80:localhost:8189 serveo.net
 
 
-      "save_output": true,
+
 
       
 ###################### COMFY ##########################
