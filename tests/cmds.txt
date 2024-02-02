@@ -29,7 +29,6 @@ ssh -R 80:localhost:8189 serveo.net
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i mode="makeitrad" -i text_input="a swimming pool in the style of embedding:makeitrad_embeddings" -i width="512"
 
-
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i mode="img2vid" -i init_image="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="768" -i height="768" -i n_frames="28"
 

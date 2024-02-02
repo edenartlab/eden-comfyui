@@ -400,12 +400,8 @@ class Predictor(BasePredictor):
                 ),
         text_input: str = Input(description="prompt", default=None),
         interpolation_texts: str = Input(description="| separated list of prompts for txt2vid)", default=None),
-        init_image: str = Input(
-                    description="Input image (for img2vid / upscale). Load source image from file, url, or base64 string", 
-                    default = None,
-                ),        
-        init_image2: str = Input(
-                    description="Second input image. Load from file, url, or base64 string", 
+        input_images: str = Input(
+                    description="Input image(s) for various endpoints. Load-able from file, url, or base64 string, (urls separated by pipe symbol)", 
                     default = None,
                 ),
         input_video_path: str = Input(
@@ -428,12 +424,10 @@ class Predictor(BasePredictor):
             description="Total number of frames (txt2vid, vid2vid, img2vid)",
             ge=16, le=264, default=40
         ),
-
         n_samples: int = Input(
             description="batch size",
             ge=1, le=4, default=1
         ),
-
         control_method: str = Input(
             description="Shape Control method (coarse usually gives nicer results, fine is more precise to the input video)",
             default="coarse",
@@ -489,17 +483,15 @@ class Predictor(BasePredictor):
             if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
                 raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
 
-        if mode in ["txt2vid", "img2vid", "vid2vid"]: # these modes use a 2x_upscaler:
+        if mode in ["txt2vid", "img2vid", "vid2vid", "blend"]: # these modes use a 2x_upscaler:
             width = width // 2
             height = height // 2
 
         if interpolation_texts:  # For now, just equally space the prompts!
             text_input = interpolation_texts
             prompt_list, interpolation_texts = format_prompt(interpolation_texts, n_frames)
-
-        # Hardcoded, manual checks:
+        
         if input_video_path:
-            # download video from url:
             downloaded_video_path = download(input_video_path, "tmp_vids")
             # re-encode to .mp4 by default to avoid issues with the source video:
             input_video_path = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False).name
@@ -507,36 +499,36 @@ class Predictor(BasePredictor):
         elif mode == "vid2vid":
             raise ValueError("An input video/gif is required for vid2vid mode!")
 
-        if init_image:
-            input_image_path = init_image
-            if os.path.exists(input_image_path):
-                input_image_path = str(input_image_path)
-            else:
-                input_image_path = download(input_image_path, "tmp_imgs")
+        if input_images:
+            input_image_urls = input_images.split("|")
+            input_image_paths = []
 
-            if init_image2:
-                input_image_path2 = init_image2
-                if os.path.exists(input_image_path2):
-                    input_image_path2 = str(input_image_path2)
-                else:
-                    input_image_path2 = download(input_image_path2, "tmp_imgs")
-            elif mode in ["vid2vid"]: # if there's only one style img, just copy that one!
-                input_image_path2 = input_image_path
-            
+            for input_image_url in input_image_urls:
+                input_image_path = str(input_image_url)
+                if not os.path.exists(input_image_path):
+                    print(f"Downloading {input_image_path}...")
+                    input_image_path = download(input_image_path, "tmp_imgs")
+                input_image_paths.append(input_image_path)
+
+            if mode in ["vid2vid"]: # if there's only one style img, just copy that one the the second!
+                if len(input_image_paths) == 1:
+                    input_image_paths.append(input_image_paths[0])
         else:
-            if mode in ["upscale", "img2vid", "vid2vid"]:
+            if mode in ["upscale", "img2vid", "vid2vid", "blend"]:
                 raise ValueError(f"An input image is required for mode {mode}!")
-            input_image_path = None
+            input_image_paths = []
 
         if mode == "upscale":
             # the UI form only exposes 'width' as 'Resolution' so just copy it over to height in this mode
             height = width
 
+        
+
         # gather args from the input fields:
         args = {
             "input_video_path": input_video_path,
-            "input_image_path": input_image_path,
-            "input_image_path2": input_image_path2,
+            "input_image_path": input_image_paths[0] if len(input_image_paths) > 0 else None,
+            "input_image_path2": input_image_paths[1] if len(input_image_paths) > 1 else None,
             "text_input": text_input,
             "interpolation_texts": interpolation_texts,
             "negative_prompt": negative_prompt,
