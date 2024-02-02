@@ -93,7 +93,7 @@
   },
   "54": {
     "inputs": {
-      "image": "strawberries2.jpeg",
+      "image": "pink-lotus-flowers-and-leaves-in-the-lake-royalty-free-image-1686761539 (3).jpeg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -104,7 +104,7 @@
   "55": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "bottom",
+      "crop_position": "right",
       "sharpening": 0,
       "image": [
         "54",
@@ -120,7 +120,7 @@
     "inputs": {
       "seed": 237,
       "steps": 25,
-      "cfg": 10,
+      "cfg": 9,
       "sampler_name": "dpmpp_2m_sde",
       "scheduler": "exponential",
       "denoise": 1,
@@ -235,11 +235,11 @@
   },
   "132": {
     "inputs": {
-      "strength": 0.8,
+      "strength": 0.7000000000000001,
       "start_percent": 0,
       "end_percent": 0.75,
       "positive": [
-        "342",
+        "6",
         0
       ],
       "negative": [
@@ -251,7 +251,7 @@
         0
       ],
       "image": [
-        "360",
+        "180",
         0
       ]
     },
@@ -272,7 +272,7 @@
   "169": {
     "inputs": {
       "coarse": "disable",
-      "resolution": 1024,
+      "resolution": 768,
       "image": [
         "221",
         0
@@ -347,7 +347,7 @@
         0
       ],
       "separator": ", ",
-      "prompt2": "high quality texture, sharp details, 4k"
+      "prompt2": "high quality texture, sharp details, 4k, professional photography"
     },
     "class_type": "SeargePromptCombiner",
     "_meta": {
@@ -389,7 +389,7 @@
       "filename_prefix": "vid2vid",
       "format": "video/h264-mp4",
       "pix_fmt": "yuv420p",
-      "crf": 23,
+      "crf": 20,
       "save_metadata": true,
       "pingpong": false,
       "save_output": true,
@@ -405,12 +405,12 @@
   },
   "238": {
     "inputs": {
-      "video": "waking_life.mp4",
+      "video": "out.mp4",
       "force_rate": 8,
       "force_size": "Disabled",
       "custom_width": 512,
       "custom_height": 512,
-      "frame_load_cap": 52,
+      "frame_load_cap": 16,
       "skip_first_frames": 0,
       "select_every_nth": 1
     },
@@ -421,8 +421,8 @@
   },
   "240": {
     "inputs": {
-      "width": 1024,
-      "height": 1024,
+      "width": 768,
+      "height": 768,
       "interpolation": "lanczos",
       "keep_proportion": true,
       "condition": "always",
@@ -439,7 +439,7 @@
   "246": {
     "inputs": {
       "mode": "fast",
-      "keep_model_alive": true,
+      "keep_model_alive": false,
       "prepend_blip_caption": false,
       "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
       "image": [
@@ -455,7 +455,7 @@
   "253": {
     "inputs": {
       "output_type": "float16",
-      "verbose": false,
+      "verbose": true,
       "latent": [
         "95",
         0
@@ -469,7 +469,7 @@
   "268": {
     "inputs": {
       "safe": "enable",
-      "resolution": 1024,
+      "resolution": 768,
       "image": [
         "221",
         0
@@ -483,7 +483,7 @@
   "275": {
     "inputs": {
       "ipadapter_plus": true,
-      "noise": 0.25,
+      "noise": 0,
       "weight_1": 1,
       "weight_2": 1,
       "weight_3": 1,
@@ -519,7 +519,7 @@
       "weight": 0.65,
       "weight_type": "original",
       "start_at": 0,
-      "end_at": 0.5,
+      "end_at": 1,
       "unfold_batch": false,
       "ipadapter": [
         "24",
@@ -542,7 +542,7 @@
   "301": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "top",
+      "crop_position": "bottom",
       "sharpening": 0,
       "image": [
         "54",
@@ -557,7 +557,7 @@
   "302": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "right",
+      "crop_position": "top",
       "sharpening": 0,
       "image": [
         "54",
@@ -618,10 +618,10 @@
   "308": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "right",
+      "crop_position": "center",
       "sharpening": 0,
       "image": [
-        "341",
+        "54",
         0
       ]
     },
@@ -633,7 +633,7 @@
   "309": {
     "inputs": {
       "ipadapter_plus": true,
-      "noise": 0.25,
+      "noise": 0,
       "weight_1": 1,
       "weight_2": 1,
       "weight_3": 1,
@@ -667,10 +667,10 @@
   "310": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "left",
+      "crop_position": "center",
       "sharpening": 0,
       "image": [
-        "341",
+        "54",
         0
       ]
     },
@@ -682,10 +682,10 @@
   "311": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "bottom",
+      "crop_position": "center",
       "sharpening": 0,
       "image": [
-        "341",
+        "54",
         0
       ]
     },
@@ -697,10 +697,10 @@
   "312": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "top",
+      "crop_position": "center",
       "sharpening": 0,
       "image": [
-        "341",
+        "54",
         0
       ]
     },
@@ -725,7 +725,7 @@
   },
   "320": {
     "inputs": {
-      "expand": -3,
+      "expand": -4,
       "tapered_corners": true,
       "mask": [
         "177",
@@ -747,199 +747,6 @@
     "class_type": "MaskToImage",
     "_meta": {
       "title": "Convert Mask to Image"
-    }
-  },
-  "341": {
-    "inputs": {
-      "image": "strawberry.jpeg",
-      "upload": "image"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "Load Image"
-    }
-  },
-  "342": {
-    "inputs": {
-      "conditioning_to_strength": 0.5,
-      "conditioning_to": [
-        "344",
-        0
-      ],
-      "conditioning_from": [
-        "6",
-        0
-      ]
-    },
-    "class_type": "ConditioningAverage",
-    "_meta": {
-      "title": "ConditioningAverage"
-    }
-  },
-  "343": {
-    "inputs": {
-      "mode": "fast",
-      "keep_model_alive": true,
-      "prepend_blip_caption": false,
-      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
-      "image": [
-        "349",
-        0
-      ]
-    },
-    "class_type": "CLIP_Interrogator",
-    "_meta": {
-      "title": "CLIP_Interrogator"
-    }
-  },
-  "344": {
-    "inputs": {
-      "text": [
-        "345",
-        0
-      ],
-      "clip": [
-        "4",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "345": {
-    "inputs": {
-      "prompt1": [
-        "343",
-        0
-      ],
-      "separator": ", ",
-      "prompt2": "high quality texture, sharp details, 4k"
-    },
-    "class_type": "SeargePromptCombiner",
-    "_meta": {
-      "title": "Prompt combiner"
-    }
-  },
-  "349": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "pad",
-      "sharpening": 0,
-      "image": [
-        "341",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
-  "354": {
-    "inputs": {
-      "batch_index_from": 0,
-      "batch_index_to_excl": 10,
-      "strength_from": 0,
-      "strength_to": 0.8,
-      "interpolation": "linear",
-      "print_keyframes": true
-    },
-    "class_type": "LatentKeyframeTiming",
-    "_meta": {
-      "title": "Latent Keyframe Interpolation 🛂🅐🅒🅝"
-    }
-  },
-  "356": {
-    "inputs": {
-      "batch_index_from": 10,
-      "batch_index_to_excl": 30,
-      "strength_from": 0.8,
-      "strength_to": 0.8,
-      "interpolation": "linear",
-      "print_keyframes": true,
-      "prev_latent_kf": [
-        "354",
-        0
-      ]
-    },
-    "class_type": "LatentKeyframeTiming",
-    "_meta": {
-      "title": "Latent Keyframe Interpolation 🛂🅐🅒🅝"
-    }
-  },
-  "358": {
-    "inputs": {
-      "batch_index_from": 30,
-      "batch_index_to_excl": 40,
-      "strength_from": 0.8,
-      "strength_to": 0,
-      "interpolation": "linear",
-      "print_keyframes": true,
-      "prev_latent_kf": [
-        "356",
-        0
-      ]
-    },
-    "class_type": "LatentKeyframeTiming",
-    "_meta": {
-      "title": "Latent Keyframe Interpolation 🛂🅐🅒🅝"
-    }
-  },
-  "360": {
-    "inputs": {
-      "ANY": [
-        "362",
-        0
-      ],
-      "IF_TRUE": [
-        "180",
-        0
-      ],
-      "IF_FALSE": [
-        "334",
-        0
-      ]
-    },
-    "class_type": "If ANY execute A else B",
-    "_meta": {
-      "title": "If"
-    }
-  },
-  "361": {
-    "inputs": {
-      "value": "coarse"
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "ControlMethod (fine/coarse)"
-    }
-  },
-  "362": {
-    "inputs": {
-      "comparison": "a == b",
-      "a": [
-        "361",
-        0
-      ],
-      "b": [
-        "363",
-        0
-      ]
-    },
-    "class_type": "Compare",
-    "_meta": {
-      "title": "Compare"
-    }
-  },
-  "363": {
-    "inputs": {
-      "value": "fine"
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "String"
     }
   }
 }

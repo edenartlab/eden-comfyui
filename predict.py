@@ -403,6 +403,10 @@ class Predictor(BasePredictor):
         init_image: str = Input(
                     description="Input image (for img2vid / upscale). Load source image from file, url, or base64 string", 
                     default = None,
+                ),        
+        init_image2: str = Input(
+                    description="Second input image. Load from file, url, or base64 string", 
+                    default = None,
                 ),
         input_video_path: str = Input(
                     description="For vid2vid. Load source video from file, url, or base64 string", 
@@ -428,6 +432,12 @@ class Predictor(BasePredictor):
         n_samples: int = Input(
             description="batch size",
             ge=1, le=4, default=1
+        ),
+
+        control_method: str = Input(
+            description="Shape Control method (coarse usually gives nicer results, fine is more precise to the input video)",
+            default="coarse",
+            choices=["coarse", "fine"]
         ),
 
         # controlnet_type: str = Input(
@@ -503,9 +513,19 @@ class Predictor(BasePredictor):
                 input_image_path = str(input_image_path)
             else:
                 input_image_path = download(input_image_path, "tmp_imgs")
+
+            if init_image2:
+                input_image_path2 = init_image2
+                if os.path.exists(input_image_path2):
+                    input_image_path2 = str(input_image_path2)
+                else:
+                    input_image_path2 = download(input_image_path2, "tmp_imgs")
+            elif mode in ["vid2vid"]: # if there's only one style img, just copy that one!
+                input_image_path2 = input_image_path
+            
         else:
-            if mode in ["upscale", "img2vid"]:
-                raise ValueError("An input image is required for upscale and img2vid modes!")
+            if mode in ["upscale", "img2vid", "vid2vid"]:
+                raise ValueError(f"An input image is required for mode {mode}!")
             input_image_path = None
 
         if mode == "upscale":
@@ -516,6 +536,7 @@ class Predictor(BasePredictor):
         args = {
             "input_video_path": input_video_path,
             "input_image_path": input_image_path,
+            "input_image_path2": input_image_path2,
             "text_input": text_input,
             "interpolation_texts": interpolation_texts,
             "negative_prompt": negative_prompt,
@@ -527,6 +548,7 @@ class Predictor(BasePredictor):
             "mode": mode,
             "denoise_strength": denoise_strength,
             #"controlnet_type": controlnet_map[controlnet_type],
+            "control_method": control_method,
             "controlnet_strength": controlnet_strength,
             "steps": steps,
             "seed": seed,
@@ -572,7 +594,7 @@ class Predictor(BasePredictor):
 
             yield [cogPath(output_path) for output_path in output_paths]
         else:
-            thumbnail_paths = [save_first_frame_to_tempfile(output_path) if output_path is not "" else "" for output_path in output_paths]
+            thumbnail_paths = [save_first_frame_to_tempfile(output_path) if output_path != "" else "" for output_path in output_paths]
 
             attributes = {}
             attributes['n_samples']   = n_samples

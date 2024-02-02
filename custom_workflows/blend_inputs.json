@@ -1,0 +1,9 @@
+{
+  "input_image_path": {"node_id": "54", "field": "inputs", "subfield": "image"},
+  "input_image_path2": {"node_id": "341", "field": "inputs", "subfield": "image"},
+  "seed": {"node_id": "58", "field": "inputs", "subfield": "seed"},
+  "denoise_strength": {"node_id": "58", "field": "inputs", "subfield": "denoise"},
+  "width": {"node_id": "240", "field": "inputs", "subfield": "width"},
+  "height": {"node_id": "240", "field": "inputs", "subfield": "height"},
+  "negative_prompt": {"node_id": "7", "field": "inputs", "subfield": "text"}
+}
