@@ -5,5 +5,7 @@
   "input_image_path": {"node_id": "34", "field": "inputs", "subfield": "image"},
   "seed": {"node_id": "9", "field": "inputs", "subfield": "seed"},
   "negative_prompt": {"node_id": "8", "field": "inputs", "subfield": "text"},
-  "denoise_strength": {"node_id": "9", "field": "inputs", "subfield": "denoise"}
+  "denoise_strength": {"node_id": "9", "field": "inputs", "subfield": "denoise"},
+  "text_input": {"node_id": "137", "field": "inputs", "subfield": "prompt"},
+  "mask_image_path": {"node_id": "144", "field": "inputs", "subfield": "image"}
 }

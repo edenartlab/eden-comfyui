@@ -73,6 +73,15 @@
       "title": "AnimateDiff Loader 🎭🅐🅓"
     }
   },
+  "24": {
+    "inputs": {
+      "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
+    },
+    "class_type": "IPAdapterModelLoader",
+    "_meta": {
+      "title": "Load IPAdapter Model"
+    }
+  },
   "25": {
     "inputs": {
       "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
@@ -84,12 +93,27 @@
   },
   "54": {
     "inputs": {
-      "image": "25bf01b53fd16cf9f7693bece3c15cf1 (5).jpg",
+      "image": "strawberries2.jpeg",
       "upload": "image"
     },
     "class_type": "LoadImage",
     "_meta": {
       "title": "Load Image"
+    }
+  },
+  "55": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "bottom",
+      "sharpening": 0,
+      "image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
     }
   },
   "58": {
@@ -101,7 +125,7 @@
       "scheduler": "exponential",
       "denoise": 1,
       "model": [
-        "410",
+        "276",
         0
       ],
       "positive": [
@@ -211,11 +235,11 @@
   },
   "132": {
     "inputs": {
-      "strength": 0.7000000000000001,
+      "strength": 0.8,
       "start_percent": 0,
       "end_percent": 0.75,
       "positive": [
-        "417",
+        "342",
         0
       ],
       "negative": [
@@ -248,7 +272,7 @@
   "169": {
     "inputs": {
       "coarse": "disable",
-      "resolution": 1280,
+      "resolution": 1024,
       "image": [
         "221",
         0
@@ -323,7 +347,7 @@
         0
       ],
       "separator": ", ",
-      "prompt2": "high quality texture, sharp details, 4k, masterpiece, stunning"
+      "prompt2": "high quality texture, sharp details, 4k"
     },
     "class_type": "SeargePromptCombiner",
     "_meta": {
@@ -365,7 +389,7 @@
       "filename_prefix": "vid2vid",
       "format": "video/h264-mp4",
       "pix_fmt": "yuv420p",
-      "crf": 20,
+      "crf": 23,
       "save_metadata": true,
       "pingpong": false,
       "save_output": true,
@@ -386,7 +410,7 @@
       "force_size": "Disabled",
       "custom_width": 512,
       "custom_height": 512,
-      "frame_load_cap": 16,
+      "frame_load_cap": 52,
       "skip_first_frames": 0,
       "select_every_nth": 1
     },
@@ -397,8 +421,8 @@
   },
   "240": {
     "inputs": {
-      "width": 1280,
-      "height": 1280,
+      "width": 1024,
+      "height": 1024,
       "interpolation": "lanczos",
       "keep_proportion": true,
       "condition": "always",
@@ -445,7 +469,7 @@
   "268": {
     "inputs": {
       "safe": "enable",
-      "resolution": 1280,
+      "resolution": 1024,
       "image": [
         "221",
         0
@@ -456,13 +480,227 @@
       "title": "Fake Scribble Lines (aka scribble_hed)"
     }
   },
-  "304": {
+  "275": {
+    "inputs": {
+      "ipadapter_plus": true,
+      "noise": 0.25,
+      "weight_1": 1,
+      "weight_2": 1,
+      "weight_3": 1,
+      "weight_4": 1,
+      "clip_vision": [
+        "25",
+        0
+      ],
+      "image_1": [
+        "303",
+        0
+      ],
+      "image_2": [
+        "302",
+        0
+      ],
+      "image_3": [
+        "301",
+        0
+      ],
+      "image_4": [
+        "55",
+        0
+      ]
+    },
+    "class_type": "IPAdapterEncoder",
+    "_meta": {
+      "title": "Encode IPAdapter Image"
+    }
+  },
+  "276": {
+    "inputs": {
+      "weight": 0.65,
+      "weight_type": "original",
+      "start_at": 0,
+      "end_at": 0.5,
+      "unfold_batch": false,
+      "ipadapter": [
+        "24",
+        0
+      ],
+      "embeds": [
+        "306",
+        0
+      ],
+      "model": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "IPAdapterApplyEncoded",
+    "_meta": {
+      "title": "Apply IPAdapter from Encoded"
+    }
+  },
+  "301": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "center",
+      "crop_position": "top",
       "sharpening": 0,
       "image": [
         "54",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "302": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "right",
+      "sharpening": 0,
+      "image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "303": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "left",
+      "sharpening": 0,
+      "image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "304": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "pad",
+      "sharpening": 0,
+      "image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "306": {
+    "inputs": {
+      "embed1": [
+        "309",
+        0
+      ],
+      "embed2": [
+        "275",
+        0
+      ]
+    },
+    "class_type": "IPAdapterBatchEmbeds",
+    "_meta": {
+      "title": "IPAdapter Batch Embeds"
+    }
+  },
+  "308": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "right",
+      "sharpening": 0,
+      "image": [
+        "341",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "309": {
+    "inputs": {
+      "ipadapter_plus": true,
+      "noise": 0.25,
+      "weight_1": 1,
+      "weight_2": 1,
+      "weight_3": 1,
+      "weight_4": 1,
+      "clip_vision": [
+        "25",
+        0
+      ],
+      "image_1": [
+        "312",
+        0
+      ],
+      "image_2": [
+        "311",
+        0
+      ],
+      "image_3": [
+        "310",
+        0
+      ],
+      "image_4": [
+        "308",
+        0
+      ]
+    },
+    "class_type": "IPAdapterEncoder",
+    "_meta": {
+      "title": "Encode IPAdapter Image"
+    }
+  },
+  "310": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "left",
+      "sharpening": 0,
+      "image": [
+        "341",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "311": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "bottom",
+      "sharpening": 0,
+      "image": [
+        "341",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "312": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "top",
+      "sharpening": 0,
+      "image": [
+        "341",
         0
       ]
     },
@@ -513,7 +751,7 @@
   },
   "341": {
     "inputs": {
-      "image": "75699b4745f872ce961d402accc09ac5 (2).jpg",
+      "image": "strawberry.jpeg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -577,7 +815,7 @@
         0
       ],
       "separator": ", ",
-      "prompt2": "high quality texture, sharp details, 4k, masterpiece, stunning"
+      "prompt2": "high quality texture, sharp details, 4k"
     },
     "class_type": "SeargePromptCombiner",
     "_meta": {
@@ -587,7 +825,7 @@
   "349": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "center",
+      "crop_position": "pad",
       "sharpening": 0,
       "image": [
         "341",
@@ -702,167 +940,6 @@
     "class_type": "String",
     "_meta": {
       "title": "String"
-    }
-  },
-  "408": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "center",
-      "sharpening": 0,
-      "image": [
-        "341",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
-  "409": {
-    "inputs": {
-      "ipadapter_plus": true,
-      "noise": 0,
-      "weight_1": 1,
-      "weight_2": 1,
-      "weight_3": 0,
-      "weight_4": 0,
-      "clip_vision": [
-        "25",
-        0
-      ],
-      "image_1": [
-        "408",
-        0
-      ],
-      "image_2": [
-        "412",
-        0
-      ]
-    },
-    "class_type": "IPAdapterEncoder",
-    "_meta": {
-      "title": "Encode IPAdapter Image"
-    }
-  },
-  "410": {
-    "inputs": {
-      "weight": 0.65,
-      "weight_type": "original",
-      "start_at": 0,
-      "end_at": 0.5,
-      "unfold_batch": false,
-      "ipadapter": [
-        "413",
-        0
-      ],
-      "embeds": [
-        "409",
-        0
-      ],
-      "model": [
-        "11",
-        0
-      ]
-    },
-    "class_type": "IPAdapterApplyEncoded",
-    "_meta": {
-      "title": "Apply IPAdapter from Encoded"
-    }
-  },
-  "412": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "center",
-      "sharpening": 0,
-      "image": [
-        "54",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
-  "413": {
-    "inputs": {
-      "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
-    },
-    "class_type": "IPAdapterModelLoader",
-    "_meta": {
-      "title": "Load IPAdapter Model"
-    }
-  },
-  "416": {
-    "inputs": {
-      "prompt": ""
-    },
-    "class_type": "SeargePromptText",
-    "_meta": {
-      "title": "Optional Positive Prompt"
-    }
-  },
-  "417": {
-    "inputs": {
-      "ANY": [
-        "419",
-        0
-      ],
-      "IF_TRUE": [
-        "342",
-        0
-      ],
-      "IF_FALSE": [
-        "420",
-        0
-      ]
-    },
-    "class_type": "If ANY execute A else B",
-    "_meta": {
-      "title": "If"
-    }
-  },
-  "418": {
-    "inputs": {
-      "value": ""
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "String"
-    }
-  },
-  "419": {
-    "inputs": {
-      "comparison": "a == b",
-      "a": [
-        "416",
-        0
-      ],
-      "b": [
-        "418",
-        0
-      ]
-    },
-    "class_type": "Compare",
-    "_meta": {
-      "title": "Compare"
-    }
-  },
-  "420": {
-    "inputs": {
-      "text": [
-        "416",
-        0
-      ],
-      "clip": [
-        "4",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
     }
   }
 }

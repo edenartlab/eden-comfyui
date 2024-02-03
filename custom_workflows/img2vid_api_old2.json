@@ -43,15 +43,11 @@
         0
       ],
       "image": [
-        "116",
+        "57",
         0
       ],
       "model": [
         "1",
-        0
-      ],
-      "attn_mask": [
-        "132",
         0
       ]
     },
@@ -80,7 +76,7 @@
       "cfg": 6,
       "sampler_name": "ddpm",
       "scheduler": "exponential",
-      "denoise": 0.9500000000000001,
+      "denoise": 1.0,
       "model": [
         "15",
         0
@@ -94,7 +90,7 @@
         1
       ],
       "latent_image": [
-        "131",
+        "39",
         0
       ]
     },
@@ -125,22 +121,18 @@
       "context_stride": 1,
       "context_overlap": 4,
       "context_schedule": "uniform",
-      "closed_loop": true,
-      "fuse_method": "flat",
-      "use_on_equal_length": false,
-      "start_percent": 0,
-      "guarantee_steps": 1
+      "closed_loop": true
     },
     "class_type": "ADE_AnimateDiffUniformContextOptions",
     "_meta": {
-      "title": "Context Options◆Looped Uniform 🎭🅐🅓"
+      "title": "Uniform Context Options 🎭🅐🅓"
     }
   },
   "15": {
     "inputs": {
       "model_name": "v3_sd15_mm.ckpt",
       "beta_schedule": "sqrt_linear (AnimateDiff)",
-      "motion_scale": 1.1500000000000001,
+      "motion_scale": 1.15,
       "apply_v2_models_properly": true,
       "model": [
         "26",
@@ -153,7 +145,7 @@
     },
     "class_type": "ADE_AnimateDiffLoaderWithContext",
     "_meta": {
-      "title": "AnimateDiff Loader [Legacy] 🎭🅐🅓①"
+      "title": "AnimateDiff Loader 🎭🅐🅓"
     }
   },
   "26": {
@@ -217,7 +209,7 @@
   },
   "34": {
     "inputs": {
-      "image": "clipspace/clipspace-mask-5719476.png [input]",
+      "image": "output.jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -227,11 +219,11 @@
   },
   "35": {
     "inputs": {
-      "strength": 1,
+      "strength": 1.0,
       "start_percent": 0,
-      "end_percent": 0.7000000000000001,
+      "end_percent": 0.7,
       "positive": [
-        "140",
+        "59",
         0
       ],
       "negative": [
@@ -349,7 +341,7 @@
       "filename_prefix": "HD",
       "format": "video/h264-mp4",
       "pix_fmt": "yuv420p",
-      "crf": 20,
+      "crf": 23,
       "save_metadata": true,
       "pingpong": false,
       "save_output": true,
@@ -381,7 +373,7 @@
   "59": {
     "inputs": {
       "text": [
-        "124",
+        "76",
         0
       ],
       "clip": [
@@ -397,7 +389,7 @@
   "76": {
     "inputs": {
       "mode": "fast",
-      "keep_model_alive": true,
+      "keep_model_alive": false,
       "prepend_blip_caption": true,
       "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
       "image": [
@@ -424,194 +416,6 @@
     "class_type": "ImageBatch",
     "_meta": {
       "title": "Batch Images"
-    }
-  },
-  "116": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "center",
-      "sharpening": 0,
-      "image": [
-        "34",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
-  "124": {
-    "inputs": {
-      "prompt1": [
-        "76",
-        0
-      ],
-      "separator": ", ",
-      "prompt2": "high quality texture, sharp details, 4k, "
-    },
-    "class_type": "SeargePromptCombiner",
-    "_meta": {
-      "title": "Prompt combiner"
-    }
-  },
-  "127": {
-    "inputs": {
-      "mask": [
-        "130",
-        0
-      ]
-    },
-    "class_type": "MaskToImage",
-    "_meta": {
-      "title": "Convert Mask to Image"
-    }
-  },
-  "128": {
-    "inputs": {
-      "width": [
-        "36",
-        1
-      ],
-      "height": [
-        "36",
-        2
-      ],
-      "interpolation": "lanczos",
-      "keep_proportion": false,
-      "condition": "always",
-      "image": [
-        "127",
-        0
-      ]
-    },
-    "class_type": "ImageResize+",
-    "_meta": {
-      "title": "🔧 Image Resize"
-    }
-  },
-  "130": {
-    "inputs": {
-      "amount": 11,
-      "mask": [
-        "144",
-        0
-      ]
-    },
-    "class_type": "MaskBlur+",
-    "_meta": {
-      "title": "🔧 Mask Blur"
-    }
-  },
-  "131": {
-    "inputs": {
-      "samples": [
-        "39",
-        0
-      ],
-      "mask": [
-        "132",
-        0
-      ]
-    },
-    "class_type": "SetLatentNoiseMask",
-    "_meta": {
-      "title": "Set Latent Noise Mask"
-    }
-  },
-  "132": {
-    "inputs": {
-      "channel": "red",
-      "image": [
-        "128",
-        0
-      ]
-    },
-    "class_type": "ImageToMask",
-    "_meta": {
-      "title": "Convert Image to Mask"
-    }
-  },
-  "137": {
-    "inputs": {
-      "prompt": ""
-    },
-    "class_type": "SeargePromptText",
-    "_meta": {
-      "title": "Optional prompt"
-    }
-  },
-  "138": {
-    "inputs": {
-      "value": ""
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "String"
-    }
-  },
-  "139": {
-    "inputs": {
-      "comparison": "a != b",
-      "a": [
-        "138",
-        0
-      ],
-      "b": [
-        "137",
-        0
-      ]
-    },
-    "class_type": "Compare",
-    "_meta": {
-      "title": "Compare"
-    }
-  },
-  "140": {
-    "inputs": {
-      "ANY": [
-        "139",
-        0
-      ],
-      "IF_TRUE": [
-        "142",
-        0
-      ],
-      "IF_FALSE": [
-        "59",
-        0
-      ]
-    },
-    "class_type": "If ANY execute A else B",
-    "_meta": {
-      "title": "If"
-    }
-  },
-  "142": {
-    "inputs": {
-      "text": [
-        "137",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "144": {
-    "inputs": {
-      "image": "0.044670_00020 (1).jpg",
-      "channel": "red",
-      "upload": "image"
-    },
-    "class_type": "LoadImageMask",
-    "_meta": {
-      "title": "Load Image (as Mask)"
     }
   }
 }

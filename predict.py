@@ -404,6 +404,10 @@ class Predictor(BasePredictor):
                     description="Input image(s) for various endpoints. Load-able from file, url, or base64 string, (urls separated by pipe symbol)", 
                     default = None,
                 ),
+        mask_images: str = Input(
+                    description="Input mask(s) for various endpoints. Load-able from file, url, or base64 string, (urls separated by pipe symbol)", 
+                    default = None,
+                ),
         input_video_path: str = Input(
                     description="For vid2vid. Load source video from file, url, or base64 string", 
                     default = None,
@@ -518,17 +522,35 @@ class Predictor(BasePredictor):
                 raise ValueError(f"An input image is required for mode {mode}!")
             input_image_paths = []
 
+
+        # Parse input masks:
+        mask_image_paths = []
+        if mask_images:
+            mask_image_urls = mask_images.split("|")
+
+            for mask_image_url in mask_image_urls:
+                mask_image_path = str(mask_image_url)
+                if not os.path.exists(mask_image_path):
+                    print(f"Downloading {mask_image_path}...")
+                    mask_image_path = download(mask_image_path, "tmp_imgs")
+                mask_image_paths.append(mask_image_path)
+
+        if len(mask_image_paths) == 0: # if no mask was provided, just use a default all white mask:
+            mask_image_paths.append("/src/white_mask.png")
+
         if mode == "upscale":
             # the UI form only exposes 'width' as 'Resolution' so just copy it over to height in this mode
             height = width
 
-        
+        if text_input is None and mode in ["img2vid", "vid2vid"]:
+            text_input = ""
 
         # gather args from the input fields:
         args = {
             "input_video_path": input_video_path,
             "input_image_path": input_image_paths[0] if len(input_image_paths) > 0 else None,
             "input_image_path2": input_image_paths[1] if len(input_image_paths) > 1 else None,
+            "mask_image_path": mask_image_paths[0],
             "text_input": text_input,
             "interpolation_texts": interpolation_texts,
             "negative_prompt": negative_prompt,

@@ -10,5 +10,6 @@
   "input_video_path": {"node_id": "238", "field": "inputs", "subfield": "video"},
   "loop": {"node_id": "66", "field": "inputs", "subfield": "closed_loop"},
   "negative_prompt": {"node_id": "7", "field": "inputs", "subfield": "text"},
-  "control_method": {"node_id": "361", "field": "inputs", "subfield": "value"}
+  "control_method": {"node_id": "361", "field": "inputs", "subfield": "value"},
+  "text_input": {"node_id": "416", "field": "inputs", "subfield": "prompt"}
 }
