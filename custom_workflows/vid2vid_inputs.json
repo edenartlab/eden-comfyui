@@ -11,5 +11,6 @@
   "loop": {"node_id": "66", "field": "inputs", "subfield": "closed_loop"},
   "negative_prompt": {"node_id": "7", "field": "inputs", "subfield": "text"},
   "control_method": {"node_id": "361", "field": "inputs", "subfield": "value"},
-  "text_input": {"node_id": "416", "field": "inputs", "subfield": "prompt"}
+  "text_input": {"node_id": "416", "field": "inputs", "subfield": "prompt"},
+  "motion_scale": {"node_id": "11", "field": "inputs", "subfield": "motion_scale"}
 }

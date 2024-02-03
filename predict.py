@@ -428,6 +428,10 @@ class Predictor(BasePredictor):
             description="Total number of frames (txt2vid, vid2vid, img2vid)",
             ge=16, le=264, default=40
         ),
+        motion_scale: float = Input(
+            description="Motion scale (AnimateDiff)",
+            ge=0.0, le=2.0, default=1.1
+        ),
         n_samples: int = Input(
             description="batch size",
             ge=1, le=4, default=1
@@ -558,6 +562,7 @@ class Predictor(BasePredictor):
             "height": height,
             "n_frames": n_frames,
             "n_frames2": n_frames, # temporary hack for comfy_txt2vid where this field is needed twice
+            "motion_scale": motion_scale,
             "guidance_scale": guidance_scale,
             "mode": mode,
             "denoise_strength": denoise_strength,

@@ -6,5 +6,6 @@
   "negative_prompt": {"node_id": "8", "field": "inputs", "subfield": "text"},
   "n_frames2": {"node_id": "16", "field": "inputs", "subfield": "max_frames"},
   "seed": {"node_id": "9", "field": "inputs", "subfield": "seed"},
-  "loop": {"node_id": "14", "field": "inputs", "subfield": "closed_loop"}
+  "loop": {"node_id": "14", "field": "inputs", "subfield": "closed_loop"},
+  "motion_scale": {"node_id": "15", "field": "inputs", "subfield": "motion_scale"}
 }
