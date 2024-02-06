@@ -457,6 +457,10 @@ class Predictor(BasePredictor):
             description="How much denoising to apply (1.0 = start from full noise, 0.0 = return input image)", 
             ge=0.0, le=1.0, default=1.0
         ),
+        blend_value: float = Input(
+            description="Blend factor (weight of the first image vs the second)", 
+            ge=0.0, le=1.0, default=0.5
+        ),
 
         loop: bool = Input(
             description="Try to make a loopable video",

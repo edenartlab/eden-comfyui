@@ -73,7 +73,7 @@
   },
   "54": {
     "inputs": {
-      "image": "img_00034.jpg",
+      "image": "flower_photo.jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -81,26 +81,11 @@
       "title": "Load Image B"
     }
   },
-  "55": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "bottom",
-      "sharpening": 0,
-      "image": [
-        "54",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
   "58": {
     "inputs": {
       "seed": 237,
-      "steps": 30,
-      "cfg": 10,
+      "steps": 25,
+      "cfg": 8,
       "sampler_name": "euler_ancestral",
       "scheduler": "exponential",
       "denoise": 0.9500000000000001,
@@ -181,65 +166,19 @@
       "title": "CLIP_Interrogator"
     }
   },
-  "275": {
-    "inputs": {
-      "ipadapter_plus": true,
-      "noise": 0.33,
-      "weight_1": [
-        "388",
-        0
-      ],
-      "weight_2": [
-        "388",
-        0
-      ],
-      "weight_3": [
-        "388",
-        0
-      ],
-      "weight_4": [
-        "388",
-        0
-      ],
-      "clip_vision": [
-        "25",
-        0
-      ],
-      "image_1": [
-        "303",
-        0
-      ],
-      "image_2": [
-        "302",
-        0
-      ],
-      "image_3": [
-        "301",
-        0
-      ],
-      "image_4": [
-        "55",
-        0
-      ]
-    },
-    "class_type": "IPAdapterEncoder",
-    "_meta": {
-      "title": "Encode IPAdapter Image"
-    }
-  },
   "276": {
     "inputs": {
-      "weight": 0.65,
+      "weight": 0.75,
       "weight_type": "original",
       "start_at": 0,
-      "end_at": 0.5,
+      "end_at": 0.7000000000000001,
       "unfold_batch": false,
       "ipadapter": [
         "24",
         0
       ],
       "embeds": [
-        "306",
+        "309",
         0
       ],
       "model": [
@@ -252,40 +191,10 @@
       "title": "Apply IPAdapter from Encoded"
     }
   },
-  "301": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "top",
-      "sharpening": 0,
-      "image": [
-        "54",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
   "302": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "right",
-      "sharpening": 0,
-      "image": [
-        "54",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
-  "303": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "left",
+      "crop_position": "center",
       "sharpening": 0,
       "image": [
         "54",
@@ -312,45 +221,18 @@
       "title": "Prepare Image For Clip Vision"
     }
   },
-  "306": {
-    "inputs": {
-      "embed1": [
-        "309",
-        0
-      ],
-      "embed2": [
-        "275",
-        0
-      ]
-    },
-    "class_type": "IPAdapterBatchEmbeds",
-    "_meta": {
-      "title": "IPAdapter Batch Embeds"
-    }
-  },
-  "308": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "right",
-      "sharpening": 0,
-      "image": [
-        "341",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
   "309": {
     "inputs": {
       "ipadapter_plus": true,
-      "noise": 0.33,
-      "weight_1": 0.5,
-      "weight_2": 0.5,
-      "weight_3": 0.5,
-      "weight_4": 0.5,
+      "noise": 0,
+      "weight_1": [
+        "404",
+        0
+      ],
+      "weight_2": [
+        "388",
+        0
+      ],
       "clip_vision": [
         "25",
         0
@@ -360,15 +242,7 @@
         0
       ],
       "image_2": [
-        "311",
-        0
-      ],
-      "image_3": [
-        "310",
-        0
-      ],
-      "image_4": [
-        "308",
+        "302",
         0
       ]
     },
@@ -377,40 +251,10 @@
       "title": "Encode IPAdapter Image"
     }
   },
-  "310": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "left",
-      "sharpening": 0,
-      "image": [
-        "341",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
-  "311": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "bottom",
-      "sharpening": 0,
-      "image": [
-        "341",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
   "312": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "top",
+      "crop_position": "center",
       "sharpening": 0,
       "image": [
         "341",
@@ -424,7 +268,7 @@
   },
   "341": {
     "inputs": {
-      "image": "img_00057.jpg",
+      "image": "47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a (2).jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -434,7 +278,10 @@
   },
   "342": {
     "inputs": {
-      "conditioning_to_strength": 0.5,
+      "conditioning_to_strength": [
+        "404",
+        0
+      ],
       "conditioning_to": [
         "344",
         0
@@ -512,7 +359,7 @@
   },
   "378": {
     "inputs": {
-      "filename_prefix": "Blend",
+      "filename_prefix": "ComfyUI",
       "images": [
         "62",
         0
@@ -528,7 +375,10 @@
       "op": "a - c",
       "a": 1,
       "b": 1,
-      "c": 0.5
+      "c": [
+        "404",
+        0
+      ]
     },
     "class_type": "SeargeFloatMath",
     "_meta": {
@@ -537,8 +387,8 @@
   },
   "392": {
     "inputs": {
-      "width": 1280,
-      "height": 768,
+      "width": 1024,
+      "height": 1024,
       "interpolation": "lanczos",
       "keep_proportion": false,
       "condition": "always",
@@ -554,7 +404,10 @@
   },
   "393": {
     "inputs": {
-      "image1_weight": 0.5,
+      "image1_weight": [
+        "404",
+        0
+      ],
       "image1": [
         "341",
         0
@@ -583,6 +436,15 @@
     "class_type": "VAEEncode",
     "_meta": {
       "title": "VAE Encode"
+    }
+  },
+  "404": {
+    "inputs": {
+      "value": 0.5
+    },
+    "class_type": "SeargeFloatConstant",
+    "_meta": {
+      "title": "Img A Weight (0-1)"
     }
   }
 }
