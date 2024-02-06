@@ -1,0 +1,437 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "juggernaut_reborn-inpainting.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "3": {
+    "inputs": {
+      "ipadapter_file": "ip-adapter_sd15.safetensors"
+    },
+    "class_type": "IPAdapterModelLoader",
+    "_meta": {
+      "title": "Load IPAdapter Model"
+    }
+  },
+  "4": {
+    "inputs": {
+      "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Load CLIP Vision"
+    }
+  },
+  "5": {
+    "inputs": {
+      "weight": 0.3,
+      "noise": 0,
+      "weight_type": "original",
+      "start_at": 0,
+      "end_at": 0.5,
+      "unfold_batch": false,
+      "ipadapter": [
+        "3",
+        0
+      ],
+      "clip_vision": [
+        "4",
+        0
+      ],
+      "image": [
+        "116",
+        0
+      ],
+      "model": [
+        "1",
+        0
+      ],
+      "attn_mask": [
+        "149",
+        0
+      ]
+    },
+    "class_type": "IPAdapterApply",
+    "_meta": {
+      "title": "Apply IPAdapter"
+    }
+  },
+  "8": {
+    "inputs": {
+      "text": "text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "9": {
+    "inputs": {
+      "seed": 441,
+      "steps": 30,
+      "cfg": 8,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "exponential",
+      "denoise": 1,
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "140",
+        0
+      ],
+      "negative": [
+        "8",
+        0
+      ],
+      "latent_image": [
+        "152",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "11": {
+    "inputs": {
+      "samples": [
+        "9",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "34": {
+    "inputs": {
+      "image": "clipspace/clipspace-mask-5656033.899999976.png [input]",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "36": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "interpolation": "lanczos",
+      "keep_proportion": true,
+      "condition": "always",
+      "image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "57": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "center",
+      "sharpening": 0,
+      "image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "59": {
+    "inputs": {
+      "text": [
+        "124",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "76": {
+    "inputs": {
+      "mode": "fast",
+      "keep_model_alive": true,
+      "prepend_blip_caption": true,
+      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
+      "image": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "CLIP_Interrogator",
+    "_meta": {
+      "title": "CLIP_Interrogator"
+    }
+  },
+  "116": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "center",
+      "sharpening": 0,
+      "image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "124": {
+    "inputs": {
+      "prompt1": [
+        "76",
+        0
+      ],
+      "separator": ", ",
+      "prompt2": "high quality texture, sharp details, 4k, "
+    },
+    "class_type": "SeargePromptCombiner",
+    "_meta": {
+      "title": "Prompt combiner"
+    }
+  },
+  "127": {
+    "inputs": {
+      "mask": [
+        "130",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "128": {
+    "inputs": {
+      "width": [
+        "36",
+        1
+      ],
+      "height": [
+        "36",
+        2
+      ],
+      "interpolation": "lanczos",
+      "keep_proportion": false,
+      "condition": "always",
+      "image": [
+        "127",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "130": {
+    "inputs": {
+      "amount": 5,
+      "mask": [
+        "154",
+        0
+      ]
+    },
+    "class_type": "MaskBlur+",
+    "_meta": {
+      "title": "🔧 Mask Blur"
+    }
+  },
+  "132": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "128",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "Convert Image to Mask"
+    }
+  },
+  "137": {
+    "inputs": {
+      "prompt": "meditating monk, orange robe"
+    },
+    "class_type": "SeargePromptText",
+    "_meta": {
+      "title": "Optional prompt"
+    }
+  },
+  "138": {
+    "inputs": {
+      "value": ""
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "String"
+    }
+  },
+  "139": {
+    "inputs": {
+      "comparison": "a != b",
+      "a": [
+        "138",
+        0
+      ],
+      "b": [
+        "137",
+        0
+      ]
+    },
+    "class_type": "Compare",
+    "_meta": {
+      "title": "Compare"
+    }
+  },
+  "140": {
+    "inputs": {
+      "ANY": [
+        "139",
+        0
+      ],
+      "IF_TRUE": [
+        "142",
+        0
+      ],
+      "IF_FALSE": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "If ANY execute A else B",
+    "_meta": {
+      "title": "If"
+    }
+  },
+  "142": {
+    "inputs": {
+      "text": [
+        "137",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "147": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "resize_source": false,
+      "destination": [
+        "36",
+        0
+      ],
+      "source": [
+        "11",
+        0
+      ],
+      "mask": [
+        "132",
+        0
+      ]
+    },
+    "class_type": "ImageCompositeMasked",
+    "_meta": {
+      "title": "ImageCompositeMasked"
+    }
+  },
+  "148": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "149": {
+    "inputs": {
+      "mask": [
+        "132",
+        0
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "152": {
+    "inputs": {
+      "grow_mask_by": 6,
+      "pixels": [
+        "36",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ],
+      "mask": [
+        "132",
+        0
+      ]
+    },
+    "class_type": "VAEEncodeForInpaint",
+    "_meta": {
+      "title": "VAE Encode (for Inpainting)"
+    }
+  },
+  "154": {
+    "inputs": {
+      "image": "0.044670_00020 (1).jpg",
+      "channel": "red",
+      "upload": "image"
+    },
+    "class_type": "LoadImageMask",
+    "_meta": {
+      "title": "Load Inpainting Mask"
+    }
+  }
+}

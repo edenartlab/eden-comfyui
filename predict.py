@@ -395,7 +395,7 @@ class Predictor(BasePredictor):
     def predict(
         self,
         mode: str = Input(
-                    description="txt2vid, img2vid, vid2vid, upscale, makeitrad, txt2img", 
+                    description="txt2vid, img2vid, vid2vid, upscale, makeitrad, txt2img, inpaint", 
                     default = "txt2vid",
                 ),
         text_input: str = Input(description="prompt", default=None),
@@ -522,7 +522,7 @@ class Predictor(BasePredictor):
                 if len(input_image_paths) == 1:
                     input_image_paths.append(input_image_paths[0])
         else:
-            if mode in ["upscale", "img2vid", "vid2vid", "blend"]:
+            if mode in ["upscale", "img2vid", "vid2vid", "blend", "inpaint"]:
                 raise ValueError(f"An input image is required for mode {mode}!")
             input_image_paths = []
 
@@ -546,7 +546,7 @@ class Predictor(BasePredictor):
             # the UI form only exposes 'width' as 'Resolution' so just copy it over to height in this mode
             height = width
 
-        if text_input is None and mode in ["img2vid", "vid2vid"]:
+        if text_input is None and mode in ["img2vid", "vid2vid", "inpaint"]:
             text_input = ""
 
         # gather args from the input fields:

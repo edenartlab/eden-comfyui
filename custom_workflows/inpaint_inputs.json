@@ -1,0 +1,9 @@
+{
+  "width": {"node_id": "36", "field": "inputs", "subfield": "width"},
+  "height": {"node_id": "36", "field": "inputs", "subfield": "height"},
+  "input_image_path": {"node_id": "34", "field": "inputs", "subfield": "image"},
+  "seed": {"node_id": "9", "field": "inputs", "subfield": "seed"},
+  "negative_prompt": {"node_id": "8", "field": "inputs", "subfield": "text"},
+  "text_input": {"node_id": "137", "field": "inputs", "subfield": "prompt"},
+  "mask_image_path": {"node_id": "154", "field": "inputs", "subfield": "image"}
+}

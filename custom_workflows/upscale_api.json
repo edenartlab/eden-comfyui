@@ -243,7 +243,7 @@
   },
   "43": {
     "inputs": {
-      "model_name": "RealESRGAN_x4plus.pth"
+      "model_name": "RealESRGAN_x2plus.pth"
     },
     "class_type": "UpscaleModelLoader",
     "_meta": {
