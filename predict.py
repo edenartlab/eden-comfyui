@@ -561,6 +561,27 @@ class Predictor(BasePredictor):
         if text_input is None and mode in ["img2vid", "vid2vid", "inpaint"]:
             text_input = ""
 
+
+        # Default settings
+        input_video_frame_rate = 8 # input fps
+        RIFE_multiplier        = 3 # output RIFE framerate multiplier
+
+        if mode == "vid2vid":
+            # check if there's at least 2 seconds of video:
+            cap = cv2.VideoCapture(input_video_path)
+            fps = cap.get(cv2.CAP_PROP_FPS)
+            n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            n_video_seconds = n_frames / fps
+            cap.release()
+
+            if n_frames < 2 * fps:
+                raise ValueError("The input video/GIF must be at least 2 seconds long for vid2vid mode to work!")
+
+            # If there's only a small amount of total seconds, we increase the diffusion framerate a bit:
+            if n_video_seconds < 4:
+                input_video_frame_rate = 12 # input fps
+                RIFE_multiplier        = 2 # output RIFE framerate multiplier
+
         # gather args from the input fields:
         args = {
             "input_video_path": input_video_path,
@@ -570,6 +591,8 @@ class Predictor(BasePredictor):
             "text_input": text_input,
             "interpolation_texts": interpolation_texts,
             "negative_prompt": negative_prompt,
+            "force_rate": input_video_frame_rate,
+            "RIFE_multiplier": RIFE_multiplier,
             "width": width,
             "height": height,
             "n_frames": n_frames,
