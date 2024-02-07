@@ -29,8 +29,7 @@ ComfyUI/models/checkpoints/realisticVisionV60B1_v60B1VAE.safetensors
 
 #controlnet
 ComfyUI/models/controlnet/controlnet-luminance-sdxl-1.0/*
-ComfyUI/models/controlnet/control_v11p_sd15_canny.safetensors
-ComfyUI/models/controlnet/control_v1p_sd15_qrcode_monster.safetensors
+ComfyUI/models/controlnet/control_v11p_sd15_qrcode_monster.safetensors
 ComfyUI/models/controlnet/control_v11p_sd15_lineart_fp16.safetensors
 #ComfyUI/models/loras
 

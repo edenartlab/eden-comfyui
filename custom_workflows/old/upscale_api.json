@@ -23,7 +23,7 @@
       "noise": 0,
       "weight_type": "original",
       "start_at": 0,
-      "end_at": 0.65,
+      "end_at": 0.7000000000000001,
       "unfold_batch": false,
       "ipadapter": [
         "3",
@@ -49,7 +49,7 @@
   },
   "8": {
     "inputs": {
-      "text": "pixelated, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast",
+      "text": "pixelated, nude, naked, text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast",
       "clip": [
         "46",
         1
@@ -62,8 +62,8 @@
   },
   "9": {
     "inputs": {
-      "seed": 477959944415781,
-      "steps": 25,
+      "seed": 158346880828735,
+      "steps": 35,
       "cfg": 7,
       "sampler_name": "euler_ancestral",
       "scheduler": "exponential",
@@ -108,7 +108,7 @@
   },
   "24": {
     "inputs": {
-      "image": "low_resolution.jpeg",
+      "image": "cba8f34335eefaddda6b2b4f34b4517b324b397534eca03efa34d2db391d5f0f (1).jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -119,7 +119,7 @@
   "28": {
     "inputs": {
       "interpolation": "LANCZOS",
-      "crop_position": "center",
+      "crop_position": "top",
       "sharpening": 0,
       "image": [
         "44",
@@ -143,9 +143,6 @@
   "34": {
     "inputs": {
       "mode": "fast",
-      "keep_model_alive": true,
-      "prepend_blip_caption": true,
-      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
       "image": [
         "28",
         0
@@ -158,10 +155,7 @@
   },
   "35": {
     "inputs": {
-      "text": [
-        "75",
-        0
-      ],
+      "text": "",
       "clip": [
         "46",
         1
@@ -174,8 +168,8 @@
   },
   "36": {
     "inputs": {
-      "width": 1920,
-      "height": 1920,
+      "width": 2048,
+      "height": 2048,
       "interpolation": "lanczos",
       "keep_proportion": true,
       "condition": "always",
@@ -224,7 +218,7 @@
     "inputs": {
       "strength": 0.8,
       "start_percent": 0,
-      "end_percent": 0.7000000000000001,
+      "end_percent": 0.8,
       "positive": [
         "35",
         0
@@ -302,7 +296,7 @@
     "inputs": {
       "filename_prefix": "Upscaled",
       "images": [
-        "72",
+        "11",
         0
       ]
     },
@@ -313,8 +307,8 @@
   },
   "68": {
     "inputs": {
-      "width": 768,
-      "height": 768,
+      "width": 960,
+      "height": 960,
       "interpolation": "lanczos",
       "keep_proportion": true,
       "condition": "always",
@@ -326,45 +320,6 @@
     "class_type": "ImageResize+",
     "_meta": {
       "title": "🔧 Image Resize"
-    }
-  },
-  "71": {
-    "inputs": {
-      "model_name": "RealESRGAN_x2plus.pth"
-    },
-    "class_type": "UpscaleModelLoader",
-    "_meta": {
-      "title": "Load Upscale Model"
-    }
-  },
-  "72": {
-    "inputs": {
-      "upscale_model": [
-        "71",
-        0
-      ],
-      "image": [
-        "11",
-        0
-      ]
-    },
-    "class_type": "ImageUpscaleWithModel",
-    "_meta": {
-      "title": "Upscale Image (using Model)"
-    }
-  },
-  "75": {
-    "inputs": {
-      "prompt1": [
-        "34",
-        0
-      ],
-      "separator": ", ",
-      "prompt2": "sharp details, high resolution, stunning quality, 4k resolution, professional quality"
-    },
-    "class_type": "SeargePromptCombiner",
-    "_meta": {
-      "title": "Prompt combiner"
     }
   }
 }

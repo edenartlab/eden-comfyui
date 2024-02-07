@@ -50,7 +50,9 @@ def save_first_frame_to_tempfile(video_path):
         return
 
     temp_file = tempfile.NamedTemporaryFile(suffix='.jpg', delete=False)
-    cv2.imwrite(temp_file.name, frame)
+
+    compression_rate = 85  # Set compression quality (0-100)
+    cv2.imwrite(temp_file.name, frame, [cv2.IMWRITE_JPEG_QUALITY, compression_rate])
     cap.release()
 
     return temp_file.name
@@ -387,8 +389,14 @@ class Predictor(BasePredictor):
         for node_id in out_paths:
             for out_path in out_paths[node_id]:
                 
-                if args.input_video_path and args.mode == "vid2vid": # the input was a video, if it had audio, add it back to the output video:
+                if args.input_video_path and args.mode == "vid2vid": # the input was a video and it had audio, add it back to the output video:
                     out_path = add_audio(out_path, args.input_video_path)
+
+                if out_path.endswith('.png'): # convert .png to .jpg with 95% quality:
+                    img = Image.open(out_path).convert("RGB")
+                    os.remove(out_path)
+                    out_path = out_path.replace('.png', '.jpg')
+                    img.save(out_path, quality=95)
 
                 return cogPath(out_path)
 
@@ -495,7 +503,7 @@ class Predictor(BasePredictor):
             if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
                 raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
 
-        if mode in ["txt2vid", "img2vid", "vid2vid", "blend"]: # these modes use a 2x_upscaler:
+        if mode in ["txt2vid", "img2vid", "vid2vid", "blend", "upscale"]: # these modes use a 2x_upscaler at the end:
             width = width // 2
             height = height // 2
 
@@ -593,8 +601,6 @@ class Predictor(BasePredictor):
         except Exception as e:
             print(f"Error in self.get_workflow_output(): {e}")
             output_paths = [""] * n_samples
-
-
 
         print("------------------------------------------")
         print("Pipeline finished!")
