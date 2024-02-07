@@ -43,6 +43,13 @@ sudo cog predict -i mode="upscale" -i input_images="https://storage.googleapis.c
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i mode="vid2vid" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.gif" -i width="1024" -i height="1024" -i denoise_strength="1.0"
 
+
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+sudo cog predict -i mode="vid2vid" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/gifs/08_22.gif" -i width="1280" -i height="1280" -i denoise_strength="1.0"
+
+
+
+
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i mode="vid2vid" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg|https://storage.googleapis.com/public-assets-xander/A_workbox/init_imgs/img_00006.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/waking_life.mp4" -i width="1280" -i height="1280" -i denoise_strength="1.0" -i n_frames="16" -i motion_scale="1.2"
 
