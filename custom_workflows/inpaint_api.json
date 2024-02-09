@@ -285,43 +285,17 @@
   },
   "137": {
     "inputs": {
-      "prompt": "meditating monk, orange robe"
+      "prompt": ""
     },
     "class_type": "SeargePromptText",
     "_meta": {
       "title": "Optional prompt"
     }
   },
-  "138": {
-    "inputs": {
-      "value": ""
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "String"
-    }
-  },
-  "139": {
-    "inputs": {
-      "comparison": "a != b",
-      "a": [
-        "138",
-        0
-      ],
-      "b": [
-        "137",
-        0
-      ]
-    },
-    "class_type": "Compare",
-    "_meta": {
-      "title": "Compare"
-    }
-  },
   "140": {
     "inputs": {
       "ANY": [
-        "139",
+        "137",
         0
       ],
       "IF_TRUE": [
@@ -335,7 +309,7 @@
     },
     "class_type": "If ANY execute A else B",
     "_meta": {
-      "title": "If"
+      "title": "If (Eden)"
     }
   },
   "142": {

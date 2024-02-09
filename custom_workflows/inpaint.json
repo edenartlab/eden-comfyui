@@ -1,6 +1,6 @@
 {
   "last_node_id": 154,
-  "last_link_id": 323,
+  "last_link_id": 324,
   "nodes": [
     {
       "id": 4,
@@ -46,7 +46,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 9,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -87,7 +87,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 17,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -112,50 +112,6 @@
       }
     },
     {
-      "id": 139,
-      "type": "Compare",
-      "pos": [
-        1461,
-        -408
-      ],
-      "size": {
-        "0": 210,
-        "1": 78
-      },
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "a",
-          "type": "*",
-          "link": 261
-        },
-        {
-          "name": "b",
-          "type": "*",
-          "link": 262
-        }
-      ],
-      "outputs": [
-        {
-          "name": "B",
-          "type": "BOOLEAN",
-          "links": [
-            263
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "Compare"
-      },
-      "widgets_values": [
-        "a != b"
-      ]
-    },
-    {
       "id": 59,
       "type": "CLIPTextEncode",
       "pos": [
@@ -167,7 +123,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 20,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -214,7 +170,7 @@
         "1": 109.91426849365234
       },
       "flags": {},
-      "order": 11,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -255,7 +211,7 @@
         "1": 50
       },
       "flags": {},
-      "order": 27,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -296,7 +252,7 @@
         "1": 170
       },
       "flags": {},
-      "order": 19,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -369,7 +325,7 @@
         "1": 119.99999237060547
       },
       "flags": {},
-      "order": 18,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -413,7 +369,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 14,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -460,13 +416,13 @@
         "1": 66
       },
       "flags": {},
-      "order": 22,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
           "name": "ANY",
           "type": "*",
-          "link": 263
+          "link": 324
         },
         {
           "name": "IF_TRUE",
@@ -506,7 +462,7 @@
         "1": 98
       },
       "flags": {},
-      "order": 24,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -555,7 +511,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 16,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -596,7 +552,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 21,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -626,38 +582,6 @@
       ]
     },
     {
-      "id": 138,
-      "type": "String",
-      "pos": [
-        1466,
-        -511
-      ],
-      "size": {
-        "0": 210,
-        "1": 58
-      },
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            261
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "String"
-      },
-      "widgets_values": [
-        ""
-      ]
-    },
-    {
       "id": 76,
       "type": "CLIP_Interrogator",
       "pos": [
@@ -669,7 +593,7 @@
         "1": 130
       },
       "flags": {},
-      "order": 15,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -711,7 +635,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 23,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -747,7 +671,7 @@
         "1": 278
       },
       "flags": {},
-      "order": 25,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -816,7 +740,7 @@
         "1": 146
       },
       "flags": {},
-      "order": 28,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -867,7 +791,7 @@
         "1": 516.670654296875
       },
       "flags": {},
-      "order": 29,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -893,7 +817,7 @@
         26
       ],
       "flags": {},
-      "order": 10,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -929,7 +853,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 12,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -968,7 +892,7 @@
         "1": 82
       },
       "flags": {},
-      "order": 2,
+      "order": 1,
       "mode": 0,
       "outputs": [
         {
@@ -1005,7 +929,7 @@
         "1": 359.2777099609375
       },
       "flags": {},
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -1048,7 +972,7 @@
         "1": 100
       },
       "flags": {},
-      "order": 4,
+      "order": 3,
       "mode": 0,
       "outputs": [
         {
@@ -1101,7 +1025,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 26,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
@@ -1161,7 +1085,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 5,
+      "order": 4,
       "mode": 0,
       "outputs": [
         {
@@ -1193,7 +1117,7 @@
         "1": 170
       },
       "flags": {},
-      "order": 8,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -1271,7 +1195,7 @@
         "1": 317.9999694824219
       },
       "flags": {},
-      "order": 6,
+      "order": 5,
       "mode": 0,
       "outputs": [
         {
@@ -1306,15 +1230,15 @@
         "1": 118.58180236816406
       },
       "flags": {},
-      "order": 7,
+      "order": 6,
       "mode": 0,
       "outputs": [
         {
           "name": "prompt",
           "type": "STRING",
           "links": [
-            262,
-            264
+            264,
+            324
           ],
           "shape": 3,
           "slot_index": 0
@@ -1325,7 +1249,7 @@
         "Node name for S&R": "SeargePromptText"
       },
       "widgets_values": [
-        "meditating monk, orange robe"
+        ""
       ]
     }
   ],
@@ -1507,30 +1431,6 @@
       "STRING"
     ],
     [
-      261,
-      138,
-      0,
-      139,
-      0,
-      "*"
-    ],
-    [
-      262,
-      137,
-      0,
-      139,
-      1,
-      "*"
-    ],
-    [
-      263,
-      139,
-      0,
-      140,
-      0,
-      "*"
-    ],
-    [
       264,
       137,
       0,
@@ -1673,6 +1573,14 @@
       130,
       0,
       "MASK"
+    ],
+    [
+      324,
+      137,
+      0,
+      140,
+      0,
+      "*"
     ]
   ],
   "groups": [
