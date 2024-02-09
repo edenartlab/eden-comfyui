@@ -1,6 +1,6 @@
 {
-  "input_image_path": {"node_id": "54", "field": "inputs", "subfield": "image"},
-  "input_image_path2": {"node_id": "341", "field": "inputs", "subfield": "image"},
+  "style_image_path1": {"node_id": "54", "field": "inputs", "subfield": "image"},
+  "style_image_path2": {"node_id": "341", "field": "inputs", "subfield": "image"},
   "seed": {"node_id": "58", "field": "inputs", "subfield": "seed"},
   "denoise_strength": {"node_id": "58", "field": "inputs", "subfield": "denoise"},
   "controlnet_strength": {"node_id": "132", "field": "inputs", "subfield": "strength"},
@@ -10,7 +10,7 @@
   "input_video_path": {"node_id": "238", "field": "inputs", "subfield": "video"},
   "loop": {"node_id": "66", "field": "inputs", "subfield": "closed_loop"},
   "negative_prompt": {"node_id": "7", "field": "inputs", "subfield": "text"},
-  "control_method": {"node_id": "361", "field": "inputs", "subfield": "value"},
+  "control_method": {"node_id": "429", "field": "inputs", "subfield": "value"},
   "text_input": {"node_id": "416", "field": "inputs", "subfield": "prompt"},
   "motion_scale": {"node_id": "11", "field": "inputs", "subfield": "motion_scale"},
   "force_rate": {"node_id": "238", "field": "inputs", "subfield": "force_rate"},

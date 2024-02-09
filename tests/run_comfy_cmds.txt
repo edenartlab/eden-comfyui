@@ -7,7 +7,7 @@ Run Comfy Raw:
 export CUDA_VISIBLE_DEVICES=1
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 conda activate comfy
-python main.py --port=8188
+nohup python main.py --port=8188 &
 ssh -R 80:localhost:8188 serveo.net
 
 
@@ -35,23 +35,26 @@ cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i mode="img2vid" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="768" -i height="768" -i n_frames="28" -i mask_images="https://storage.googleapis.com/public-assets-xander/A_workbox/center_mask.jpg"
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="txt2vid" -i interpolation_texts="a big elephant|a super fast racecar" -i n_frames="32" -i width="1280" -i height="1280"
+sudo cog predict -i mode="txt2vid" -i interpolation_texts="a big elephant|a super fast racecar" -i n_frames="16" -i width="1024" -i height="1024"
+
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+sudo cog predict -i mode="txt2vid" -i style_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg" -i interpolation_texts="a big elephant|a super fast racecar" -i n_frames="16" -i width="1024" -i height="1024"
+
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i mode="upscale" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="3840" -i denoise_strength="0.45"
 
-cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="vid2vid" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.gif" -i width="1024" -i height="1024" -i denoise_strength="1.0"
 
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="vid2vid" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/gifs/08_22.gif" -i width="1280" -i height="1280" -i denoise_strength="1.0"
-
-
-
+sudo cog predict -i mode="vid2vid" -i style_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.gif" -i width="1024" -i height="1024" -i denoise_strength="1.0"
 
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
-sudo cog predict -i mode="vid2vid" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg|https://storage.googleapis.com/public-assets-xander/A_workbox/init_imgs/img_00006.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/waking_life.mp4" -i width="1280" -i height="1280" -i denoise_strength="1.0" -i n_frames="16" -i motion_scale="1.2"
+sudo cog predict -i mode="vid2vid"  -i text_input="dark colors, blackness" -i style_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/flowerspiral.gif" -i width="1280" -i height="1280" -i denoise_strength="1.0"
+
+cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
+sudo cog predict -i mode="vid2vid" -i style_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg|https://storage.googleapis.com/public-assets-xander/A_workbox/init_imgs/img_00006.jpg" -i input_video_path="https://storage.googleapis.com/public-assets-xander/A_workbox/waking_life.mp4" -i width="1280" -i height="1280" -i denoise_strength="1.0" -i n_frames="16" -i motion_scale="1.2"
+
 
 
 

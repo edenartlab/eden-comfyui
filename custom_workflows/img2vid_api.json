@@ -125,15 +125,11 @@
       "context_stride": 1,
       "context_overlap": 4,
       "context_schedule": "uniform",
-      "closed_loop": true,
-      "fuse_method": "flat",
-      "use_on_equal_length": false,
-      "start_percent": 0,
-      "guarantee_steps": 1
+      "closed_loop": true
     },
     "class_type": "ADE_AnimateDiffUniformContextOptions",
     "_meta": {
-      "title": "Context Options◆Looped Uniform 🎭🅐🅓"
+      "title": "Uniform Context Options 🎭🅐🅓"
     }
   },
   "15": {
@@ -153,7 +149,7 @@
     },
     "class_type": "ADE_AnimateDiffLoaderWithContext",
     "_meta": {
-      "title": "AnimateDiff Loader [Legacy] 🎭🅐🅓①"
+      "title": "AnimateDiff Loader 🎭🅐🅓"
     }
   },
   "26": {
@@ -217,7 +213,7 @@
   },
   "34": {
     "inputs": {
-      "image": "clipspace/clipspace-mask-5719476.png [input]",
+      "image": "a6a2def27bcb6efa9f4b9693c33a1a8f46092993e5b1d575c66d3f9e47dbb3c4 (3).png",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -492,9 +488,9 @@
   },
   "130": {
     "inputs": {
-      "amount": 11,
+      "amount": 6,
       "mask": [
-        "144",
+        "145",
         0
       ]
     },
@@ -541,36 +537,10 @@
       "title": "Optional prompt"
     }
   },
-  "138": {
-    "inputs": {
-      "value": ""
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "String"
-    }
-  },
-  "139": {
-    "inputs": {
-      "comparison": "a != b",
-      "a": [
-        "138",
-        0
-      ],
-      "b": [
-        "137",
-        0
-      ]
-    },
-    "class_type": "Compare",
-    "_meta": {
-      "title": "Compare"
-    }
-  },
   "140": {
     "inputs": {
       "ANY": [
-        "139",
+        "137",
         0
       ],
       "IF_TRUE": [
@@ -584,7 +554,7 @@
     },
     "class_type": "If ANY execute A else B",
     "_meta": {
-      "title": "If"
+      "title": "If (Eden)"
     }
   },
   "142": {
@@ -603,7 +573,7 @@
       "title": "CLIP Text Encode (Prompt)"
     }
   },
-  "144": {
+  "145": {
     "inputs": {
       "image": "0.044670_00020 (1).jpg",
       "channel": "red",

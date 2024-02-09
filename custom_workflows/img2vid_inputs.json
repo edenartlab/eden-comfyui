@@ -7,7 +7,7 @@
   "negative_prompt": {"node_id": "8", "field": "inputs", "subfield": "text"},
   "denoise_strength": {"node_id": "9", "field": "inputs", "subfield": "denoise"},
   "text_input": {"node_id": "137", "field": "inputs", "subfield": "prompt"},
-  "mask_image_path": {"node_id": "144", "field": "inputs", "subfield": "image"},
+  "mask_image_path": {"node_id": "145", "field": "inputs", "subfield": "image"},
   "loop": {"node_id": "14", "field": "inputs", "subfield": "closed_loop"},
   "motion_scale": {"node_id": "15", "field": "inputs", "subfield": "motion_scale"}
 }

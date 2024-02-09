@@ -1,5 +1,5 @@
 {
-  "input_image_path": {"node_id": "54", "field": "inputs", "subfield": "image"},
+  "input_image_path1": {"node_id": "54", "field": "inputs", "subfield": "image"},
   "input_image_path2": {"node_id": "341", "field": "inputs", "subfield": "image"},
   "blend_value": {"node_id": "404", "field": "inputs", "subfield": "value"},
   "seed": {"node_id": "58", "field": "inputs", "subfield": "seed"},

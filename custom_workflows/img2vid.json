@@ -1,6 +1,6 @@
 {
-  "last_node_id": 143,
-  "last_link_id": 270,
+  "last_node_id": 145,
+  "last_link_id": 272,
   "nodes": [
     {
       "id": 11,
@@ -14,7 +14,7 @@
         "1": 50
       },
       "flags": {},
-      "order": 39,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
@@ -55,7 +55,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 20,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -96,7 +96,7 @@
         "1": 230
       },
       "flags": {},
-      "order": 37,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
@@ -201,7 +201,7 @@
         "1": 150
       },
       "flags": {},
-      "order": 12,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -248,7 +248,7 @@
         "1": 166
       },
       "flags": {},
-      "order": 35,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -345,7 +345,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 40,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
@@ -418,7 +418,7 @@
         "1": 222
       },
       "flags": {},
-      "order": 41,
+      "order": 38,
       "mode": 0,
       "inputs": [
         {
@@ -502,11 +502,7 @@
         1,
         4,
         "uniform",
-        true,
-        "flat",
-        false,
-        0,
-        1
+        true
       ]
     },
     {
@@ -521,7 +517,7 @@
         "1": 109.91426849365234
       },
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -562,7 +558,7 @@
         26
       ],
       "flags": {},
-      "order": 18,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -598,7 +594,7 @@
         "1": 66
       },
       "flags": {},
-      "order": 28,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -644,7 +640,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 23,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -749,7 +745,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 17,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -790,7 +786,7 @@
         "1": 130
       },
       "flags": {},
-      "order": 22,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -832,7 +828,7 @@
         "1": 278
       },
       "flags": {},
-      "order": 34,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
@@ -890,45 +886,6 @@
       ]
     },
     {
-      "id": 130,
-      "type": "MaskBlur+",
-      "pos": [
-        -221,
-        176
-      ],
-      "size": {
-        "0": 315,
-        "1": 58
-      },
-      "flags": {},
-      "order": 19,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "mask",
-          "type": "MASK",
-          "link": 270
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": [
-            251
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "MaskBlur+"
-      },
-      "widgets_values": [
-        11
-      ]
-    },
-    {
       "id": 127,
       "type": "MaskToImage",
       "pos": [
@@ -940,7 +897,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 24,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -976,7 +933,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 25,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -1024,7 +981,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 32,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -1054,31 +1011,6 @@
       }
     },
     {
-      "id": 133,
-      "type": "MaskPreview+",
-      "pos": [
-        740,
-        479
-      ],
-      "size": [
-        210,
-        246
-      ],
-      "flags": {},
-      "order": 33,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "mask",
-          "type": "MASK",
-          "link": 256
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "MaskPreview+"
-      }
-    },
-    {
       "id": 128,
       "type": "ImageResize+",
       "pos": [
@@ -1090,7 +1022,7 @@
         "1": 170
       },
       "flags": {},
-      "order": 27,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -1163,7 +1095,7 @@
         "1": 170
       },
       "flags": {},
-      "order": 16,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -1242,7 +1174,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 30,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
@@ -1257,7 +1189,6 @@
           "type": "MASK",
           "links": [
             255,
-            256,
             259
           ],
           "shape": 3,
@@ -1279,11 +1210,11 @@
         381
       ],
       "size": [
-        582.5982910156245,
-        1303.0459610849045
+        582.5982666015625,
+        717.6694971720377
       ],
       "flags": {},
-      "order": 42,
+      "order": 39,
       "mode": 0,
       "inputs": [
         {
@@ -1322,7 +1253,7 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "HD_00099.mp4",
+            "filename": "HD_00001.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4"
@@ -1337,12 +1268,12 @@
         1197,
         -168
       ],
-      "size": [
-        228.17831244350418,
-        119.99999046325684
-      ],
+      "size": {
+        "0": 228.17831420898438,
+        "1": 119.99999237060547
+      },
       "flags": {},
-      "order": 26,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
@@ -1466,140 +1397,18 @@
       ]
     },
     {
-      "id": 140,
-      "type": "If ANY execute A else B",
-      "pos": [
-        1705,
-        -250
-      ],
-      "size": [
-        140,
-        66
-      ],
-      "flags": {},
-      "order": 31,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "ANY",
-          "type": "*",
-          "link": 263
-        },
-        {
-          "name": "IF_TRUE",
-          "type": "*",
-          "link": 268
-        },
-        {
-          "name": "IF_FALSE",
-          "type": "*",
-          "link": 269
-        }
-      ],
-      "outputs": [
-        {
-          "name": "?",
-          "type": "*",
-          "links": [
-            266
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "If ANY execute A else B"
-      }
-    },
-    {
-      "id": 139,
-      "type": "Compare",
-      "pos": [
-        1461,
-        -408
-      ],
-      "size": [
-        210,
-        78
-      ],
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "a",
-          "type": "*",
-          "link": 261
-        },
-        {
-          "name": "b",
-          "type": "*",
-          "link": 262
-        }
-      ],
-      "outputs": [
-        {
-          "name": "B",
-          "type": "BOOLEAN",
-          "links": [
-            263
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "Compare"
-      },
-      "widgets_values": [
-        "a != b"
-      ]
-    },
-    {
-      "id": 138,
-      "type": "String",
-      "pos": [
-        1459,
-        -509
-      ],
-      "size": [
-        210,
-        58
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            261
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "String"
-      },
-      "widgets_values": [
-        ""
-      ]
-    },
-    {
       "id": 142,
       "type": "CLIPTextEncode",
       "pos": [
         1454,
         -279
       ],
-      "size": [
-        210,
-        54
-      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
       "flags": {},
-      "order": 15,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -1641,12 +1450,12 @@
         1458,
         -180
       ],
-      "size": [
-        210,
-        54
-      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
       "flags": {},
-      "order": 29,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -1693,7 +1502,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 21,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -1723,129 +1532,18 @@
       }
     },
     {
-      "id": 137,
-      "type": "SeargePromptText",
-      "pos": [
-        -446,
-        -584
-      ],
-      "size": [
-        284.25462167968726,
-        118.58180156249989
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "prompt",
-          "type": "STRING",
-          "links": [
-            262,
-            264
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "title": "Optional prompt",
-      "properties": {
-        "Node name for S&R": "SeargePromptText"
-      },
-      "widgets_values": [
-        ""
-      ]
-    },
-    {
-      "id": 34,
-      "type": "LoadImage",
-      "pos": [
-        -806.7279526367189,
-        -1074.100048828125
-      ],
-      "size": [
-        389.919921875,
-        359.2777099609375
-      ],
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            69,
-            103,
-            229
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": [],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadImage"
-      },
-      "widgets_values": [
-        "clipspace/clipspace-mask-5719476.png [input]",
-        "image"
-      ]
-    },
-    {
-      "id": 143,
-      "type": "SolidMask",
-      "pos": [
-        -778,
-        -1306
-      ],
-      "size": {
-        "0": 315,
-        "1": 106
-      },
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": [
-            270
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "SolidMask"
-      },
-      "widgets_values": [
-        1,
-        512,
-        512
-      ]
-    },
-    {
       "id": 26,
       "type": "LoraLoaderModelOnly",
       "pos": [
         2680,
         -400
       ],
-      "size": [
-        282.9078369140616,
-        82
-      ],
+      "size": {
+        "0": 282.9078369140625,
+        "1": 82
+      },
       "flags": {},
-      "order": 36,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
@@ -1880,12 +1578,12 @@
         3390,
         60
       ],
-      "size": [
-        272.92284062499857,
-        262
-      ],
+      "size": {
+        "0": 272.9228515625,
+        "1": 262
+      },
       "flags": {},
-      "order": 38,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
@@ -1931,6 +1629,202 @@
         "ddpm",
         "exponential",
         0.9500000000000001
+      ]
+    },
+    {
+      "id": 140,
+      "type": "If ANY execute A else B",
+      "pos": [
+        1705,
+        -250
+      ],
+      "size": {
+        "0": 140,
+        "1": 66
+      },
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "ANY",
+          "type": "*",
+          "link": 271
+        },
+        {
+          "name": "IF_TRUE",
+          "type": "*",
+          "link": 268
+        },
+        {
+          "name": "IF_FALSE",
+          "type": "*",
+          "link": 269
+        }
+      ],
+      "outputs": [
+        {
+          "name": "?",
+          "type": "*",
+          "links": [
+            266
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "If ANY execute A else B"
+      }
+    },
+    {
+      "id": 137,
+      "type": "SeargePromptText",
+      "pos": [
+        -446,
+        -584
+      ],
+      "size": {
+        "0": 284.2546081542969,
+        "1": 118.58180236816406
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            264,
+            271
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Optional prompt",
+      "properties": {
+        "Node name for S&R": "SeargePromptText"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 34,
+      "type": "LoadImage",
+      "pos": [
+        -806.7279526367189,
+        -1074.100048828125
+      ],
+      "size": {
+        "0": 389.919921875,
+        "1": 359.2777099609375
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            69,
+            103,
+            229
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "a6a2def27bcb6efa9f4b9693c33a1a8f46092993e5b1d575c66d3f9e47dbb3c4 (3).png",
+        "image"
+      ]
+    },
+    {
+      "id": 145,
+      "type": "LoadImageMask",
+      "pos": [
+        -770,
+        -363
+      ],
+      "size": [
+        315,
+        318.0000410079956
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            272
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImageMask"
+      },
+      "widgets_values": [
+        "0.044670_00020 (1).jpg",
+        "red",
+        "image"
+      ]
+    },
+    {
+      "id": 130,
+      "type": "MaskBlur+",
+      "pos": [
+        -221,
+        176
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 272
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            251
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MaskBlur+"
+      },
+      "widgets_values": [
+        6
       ]
     }
   ],
@@ -2296,14 +2190,6 @@
       "MASK"
     ],
     [
-      256,
-      132,
-      0,
-      133,
-      0,
-      "MASK"
-    ],
-    [
       257,
       36,
       1,
@@ -2334,30 +2220,6 @@
       59,
       1,
       "STRING"
-    ],
-    [
-      261,
-      138,
-      0,
-      139,
-      0,
-      "*"
-    ],
-    [
-      262,
-      137,
-      0,
-      139,
-      1,
-      "*"
-    ],
-    [
-      263,
-      139,
-      0,
-      140,
-      0,
-      "*"
     ],
     [
       264,
@@ -2400,8 +2262,16 @@
       "*"
     ],
     [
-      270,
-      143,
+      271,
+      137,
+      0,
+      140,
+      0,
+      "*"
+    ],
+    [
+      272,
+      145,
       0,
       130,
       0,
@@ -2436,8 +2306,8 @@
       "bounding": [
         -850,
         -1166,
-        852,
-        841
+        748,
+        1184
       ],
       "color": "#3f789e",
       "font_size": 24

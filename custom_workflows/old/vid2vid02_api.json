@@ -57,7 +57,7 @@
     "inputs": {
       "model_name": "v3_sd15_mm.ckpt",
       "beta_schedule": "sqrt_linear (AnimateDiff)",
-      "motion_scale": 1.1,
+      "motion_scale": 1,
       "apply_v2_models_properly": true,
       "model": [
         "91",
@@ -84,7 +84,7 @@
   },
   "54": {
     "inputs": {
-      "image": "strawberry (2).jpeg",
+      "image": "25bf01b53fd16cf9f7693bece3c15cf1 (5).jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -211,11 +211,11 @@
   },
   "132": {
     "inputs": {
-      "strength": 0.8,
+      "strength": 0.7000000000000001,
       "start_percent": 0,
       "end_percent": 0.75,
       "positive": [
-        "432",
+        "417",
         0
       ],
       "negative": [
@@ -248,7 +248,7 @@
   "169": {
     "inputs": {
       "coarse": "disable",
-      "resolution": 512,
+      "resolution": 1280,
       "image": [
         "221",
         0
@@ -397,8 +397,8 @@
   },
   "240": {
     "inputs": {
-      "width": 512,
-      "height": 512,
+      "width": 1280,
+      "height": 1280,
       "interpolation": "lanczos",
       "keep_proportion": true,
       "condition": "always",
@@ -445,7 +445,7 @@
   "268": {
     "inputs": {
       "safe": "enable",
-      "resolution": 512,
+      "resolution": 1280,
       "image": [
         "221",
         0
@@ -513,7 +513,7 @@
   },
   "341": {
     "inputs": {
-      "image": "a6a2def27bcb6efa9f4b9693c33a1a8f46092993e5b1d575c66d3f9e47dbb3c4 (2).png",
+      "image": "75699b4745f872ce961d402accc09ac5 (2).jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -652,7 +652,7 @@
   "360": {
     "inputs": {
       "ANY": [
-        "427",
+        "362",
         0
       ],
       "IF_TRUE": [
@@ -666,7 +666,42 @@
     },
     "class_type": "If ANY execute A else B",
     "_meta": {
-      "title": "If (Eden)"
+      "title": "If"
+    }
+  },
+  "361": {
+    "inputs": {
+      "value": "coarse"
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "ControlMethod (fine/coarse)"
+    }
+  },
+  "362": {
+    "inputs": {
+      "comparison": "a == b",
+      "a": [
+        "361",
+        0
+      ],
+      "b": [
+        "363",
+        0
+      ]
+    },
+    "class_type": "Compare",
+    "_meta": {
+      "title": "Compare"
+    }
+  },
+  "363": {
+    "inputs": {
+      "value": "fine"
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "String"
     }
   },
   "408": {
@@ -768,6 +803,52 @@
       "title": "Optional Positive Prompt"
     }
   },
+  "417": {
+    "inputs": {
+      "ANY": [
+        "419",
+        0
+      ],
+      "IF_TRUE": [
+        "342",
+        0
+      ],
+      "IF_FALSE": [
+        "420",
+        0
+      ]
+    },
+    "class_type": "If ANY execute A else B",
+    "_meta": {
+      "title": "If"
+    }
+  },
+  "418": {
+    "inputs": {
+      "value": ""
+    },
+    "class_type": "String",
+    "_meta": {
+      "title": "String"
+    }
+  },
+  "419": {
+    "inputs": {
+      "comparison": "a == b",
+      "a": [
+        "416",
+        0
+      ],
+      "b": [
+        "418",
+        0
+      ]
+    },
+    "class_type": "Compare",
+    "_meta": {
+      "title": "Compare"
+    }
+  },
   "420": {
     "inputs": {
       "text": [
@@ -782,61 +863,6 @@
     "class_type": "CLIPTextEncode",
     "_meta": {
       "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "427": {
-    "inputs": {
-      "comparison": "a == b",
-      "a": [
-        "429",
-        0
-      ],
-      "b": [
-        "428",
-        0
-      ]
-    },
-    "class_type": "Eden_Compare",
-    "_meta": {
-      "title": "Compare (Eden)"
-    }
-  },
-  "428": {
-    "inputs": {
-      "value": "fine"
-    },
-    "class_type": "Eden_String",
-    "_meta": {
-      "title": "String (Eden)"
-    }
-  },
-  "429": {
-    "inputs": {
-      "value": "coarse"
-    },
-    "class_type": "Eden_String",
-    "_meta": {
-      "title": "String (Eden)"
-    }
-  },
-  "432": {
-    "inputs": {
-      "ANY": [
-        "416",
-        0
-      ],
-      "IF_TRUE": [
-        "420",
-        0
-      ],
-      "IF_FALSE": [
-        "342",
-        0
-      ]
-    },
-    "class_type": "If ANY execute A else B",
-    "_meta": {
-      "title": "If (Eden)"
     }
   }
 }

@@ -141,7 +141,7 @@ class AttrDict(dict):
     def __setattr__(self, key, value):
         self[key] = value
 
-def download(url, folder, filepath=None, timeout=600):    
+def download(url, folder, filepath=None, timeout=600, force_redownload = True):    
     """
     Robustly download a file from a given URL to the specified folder, automatically infering the file extension.
     
@@ -175,7 +175,7 @@ def download(url, folder, filepath=None, timeout=600):
         
         os.makedirs(folder_path, exist_ok=True)
         
-        if os.path.exists(filepath):
+        if os.path.exists(filepath) and not force_redownload:
             print(f"{filepath} already exists, skipping download..")
             return str(filepath)
         
@@ -379,8 +379,12 @@ class Predictor(BasePredictor):
                     description="Input image(s) for various endpoints. Load-able from file, url, or base64 string, (urls separated by pipe symbol)", 
                     default = None,
                 ),
+        style_images: str = Input(
+                    description="Input style image(s) (for IP_adapter) for various endpoints. Load-able from file, url, or base64 string, (urls separated by pipe symbol)", 
+                    default = None,
+                ), 
         mask_images: str = Input(
-                    description="Input mask(s) for various endpoints. Load-able from file, url, or base64 string, (urls separated by pipe symbol)", 
+                    description="Input mask image(s) for various endpoints. Load-able from file, url, or base64 string, (urls separated by pipe symbol)", 
                     default = None,
                 ),
         input_video_path: str = Input(
@@ -403,6 +407,10 @@ class Predictor(BasePredictor):
             description="Total number of frames (txt2vid, vid2vid, img2vid)",
             ge=16, le=264, default=40
         ),
+        ip_adapter_weight: float = Input(
+            description="Strenght of the IP_adapter style",
+            ge=0.0, le=2.0, default=0.65
+        ),
         motion_scale: float = Input(
             description="Motion scale (AnimateDiff)",
             ge=0.0, le=2.0, default=1.1
@@ -416,18 +424,10 @@ class Predictor(BasePredictor):
             default="coarse",
             choices=["coarse", "fine"]
         ),
-
-        # controlnet_type: str = Input(
-        #     description="Controlnet type (this param does nothing right now)",
-        #     default="qr_monster",
-        #     choices=["canny-edge", "qr_monster"]
-        # ),
-
         controlnet_strength: float = Input(
             description="Strength of controlnet guidance", 
             ge=0.0, le=1.5, default=0.85
         ),
-
         denoise_strength: float = Input(
             description="How much denoising to apply (1.0 = start from full noise, 0.0 = return input image)", 
             ge=0.0, le=1.0, default=1.0
@@ -436,12 +436,10 @@ class Predictor(BasePredictor):
             description="Blend factor (weight of the first image vs the second)", 
             ge=0.0, le=1.0, default=0.5
         ),
-
         loop: bool = Input(
             description="Try to make a loopable video",
             default=False
         ),
-
         guidance_scale: float = Input(
             description="Strength of text conditioning guidance", 
             ge=1, le=20, default=7.5
@@ -486,37 +484,32 @@ class Predictor(BasePredictor):
         elif mode == "vid2vid":
             raise ValueError("An input video/gif is required for vid2vid mode!")
 
-        if input_images:
-            input_image_urls = input_images.split("|")
-            input_image_paths = []
 
-            for input_image_url in input_image_urls:
-                input_image_path = str(input_image_url)
-                if not os.path.exists(input_image_path):
-                    print(f"Downloading {input_image_path}...")
-                    input_image_path = download(input_image_path, "tmp_imgs")
-                input_image_paths.append(input_image_path)
+        def prep_images(image_url_str):
+            image_paths = []
+            if image_url_str:
+                for image_url in image_url_str.split("|"):
+                    print(f"Downloading {image_url}...")
+                    image_url = download(image_url, "tmp_imgs", force_redownload = True)
+                    image_paths.append(image_url)
 
-            if mode in ["vid2vid"]: # if there's only one style img, just copy that one the the second!
-                if len(input_image_paths) == 1:
-                    input_image_paths.append(input_image_paths[0])
-        else:
-            if mode in ["upscale", "img2vid", "vid2vid", "blend", "inpaint"]:
-                raise ValueError(f"An input image is required for mode {mode}!")
-            input_image_paths = []
+            return image_paths
 
+        # download the images from the given urls:
+        input_image_paths = prep_images(input_images)
+        style_image_paths = prep_images(style_images)
+        mask_image_paths  = prep_images(mask_images)
 
-        # Parse input masks:
-        mask_image_paths = []
-        if mask_images:
-            mask_image_urls = mask_images.split("|")
+        # Handle some custom cases:
+        if mode == ["vid2vid"]:
+            if len(style_image_paths) == 0:
+                raise ValueError(f"A style image is required for mode {mode}!")
 
-            for mask_image_url in mask_image_urls:
-                mask_image_path = str(mask_image_url)
-                if not os.path.exists(mask_image_path):
-                    print(f"Downloading {mask_image_path}...")
-                    mask_image_path = download(mask_image_path, "tmp_imgs")
-                mask_image_paths.append(mask_image_path)
+            if len(style_image_paths) == 1: # if there's only one style img, just copy that one to the second!
+                style_image_paths.append(style_image_paths[0])
+
+        if mode in ["upscale", "img2vid", "blend", "inpaint"] and len(input_image_paths) == 0:
+            raise ValueError(f"An input image is required for mode {mode}!")
 
         if len(mask_image_paths) == 0: # if no mask was provided, just use a default all white mask:
             mask_image_paths.append("/src/white_mask.png")
@@ -526,8 +519,8 @@ class Predictor(BasePredictor):
             height = width
 
         if text_input is None and mode in ["img2vid", "vid2vid", "inpaint"]:
-            text_input = ""
-
+            # in ComfyUI an empty string should be skipped by the pipeline flow and trigger CLIP-interrogator instead
+            text_input = "" 
 
         # Default settings
         input_video_frame_rate = 8 # input fps
@@ -549,17 +542,24 @@ class Predictor(BasePredictor):
                 input_video_frame_rate = 12 # input fps
                 RIFE_multiplier        = 2 # output RIFE framerate multiplier
 
+        if len(input_image_paths) == 0: # If no input imgs are provided, set the ip_adapter weight to 0:
+            print("No input images provided, setting ip_adapter_weight to 0.0..")
+            ip_adapter_weight = 0.0
+
         # gather args from the input fields:
         args = {
             "input_video_path": input_video_path,
-            "input_image_path": input_image_paths[0] if len(input_image_paths) > 0 else None,
+            "input_image_path1": input_image_paths[0] if len(input_image_paths) > 0 else None,
             "input_image_path2": input_image_paths[1] if len(input_image_paths) > 1 else None,
             "mask_image_path": mask_image_paths[0],
+            "style_image_path1": style_image_paths[0] if len(style_image_paths) > 0 else None,
+            "style_image_path2": style_image_paths[1] if len(style_image_paths) > 1 else None,
             "text_input": text_input,
             "interpolation_texts": interpolation_texts,
             "negative_prompt": negative_prompt,
             "force_rate": input_video_frame_rate,
             "RIFE_multiplier": RIFE_multiplier,
+            "ip_adapter_weight": ip_adapter_weight,
             "width": width,
             "height": height,
             "n_frames": n_frames,
