@@ -58,6 +58,5 @@ sudo cog predict -i mode="vid2vid" -i style_images="https://storage.googleapis.c
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui
 sudo cog predict -i mode="blend" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/strawberry.jpg|https://storage.googleapis.com/public-assets-xander/A_workbox/init_imgs/img_00006.jpg"
 
-
 cd /data/xander/Projects/cog/GitHub_repos/eden-comfyui/ComfyUI
 sudo cog predict -i mode="inpaint" -i input_images="https://storage.googleapis.com/public-assets-xander/A_workbox/47c1a72ef146d5fe6d4ccd9dcaa16fca7b77723e3b6cb1668ccfa92dba7ac86a%20(2).jpg" -i width="1024" -i height="1024" -i mask_images="https://storage.googleapis.com/public-assets-xander/A_workbox/center_mask.jpg"

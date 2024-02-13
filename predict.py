@@ -542,9 +542,15 @@ class Predictor(BasePredictor):
                 input_video_frame_rate = 12 # input fps
                 RIFE_multiplier        = 2 # output RIFE framerate multiplier
 
-        if len(input_image_paths) == 0: # If no input imgs are provided, set the ip_adapter weight to 0:
+        if len(style_image_paths) == 0: # If no input imgs are provided, set the ip_adapter weight to 0:
             print("No input images provided, setting ip_adapter_weight to 0.0..")
             ip_adapter_weight = 0.0
+            
+
+        print("---------------")
+        print("input_image_paths:", input_image_paths)
+        print("style_image_paths:", style_image_paths)
+        print("mask_image_paths:", mask_image_paths)
 
         # gather args from the input fields:
         args = {
@@ -576,6 +582,11 @@ class Predictor(BasePredictor):
             "loop": loop,
         }
         args = AttrDict(args)
+
+        print('------------------------------------------')
+        print(f"Running mode {mode} with the following args:")
+        print(args)
+        print('------------------------------------------')
 
         if not text_input:
             text_input = mode

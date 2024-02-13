@@ -9,5 +9,5 @@
   "loop": {"node_id": "14", "field": "inputs", "subfield": "closed_loop"},
   "motion_scale": {"node_id": "15", "field": "inputs", "subfield": "motion_scale"},
   "ip_adapter_weight": {"node_id": "35", "field": "inputs", "subfield": "weight"},
-  "input_image_path1": {"node_id": "37", "field": "inputs", "subfield": "image"}
+  "style_image_path1": {"node_id": "37", "field": "inputs", "subfield": "image"}
 }
