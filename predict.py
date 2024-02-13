@@ -70,7 +70,7 @@ def reencode_video(input_file_path, output_file_path):
 
     # Base FFmpeg command with scale filter to ensure even dimensions
     base_command = f"""
-        ffmpeg -y -err_detect ignore_err -i "{input_file_path_str}" -vf "scale='2*trunc(ovr/2)':'2*trunc(ohr/2)':force_original_aspect_ratio=decrease"
+        ffmpeg -y -err_detect ignore_err -i "{input_file_path_str}" -vf "scale='2*trunc(iw/2)':'2*trunc(ih/2)':force_original_aspect_ratio=decrease"
         -c:v libx264 -preset fast
     """
     
@@ -81,8 +81,8 @@ def reencode_video(input_file_path, output_file_path):
     base_command += f' "{output_file_path}"'
 
     try:
-        # Run the command with a timeout (e.g., 300 seconds)
-        subprocess.run(shlex.split(base_command), check=True, timeout=300, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        # Run the command with a timeout (e.g., 360 seconds)
+        subprocess.run(shlex.split(base_command), check=True, timeout=360, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print(f"Re-encoding completed: {output_file_path}")
     except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as e:
         print(f"Error or timeout during re-encoding. Copying original file to output. Error: {e}")
@@ -534,7 +534,7 @@ class Predictor(BasePredictor):
             n_video_seconds = total_n_frames / fps
             cap.release()
 
-            if max_n_frames < 1.5 * fps:
+            if total_n_frames < 1.5 * fps:
                 raise ValueError(f"The input video/GIF must be at least 1.5 seconds long for vid2vid mode to work (The given input is only {n_video_seconds:.2f} seconds long)!")
 
             # If there's only a small amount of total seconds, we increase the diffusion framerate a bit:
