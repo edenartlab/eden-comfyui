@@ -545,8 +545,9 @@ class Predictor(BasePredictor):
         if len(style_image_paths) == 0: # If no input imgs are provided, set the ip_adapter weight to 0:
             print("No input images provided, setting ip_adapter_weight to 0.0..")
             ip_adapter_weight = 0.0
-            
-
+            if mode == "txt2vid":
+                style_image_paths = ["/src/white.png"]
+                
         print("---------------")
         print("input_image_paths:", input_image_paths)
         print("style_image_paths:", style_image_paths)
