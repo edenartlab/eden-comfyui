@@ -501,11 +501,14 @@ class Predictor(BasePredictor):
         mask_image_paths  = prep_images(mask_images)
 
         # Handle some custom cases:
-        if mode == ["vid2vid"]:
+        if mode in ["vid2vid"]:
+            print(f"in vid2vid mode!")
+            print("len(style_image_paths):", len(style_image_paths))
             if len(style_image_paths) == 0:
-                raise ValueError(f"A style image is required for mode {mode}!")
+                raise ValueError(f"At least one style image is required for mode {mode}!")
 
             if len(style_image_paths) == 1: # if there's only one style img, just copy that one to the second!
+                print("Setting the second style image to the first one...")
                 style_image_paths.append(style_image_paths[0])
 
         if mode in ["upscale", "img2vid", "blend", "inpaint"] and len(input_image_paths) == 0:
@@ -545,7 +548,7 @@ class Predictor(BasePredictor):
         if len(style_image_paths) == 0: # If no input imgs are provided, set the ip_adapter weight to 0:
             print("No input images provided, setting ip_adapter_weight to 0.0..")
             ip_adapter_weight = 0.0
-            if mode == "txt2vid":
+            if mode == "txt2vid": # the pipe breaks if there's no style img, so we set a default one:
                 style_image_paths = ["/src/white_mask.png"]
 
         print("---------------")
