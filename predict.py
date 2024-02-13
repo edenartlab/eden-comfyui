@@ -71,9 +71,9 @@ def reencode_video(input_file_path, output_file_path):
     # Base FFmpeg command with scale filter to ensure even dimensions
     base_command = f"""
         ffmpeg -y -err_detect ignore_err -i "{input_file_path_str}" -vf "scale='2*trunc(ovr/2)':'2*trunc(ohr/2)':force_original_aspect_ratio=decrease"
-        -c:v libx264 -preset medium
+        -c:v libx264 -preset fast
     """
-
+    
     # Exclude audio codec for GIF files
     if not is_gif:
         base_command += ' -c:a aac'
@@ -530,11 +530,11 @@ class Predictor(BasePredictor):
             # check if there's at least 2 seconds of video:
             cap = cv2.VideoCapture(input_video_path)
             fps = cap.get(cv2.CAP_PROP_FPS)
-            n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-            n_video_seconds = n_frames / fps
+            total_n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            n_video_seconds = total_n_frames / fps
             cap.release()
 
-            if n_frames < 1.5 * fps:
+            if max_n_frames < 1.5 * fps:
                 raise ValueError(f"The input video/GIF must be at least 1.5 seconds long for vid2vid mode to work (The given input is only {n_video_seconds:.2f} seconds long)!")
 
             # If there's only a small amount of total seconds, we increase the diffusion framerate a bit:
