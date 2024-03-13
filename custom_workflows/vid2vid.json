@@ -1,6 +1,6 @@
 {
-  "last_node_id": 434,
-  "last_link_id": 718,
+  "last_node_id": 436,
+  "last_link_id": 730,
   "nodes": [
     {
       "id": 62,
@@ -96,7 +96,7 @@
         26
       ],
       "flags": {},
-      "order": 25,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -408,7 +408,7 @@
       },
       "widgets_values": [
         "disable",
-        512
+        640
       ]
     },
     {
@@ -457,8 +457,7 @@
         3,
         true,
         true,
-        1,
-        true
+        1
       ],
       "color": "#2a363b",
       "bgcolor": "#3f5159"
@@ -596,7 +595,7 @@
       },
       "widgets_values": [
         "enable",
-        512
+        640
       ]
     },
     {
@@ -919,41 +918,6 @@
       ]
     },
     {
-      "id": 154,
-      "type": "PrimitiveNode",
-      "pos": [
-        -1670.7082597924996,
-        -178.58979027500004
-      ],
-      "size": {
-        "0": 210,
-        "1": 58
-      },
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "BOOLEAN",
-          "type": "BOOLEAN",
-          "links": [
-            298
-          ],
-          "slot_index": 0,
-          "widget": {
-            "name": "closed_loop"
-          }
-        }
-      ],
-      "title": "ClosedLoop",
-      "properties": {
-        "Run widget replace on values": false
-      },
-      "widgets_values": [
-        false
-      ]
-    },
-    {
       "id": 58,
       "type": "KSampler",
       "pos": [
@@ -1105,6 +1069,12 @@
           ],
           "shape": 3,
           "slot_index": 1
+        },
+        {
+          "name": "model_opt",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3
         }
       ],
       "properties": {
@@ -1130,7 +1100,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 5,
+      "order": 4,
       "mode": 0,
       "outputs": [
         {
@@ -1153,38 +1123,6 @@
       "bgcolor": "#335"
     },
     {
-      "id": 413,
-      "type": "IPAdapterModelLoader",
-      "pos": [
-        1793.6969741311889,
-        -1632.0580257797124
-      ],
-      "size": {
-        "0": 315,
-        "1": 58
-      },
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "IPADAPTER",
-          "type": "IPADAPTER",
-          "links": [
-            685
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "IPAdapterModelLoader"
-      },
-      "widgets_values": [
-        "ip-adapter-plus_sd15.safetensors"
-      ]
-    },
-    {
       "id": 343,
       "type": "CLIP_Interrogator",
       "pos": [
@@ -1196,7 +1134,7 @@
         "1": 130
       },
       "flags": {},
-      "order": 30,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -1238,7 +1176,7 @@
         "1": 130
       },
       "flags": {},
-      "order": 32,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
@@ -1269,54 +1207,6 @@
       ]
     },
     {
-      "id": 344,
-      "type": "CLIPTextEncode",
-      "pos": [
-        254.5709500475978,
-        -700.0489419711387
-      ],
-      "size": {
-        "0": 210,
-        "1": 54
-      },
-      "flags": {},
-      "order": 40,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 652
-        },
-        {
-          "name": "text",
-          "type": "STRING",
-          "link": 583,
-          "widget": {
-            "name": "text"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            584
-          ],
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        "a beautiful rotating patch of flowers, lush garden colors, summer, spiral"
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
       "id": 6,
       "type": "CLIPTextEncode",
       "pos": [
@@ -1334,7 +1224,7 @@
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 653
+          "link": 728
         },
         {
           "name": "text",
@@ -1376,13 +1266,13 @@
         "1": 88.99810028076172
       },
       "flags": {},
-      "order": 19,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 654
+          "link": 727
         }
       ],
       "outputs": [
@@ -1489,15 +1379,15 @@
       "id": 66,
       "type": "ADE_AnimateDiffUniformContextOptions",
       "pos": [
-        1431.3991943438261,
-        -895.3465198551378
+        1661.8952838228988,
+        -895.8613543118221
       ],
       "size": {
         "0": 310.79998779296875,
         "1": 246
       },
       "flags": {},
-      "order": 17,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -1532,50 +1422,14 @@
         1,
         4,
         "uniform",
-        false
+        true,
+        "flat",
+        false,
+        0,
+        1
       ],
       "color": "#323",
       "bgcolor": "#535"
-    },
-    {
-      "id": 91,
-      "type": "LoraLoaderModelOnly",
-      "pos": [
-        1133.3991943438223,
-        -599.3465198551379
-      ],
-      "size": {
-        "0": 273.4903259277344,
-        "1": 82
-      },
-      "flags": {},
-      "order": 18,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 651
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            157
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly"
-      },
-      "widgets_values": [
-        "v3_sd15_adapter.ckpt",
-        0.8
-      ]
     },
     {
       "id": 423,
@@ -1589,7 +1443,7 @@
         26
       ],
       "flags": {},
-      "order": 21,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -1625,7 +1479,7 @@
         26
       ],
       "flags": {},
-      "order": 23,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -1661,7 +1515,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 31,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -1691,57 +1545,6 @@
       ],
       "color": "#223",
       "bgcolor": "#335"
-    },
-    {
-      "id": 4,
-      "type": "CheckpointLoaderSimple",
-      "pos": [
-        -947,
-        80
-      ],
-      "size": {
-        "0": 315,
-        "1": 98
-      },
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            651
-          ],
-          "slot_index": 0
-        },
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            652,
-            653,
-            654,
-            690
-          ],
-          "slot_index": 1
-        },
-        {
-          "name": "VAE",
-          "type": "VAE",
-          "links": [
-            8,
-            169
-          ],
-          "slot_index": 2
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CheckpointLoaderSimple"
-      },
-      "widgets_values": [
-        "juggernaut_reborn.safetensors"
-      ]
     },
     {
       "id": 409,
@@ -1819,7 +1622,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 33,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -1851,94 +1654,6 @@
       "bgcolor": "#335"
     },
     {
-      "id": 202,
-      "type": "SeargePromptCombiner",
-      "pos": [
-        -76.4290499524023,
-        -599.0489419711386
-      ],
-      "size": {
-        "0": 277.1419982910156,
-        "1": 119.99999237060547
-      },
-      "flags": {},
-      "order": 36,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "prompt1",
-          "type": "STRING",
-          "link": 458,
-          "widget": {
-            "name": "prompt1"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "combined prompt",
-          "type": "STRING",
-          "links": [
-            452
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "SeargePromptCombiner"
-      },
-      "widgets_values": [
-        "",
-        ", ",
-        "high quality texture, sharp details, 4k, masterpiece, stunning"
-      ]
-    },
-    {
-      "id": 345,
-      "type": "SeargePromptCombiner",
-      "pos": [
-        -81.42904995240232,
-        -831.0489419711386
-      ],
-      "size": {
-        "0": 277.1419982910156,
-        "1": 119.99999237060547
-      },
-      "flags": {},
-      "order": 35,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "prompt1",
-          "type": "STRING",
-          "link": 587,
-          "widget": {
-            "name": "prompt1"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "combined prompt",
-          "type": "STRING",
-          "links": [
-            583
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "SeargePromptCombiner"
-      },
-      "widgets_values": [
-        "",
-        ", ",
-        "high quality texture, sharp details, 4k, masterpiece, stunning"
-      ]
-    },
-    {
       "id": 304,
       "type": "PrepImageForClipVision",
       "pos": [
@@ -1950,7 +1665,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 22,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -1993,7 +1708,7 @@
         "1": 106
       },
       "flags": {},
-      "order": 20,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -2031,12 +1746,12 @@
         492.28796741066594,
         686.291450556932
       ],
-      "size": [
-        210,
-        78
-      ],
+      "size": {
+        "0": 210,
+        "1": 78
+      },
       "flags": {},
-      "order": 27,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -2080,7 +1795,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 8,
+      "order": 5,
       "mode": 0,
       "outputs": [
         {
@@ -2112,7 +1827,7 @@
         "1": 82
       },
       "flags": {},
-      "order": 9,
+      "order": 6,
       "mode": 0,
       "outputs": [
         {
@@ -2137,88 +1852,18 @@
       ]
     },
     {
-      "id": 11,
-      "type": "ADE_AnimateDiffLoaderWithContext",
-      "pos": [
-        1439.3991943438261,
-        -597.3465198551379
-      ],
-      "size": {
-        "0": 308.1724548339844,
-        "1": 230
-      },
-      "flags": {},
-      "order": 29,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 157
-        },
-        {
-          "name": "context_options",
-          "type": "CONTEXT_OPTIONS",
-          "link": 102,
-          "slot_index": 1
-        },
-        {
-          "name": "motion_lora",
-          "type": "MOTION_LORA",
-          "link": null
-        },
-        {
-          "name": "motion_model_settings",
-          "type": "MOTION_MODEL_SETTINGS",
-          "link": null
-        },
-        {
-          "name": "sample_settings",
-          "type": "sample_settings",
-          "link": null
-        },
-        {
-          "name": "ad_keyframes",
-          "type": "AD_KEYFRAMES",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            677
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ADE_AnimateDiffLoaderWithContext"
-      },
-      "widgets_values": [
-        "v3_sd15_mm.ckpt",
-        "sqrt_linear (AnimateDiff)",
-        1.1,
-        true
-      ],
-      "color": "#323",
-      "bgcolor": "#535"
-    },
-    {
       "id": 341,
       "type": "LoadImage",
       "pos": [
         -1675.7082597924996,
         -904.5897902749998
       ],
-      "size": [
-        356.29705810546875,
-        314.00000762939453
-      ],
+      "size": {
+        "0": 356.29705810546875,
+        "1": 314
+      },
       "flags": {},
-      "order": 10,
+      "order": 7,
       "mode": 0,
       "outputs": [
         {
@@ -2260,7 +1905,7 @@
         "1": 314
       },
       "flags": {},
-      "order": 11,
+      "order": 8,
       "mode": 0,
       "outputs": [
         {
@@ -2291,110 +1936,6 @@
       "bgcolor": "#335"
     },
     {
-      "id": 238,
-      "type": "VHS_LoadVideo",
-      "pos": [
-        -2139.7082597925014,
-        -834.5897902749998
-      ],
-      "size": [
-        403.4590759277344,
-        463.7069994608561
-      ],
-      "flags": {},
-      "order": 12,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            440
-          ],
-          "shape": 3
-        },
-        {
-          "name": "frame_count",
-          "type": "INT",
-          "links": null,
-          "shape": 3
-        },
-        {
-          "name": "audio",
-          "type": "VHS_AUDIO",
-          "links": [],
-          "shape": 3,
-          "slot_index": 2
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "VHS_LoadVideo"
-      },
-      "widgets_values": {
-        "video": "waking_life.mp4",
-        "force_rate": 8,
-        "force_size": "Disabled",
-        "custom_width": 512,
-        "custom_height": 512,
-        "frame_load_cap": 16,
-        "skip_first_frames": 0,
-        "select_every_nth": 1,
-        "choose video to upload": "image",
-        "videopreview": {
-          "hidden": false,
-          "paused": false,
-          "params": {
-            "filename": "waking_life.mp4",
-            "type": "input",
-            "format": "video/mp4",
-            "frame_load_cap": 16,
-            "skip_first_frames": 0,
-            "force_rate": 8,
-            "select_every_nth": 1
-          }
-        }
-      }
-    },
-    {
-      "id": 100,
-      "type": "PrimitiveNode",
-      "pos": [
-        -2034.7082597924996,
-        -232.58979027500004
-      ],
-      "size": {
-        "0": 210,
-        "1": 82
-      },
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "INT",
-          "type": "INT",
-          "links": [
-            442,
-            443,
-            479
-          ],
-          "slot_index": 0,
-          "widget": {
-            "name": "height"
-          }
-        }
-      ],
-      "title": "Resolution",
-      "properties": {
-        "Run widget replace on values": false
-      },
-      "widgets_values": [
-        512,
-        "fixed"
-      ]
-    },
-    {
       "id": 240,
       "type": "ImageResize+",
       "pos": [
@@ -2406,7 +1947,7 @@
         "1": 170
       },
       "flags": {},
-      "order": 24,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -2458,8 +1999,8 @@
         "Node name for S&R": "ImageResize+"
       },
       "widgets_values": [
-        512,
-        512,
+        640,
+        640,
         "lanczos",
         true,
         "always"
@@ -2518,13 +2059,13 @@
         "1": 54
       },
       "flags": {},
-      "order": 26,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 690
+          "link": 729
         },
         {
           "name": "text",
@@ -2651,7 +2192,7 @@
       ],
       "size": [
         413.80792236328125,
-        493.21045875549316
+        697.8079223632812
       ],
       "flags": {},
       "order": 62,
@@ -2665,6 +2206,11 @@
         {
           "name": "audio",
           "type": "VHS_AUDIO",
+          "link": null
+        },
+        {
+          "name": "batch_manager",
+          "type": "VHS_BatchManager",
           "link": null
         }
       ],
@@ -2693,7 +2239,7 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "vid2vid_00017.mp4",
+            "filename": "vid2vid_00036.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4"
@@ -2713,7 +2259,7 @@
         "1": 98.79356384277344
       },
       "flags": {},
-      "order": 14,
+      "order": 9,
       "mode": 0,
       "outputs": [
         {
@@ -2733,6 +2279,424 @@
       },
       "widgets_values": [
         ""
+      ]
+    },
+    {
+      "id": 428,
+      "type": "Eden_String",
+      "pos": [
+        236,
+        747
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            706
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Eden_String"
+      },
+      "widgets_values": [
+        "fine"
+      ]
+    },
+    {
+      "id": 413,
+      "type": "IPAdapterModelLoader",
+      "pos": [
+        1793.6969741311889,
+        -1632.0580257797124
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IPADAPTER",
+          "type": "IPADAPTER",
+          "links": [
+            685
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterModelLoader"
+      },
+      "widgets_values": [
+        "ipadapter-plus_sd15.safetensors"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ADE_AnimateDiffLoaderWithContext",
+      "pos": [
+        1669.8952838228988,
+        -597.8613543118222
+      ],
+      "size": {
+        "0": 308.1724548339844,
+        "1": 230
+      },
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 157
+        },
+        {
+          "name": "context_options",
+          "type": "CONTEXT_OPTIONS",
+          "link": 102,
+          "slot_index": 1
+        },
+        {
+          "name": "motion_lora",
+          "type": "MOTION_LORA",
+          "link": null
+        },
+        {
+          "name": "motion_model_settings",
+          "type": "MOTION_MODEL_SETTINGS",
+          "link": null
+        },
+        {
+          "name": "sample_settings",
+          "type": "sample_settings",
+          "link": null
+        },
+        {
+          "name": "ad_keyframes",
+          "type": "AD_KEYFRAMES",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            677
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ADE_AnimateDiffLoaderWithContext"
+      },
+      "widgets_values": [
+        "v3_sd15_mm.ckpt",
+        "sqrt_linear (AnimateDiff)",
+        1.1,
+        true
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 91,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        1363.8952838228952,
+        -599.8613543118222
+      ],
+      "size": {
+        "0": 273.4903259277344,
+        "1": 82
+      },
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 726
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            157
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "widgets_values": [
+        "v3_sd15_adapter.ckpt",
+        0.8
+      ]
+    },
+    {
+      "id": 344,
+      "type": "CLIPTextEncode",
+      "pos": [
+        254.5709500475978,
+        -700.0489419711387
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 730
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 583,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            584
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "a beautiful rotating patch of flowers, lush garden colors, summer, spiral"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 154,
+      "type": "PrimitiveNode",
+      "pos": [
+        -1670.7082597924996,
+        -178.58979027500004
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "BOOLEAN",
+          "type": "BOOLEAN",
+          "links": [
+            298
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "closed_loop"
+          }
+        }
+      ],
+      "title": "ClosedLoop",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        true
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -1117,
+        50
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            726
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            727,
+            728,
+            729,
+            730
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            8,
+            169
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "juggernaut_reborn.safetensors"
+      ]
+    },
+    {
+      "id": 238,
+      "type": "VHS_LoadVideo",
+      "pos": [
+        -2139.7082597925014,
+        -834.5897902749998
+      ],
+      "size": [
+        319.4967346191406,
+        555.4967346191406
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "batch_manager",
+          "type": "VHS_BatchManager",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            440
+          ],
+          "shape": 3
+        },
+        {
+          "name": "frame_count",
+          "type": "INT",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "audio",
+          "type": "VHS_AUDIO",
+          "links": [],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_LoadVideo"
+      },
+      "widgets_values": {
+        "video": "61d54457de6ad4f5fb6ea3619aea80e8.gif",
+        "force_rate": 8,
+        "force_size": "Disabled",
+        "custom_width": 512,
+        "custom_height": 512,
+        "frame_load_cap": 32,
+        "skip_first_frames": 0,
+        "select_every_nth": 1,
+        "choose video to upload": "image",
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "61d54457de6ad4f5fb6ea3619aea80e8.gif",
+            "type": "input",
+            "format": "image/gif",
+            "frame_load_cap": 32,
+            "skip_first_frames": 0,
+            "force_rate": 8,
+            "select_every_nth": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 100,
+      "type": "PrimitiveNode",
+      "pos": [
+        -2049,
+        -200
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            442,
+            443,
+            479
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "title": "Resolution",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        640,
+        "fixed"
       ]
     },
     {
@@ -2786,7 +2750,7 @@
         "Node name for S&R": "IPAdapterApplyEncoded"
       },
       "widgets_values": [
-        0.65,
+        0.2,
         "original",
         0,
         0.5,
@@ -2794,35 +2758,91 @@
       ]
     },
     {
-      "id": 428,
-      "type": "Eden_String",
+      "id": 202,
+      "type": "SeargePromptCombiner",
       "pos": [
-        236,
-        747
+        -76.4290499524023,
+        -599.0489419711386
       ],
-      "size": [
-        210,
-        58
-      ],
+      "size": {
+        "0": 277.1419982910156,
+        "1": 119.99999237060547
+      },
       "flags": {},
-      "order": 15,
+      "order": 36,
       "mode": 0,
+      "inputs": [
+        {
+          "name": "prompt1",
+          "type": "STRING",
+          "link": 458,
+          "widget": {
+            "name": "prompt1"
+          }
+        }
+      ],
       "outputs": [
         {
-          "name": "STRING",
+          "name": "combined prompt",
           "type": "STRING",
           "links": [
-            706
+            452
           ],
           "shape": 3,
           "slot_index": 0
         }
       ],
       "properties": {
-        "Node name for S&R": "Eden_String"
+        "Node name for S&R": "SeargePromptCombiner"
       },
       "widgets_values": [
-        "fine"
+        "",
+        ", ",
+        "high quality texture, sharp details, 4k, masterpiece, stunning"
+      ]
+    },
+    {
+      "id": 345,
+      "type": "SeargePromptCombiner",
+      "pos": [
+        -81.42904995240232,
+        -831.0489419711386
+      ],
+      "size": {
+        "0": 277.1419982910156,
+        "1": 119.99999237060547
+      },
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "prompt1",
+          "type": "STRING",
+          "link": 587,
+          "widget": {
+            "name": "prompt1"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "combined prompt",
+          "type": "STRING",
+          "links": [
+            583
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeargePromptCombiner"
+      },
+      "widgets_values": [
+        "",
+        ", ",
+        "high quality texture, sharp details, 4k, masterpiece, stunning"
       ]
     }
   ],
@@ -3252,38 +3272,6 @@
       "CONDITIONING"
     ],
     [
-      651,
-      4,
-      0,
-      91,
-      0,
-      "MODEL"
-    ],
-    [
-      652,
-      4,
-      1,
-      344,
-      0,
-      "CLIP"
-    ],
-    [
-      653,
-      4,
-      1,
-      6,
-      0,
-      "CLIP"
-    ],
-    [
-      654,
-      4,
-      1,
-      7,
-      0,
-      "CLIP"
-    ],
-    [
       671,
       409,
       0,
@@ -3322,14 +3310,6 @@
       410,
       0,
       "IPADAPTER"
-    ],
-    [
-      690,
-      4,
-      1,
-      420,
-      0,
-      "CLIP"
     ],
     [
       691,
@@ -3442,6 +3422,46 @@
       432,
       2,
       "*"
+    ],
+    [
+      726,
+      4,
+      0,
+      91,
+      0,
+      "MODEL"
+    ],
+    [
+      727,
+      4,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      728,
+      4,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      729,
+      4,
+      1,
+      420,
+      0,
+      "CLIP"
+    ],
+    [
+      730,
+      4,
+      1,
+      344,
+      0,
+      "CLIP"
     ]
   ],
   "groups": [
@@ -3503,8 +3523,8 @@
     {
       "title": "Group",
       "bounding": [
-        1108,
-        -956,
+        1338,
+        -957,
         707,
         616
       ],

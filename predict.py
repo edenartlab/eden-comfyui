@@ -370,7 +370,7 @@ class Predictor(BasePredictor):
     def predict(
         self,
         mode: str = Input(
-                    description="txt2vid, img2vid, vid2vid, upscale, makeitrad, txt2img, inpaint", 
+                    description="txt2vid, img2vid, vid2vid, upscale, txt2img, inpaint, makeitrad", 
                     default = "txt2vid",
                 ),
         text_input: str = Input(description="prompt", default=None),

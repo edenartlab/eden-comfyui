@@ -2,10 +2,11 @@ __pycache__
 .cog
 *.log
 ComfyUI/*.log
-
+tests
 ComfyUI
 models
 tmp_vids
 tmp_imgs
 cache
 clip_interrogator_model
+nohup.out

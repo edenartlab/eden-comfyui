@@ -1,1 +1,0 @@
-docker run -p 5000:5000 --gpus=all -v /data/xander/Projects/cog/GitHub_repos/eden-comfyui/:/src r8.im/abraham-ai/eden-comfyui
