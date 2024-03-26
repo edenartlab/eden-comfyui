@@ -50,8 +50,8 @@
       "id": 263,
       "type": "Reroute",
       "pos": [
-        -1030.4097630923652,
-        379.4563500987046
+        -605.5486062025994,
+        468.6601689973291
       ],
       "size": [
         75,
@@ -88,8 +88,8 @@
       "id": 262,
       "type": "Reroute",
       "pos": [
-        -1030.4097630923652,
-        399.45635009870483
+        -605.5486062025994,
+        488.6601689973293
       ],
       "size": [
         75,
@@ -169,8 +169,8 @@
       "id": 133,
       "type": "ControlNetLoaderAdvanced",
       "pos": [
-        1004.5108830564482,
-        343.88812682836095
+        1429.3720399462145,
+        433.09194572698544
       ],
       "size": {
         "0": 367.79998779296875,
@@ -210,8 +210,8 @@
       "id": 178,
       "type": "ImageToMask",
       "pos": [
-        -570.4097630923654,
-        779.4563500987053
+        -145.54860620259967,
+        868.6601689973307
       ],
       "size": {
         "0": 315,
@@ -249,8 +249,8 @@
       "id": 173,
       "type": "MaskComposite",
       "pos": [
-        139.59023690763516,
-        889.456350098705
+        564.4513937974008,
+        978.6601689973303
       ],
       "size": {
         "0": 315,
@@ -295,8 +295,8 @@
       "id": 177,
       "type": "ImageToMask",
       "pos": [
-        -550.4097630923654,
-        1019.456350098702
+        -125.54860620259969,
+        1108.6601689973277
       ],
       "size": {
         "0": 315,
@@ -367,8 +367,8 @@
       "id": 169,
       "type": "LineArtPreprocessor",
       "pos": [
-        -900.4097630923654,
-        779.4563500987053
+        -475.54860620259944,
+        868.6601689973307
       ],
       "size": {
         "0": 315,
@@ -466,8 +466,8 @@
       "id": 356,
       "type": "LatentKeyframeTiming",
       "pos": [
-        -530.4097630923654,
-        429.45635009870495
+        -105.54860620259967,
+        518.6601689973295
       ],
       "size": {
         "0": 319.20001220703125,
@@ -510,8 +510,8 @@
       "id": 354,
       "type": "LatentKeyframeTiming",
       "pos": [
-        -890.4097630923653,
-        429.45635009870495
+        -465.54860620259933,
+        518.6601689973295
       ],
       "size": {
         "0": 319.20001220703125,
@@ -554,8 +554,8 @@
       "id": 268,
       "type": "FakeScribblePreprocessor",
       "pos": [
-        -900.4097630923654,
-        1019.456350098702
+        -475.54860620259944,
+        1108.6601689973277
       ],
       "size": {
         "0": 319.20001220703125,
@@ -602,8 +602,8 @@
       "id": 334,
       "type": "MaskToImage",
       "pos": [
-        480.59023690763553,
-        1021.456350098702
+        905.451393797401,
+        1110.6601689973277
       ],
       "size": {
         "0": 210,
@@ -638,8 +638,8 @@
       "id": 180,
       "type": "MaskToImage",
       "pos": [
-        489.59023690763553,
-        890.456350098705
+        914.451393797401,
+        979.6601689973303
       ],
       "size": {
         "0": 176.39999389648438,
@@ -674,8 +674,8 @@
       "id": 358,
       "type": "LatentKeyframeTiming",
       "pos": [
-        -180.4097630923645,
-        429.45635009870495
+        244.4513937974013,
+        518.6601689973295
       ],
       "size": {
         "0": 319.20001220703125,
@@ -716,8 +716,8 @@
       "id": 360,
       "type": "If ANY execute A else B",
       "pos": [
-        768.5902369076349,
-        754.4563500987053
+        1193.4513937974007,
+        843.6601689973307
       ],
       "size": {
         "0": 210,
@@ -840,8 +840,8 @@
       "id": 320,
       "type": "GrowMask",
       "pos": [
-        -220.4097630923644,
-        1019.456350098702
+        204.45139379740158,
+        1108.6601689973277
       ],
       "size": {
         "0": 315,
@@ -881,8 +881,8 @@
       "id": 316,
       "type": "GrowMask",
       "pos": [
-        -220.4097630923644,
-        779.4563500987053
+        204.45139379740158,
+        868.6601689973307
       ],
       "size": {
         "0": 315,
@@ -918,80 +918,11 @@
       ]
     },
     {
-      "id": 58,
-      "type": "KSampler",
-      "pos": [
-        2023,
-        -61
-      ],
-      "size": {
-        "0": 353.2236633300781,
-        "1": 308.97705078125
-      },
-      "flags": {},
-      "order": 57,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 678
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 649
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 650
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 465
-        },
-        {
-          "name": "denoise",
-          "type": "FLOAT",
-          "link": 185,
-          "widget": {
-            "name": "denoise"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            92
-          ],
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "KSampler"
-      },
-      "widgets_values": [
-        237,
-        "fixed",
-        25,
-        10,
-        "dpmpp_2m_sde",
-        "exponential",
-        1
-      ],
-      "color": "#222",
-      "bgcolor": "#000"
-    },
-    {
       "id": 132,
       "type": "ACN_AdvancedControlNetApply",
       "pos": [
-        1034.5108830564482,
-        453.88812682836146
+        1459.3720399462145,
+        543.0919457269862
       ],
       "size": {
         "0": 342.5999755859375,
@@ -1743,8 +1674,8 @@
       "id": 427,
       "type": "Eden_Compare",
       "pos": [
-        492.28796741066594,
-        686.291450556932
+        917.1491243004315,
+        775.4952694555569
       ],
       "size": {
         "0": 210,
@@ -2192,7 +2123,7 @@
       ],
       "size": [
         413.80792236328125,
-        697.8079223632812
+        290
       ],
       "flags": {},
       "order": 62,
@@ -2285,8 +2216,8 @@
       "id": 428,
       "type": "Eden_String",
       "pos": [
-        236,
-        747
+        660.8611568897657,
+        836.2038188986254
       ],
       "size": {
         "0": 210,
@@ -2311,38 +2242,6 @@
       },
       "widgets_values": [
         "fine"
-      ]
-    },
-    {
-      "id": 413,
-      "type": "IPAdapterModelLoader",
-      "pos": [
-        1793.6969741311889,
-        -1632.0580257797124
-      ],
-      "size": {
-        "0": 315,
-        "1": 58
-      },
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "IPADAPTER",
-          "type": "IPADAPTER",
-          "links": [
-            685
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "IPAdapterModelLoader"
-      },
-      "widgets_values": [
-        "ipadapter-plus_sd15.safetensors"
       ]
     },
     {
@@ -2515,7 +2414,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 12,
+      "order": 11,
       "mode": 0,
       "outputs": [
         {
@@ -2550,7 +2449,7 @@
         "1": 98
       },
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "outputs": [
         {
@@ -2601,7 +2500,7 @@
         555.4967346191406
       ],
       "flags": {},
-      "order": 14,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -2673,7 +2572,7 @@
         "1": 82
       },
       "flags": {},
-      "order": 15,
+      "order": 14,
       "mode": 0,
       "outputs": [
         {
@@ -2697,64 +2596,6 @@
       "widgets_values": [
         640,
         "fixed"
-      ]
-    },
-    {
-      "id": 410,
-      "type": "IPAdapterApplyEncoded",
-      "pos": [
-        1798.6282480754755,
-        -1474.5583273757127
-      ],
-      "size": {
-        "0": 315,
-        "1": 214
-      },
-      "flags": {},
-      "order": 42,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "ipadapter",
-          "type": "IPADAPTER",
-          "link": 685
-        },
-        {
-          "name": "embeds",
-          "type": "EMBEDS",
-          "link": 671
-        },
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 677
-        },
-        {
-          "name": "attn_mask",
-          "type": "MASK",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            678
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "IPAdapterApplyEncoded"
-      },
-      "widgets_values": [
-        0.2,
-        "original",
-        0,
-        0.5,
-        false
       ]
     },
     {
@@ -2844,6 +2685,165 @@
         ", ",
         "high quality texture, sharp details, 4k, masterpiece, stunning"
       ]
+    },
+    {
+      "id": 413,
+      "type": "IPAdapterModelLoader",
+      "pos": [
+        1793.6969741311889,
+        -1632.0580257797124
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IPADAPTER",
+          "type": "IPADAPTER",
+          "links": [
+            685
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterModelLoader"
+      },
+      "widgets_values": [
+        "ip-adapter-plus_sd15.safetensors"
+      ]
+    },
+    {
+      "id": 410,
+      "type": "IPAdapterApplyEncoded",
+      "pos": [
+        1798.6282480754755,
+        -1474.5583273757127
+      ],
+      "size": {
+        "0": 315,
+        "1": 214
+      },
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "link": 685
+        },
+        {
+          "name": "embeds",
+          "type": "EMBEDS",
+          "link": 671
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 677
+        },
+        {
+          "name": "attn_mask",
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            678
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterApplyEncoded"
+      },
+      "widgets_values": [
+        0.35000000000000003,
+        "original",
+        0,
+        0.6,
+        false
+      ]
+    },
+    {
+      "id": 58,
+      "type": "KSampler",
+      "pos": [
+        2023,
+        -61
+      ],
+      "size": {
+        "0": 353.2236633300781,
+        "1": 308.97705078125
+      },
+      "flags": {},
+      "order": 57,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 678
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 649
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 650
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 465
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "link": 185,
+          "widget": {
+            "name": "denoise"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            92
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        237,
+        "fixed",
+        25,
+        7,
+        "dpmpp_2m_sde",
+        "exponential",
+        1
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
     }
   ],
   "links": [
@@ -3479,8 +3479,8 @@
     {
       "title": "ControlNet",
       "bounding": [
-        -1047,
-        246,
+        -623,
+        336,
         2615,
         955
       ],
