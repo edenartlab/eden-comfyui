@@ -468,9 +468,12 @@ class Predictor(BasePredictor):
             if ("embedding:makeitrad_embeddings" not in text_input) and ("embedding:indoor-outdoor_embeddings" not in text_input):
                 raise ValueError("You forgot to trigger the LoRa concept, add 'embedding:makeitrad_embeddings' or 'embedding:indoor-outdoor_embeddings' somewhere in the prompt!")
 
-        if mode in ["txt2vid", "img2vid", "vid2vid", "blend", "upscale"]: # these modes use a 2x_upscaler at the end:
+        if mode in ["vid2vid", "blend", "upscale"]: # these modes use a 2x_upscaler at the end:
             width = width // 2
             height = height // 2
+        if mode in ["img2vid", "txt2vid"]:
+            width = width // (2 * 1.5)
+            height = height // (2 * 1.5)
 
         if interpolation_texts:  # For now, just equally space the prompts!
             text_input = interpolation_texts

@@ -27,6 +27,7 @@ build:
     - tqdm
     - numexpr
     - psutil
+    - omegaconf
     - matplotlib
     - websocket-client==1.6.3
     - "tensorflow_addons==0.23.0" # needed for Bumble nsfw detection model

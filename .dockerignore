@@ -20,16 +20,22 @@ __pycache__
 ComfyUI/output/*
 ComfyUI/input/*
 
+
 # Ignore the entire models folder by default:
 ComfyUI/models/*
 
+# Include all embeddings:
+!ComfyUI/models/embeddings
+
 ### Include pipeline models: ###
+!ComfyUI/models/animatediff_models/sd15_t2v_beta.ckpt
 !ComfyUI/models/animatediff_models/v3_sd15_mm.ckpt
 !ComfyUI/models/checkpoints/juggernaut_reborn-inpainting.safetensors
 !ComfyUI/models/checkpoints/juggernaut_reborn.safetensors
+!ComfyUI/models/checkpoints/photonLCM_v10.safetensors
 !ComfyUI/models/clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors
+!ComfyUI/models/controlnet/adiff_ControlGIF_controlnet.ckpt
 !ComfyUI/models/controlnet/control_v11p_sd15_canny_fp16.safetensors
-!ComfyUI/models/controlnet/v3_sd15_sparsectrl_rgb.ckpt
 !ComfyUI/models/controlnet/v3_sd15_sparsectrl_scribble.ckpt
 !ComfyUI/models/ipadapter/ip-adapter-plus_sd15.safetensors
 !ComfyUI/models/loras/indoor-outdoor_lora.safetensors

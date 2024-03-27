@@ -268,7 +268,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        962166887159727,
+        1105221277646413,
         "randomize",
         25,
         7,
@@ -1085,38 +1085,6 @@
       ]
     },
     {
-      "id": 3,
-      "type": "IPAdapterModelLoader",
-      "pos": [
-        -240.7524564083317,
-        -757.8413625678568
-      ],
-      "size": {
-        "0": 300,
-        "1": 60
-      },
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "IPADAPTER",
-          "type": "IPADAPTER",
-          "links": [
-            1
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "IPAdapterModelLoader"
-      },
-      "widgets_values": [
-        "ipadapter-plus_sd15.safetensors"
-      ]
-    },
-    {
       "id": 41,
       "type": "PrimitiveNode",
       "pos": [
@@ -1128,7 +1096,7 @@
         "1": 82
       },
       "flags": {},
-      "order": 8,
+      "order": 7,
       "mode": 0,
       "outputs": [
         {
@@ -1150,6 +1118,38 @@
       "widgets_values": [
         1920,
         "fixed"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "IPAdapterModelLoader",
+      "pos": [
+        -240.7524564083317,
+        -757.8413625678568
+      ],
+      "size": {
+        "0": 300,
+        "1": 60
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IPADAPTER",
+          "type": "IPADAPTER",
+          "links": [
+            1
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterModelLoader"
+      },
+      "widgets_values": [
+        "ip-adapter-plus_sd15.safetensors"
       ]
     }
   ],

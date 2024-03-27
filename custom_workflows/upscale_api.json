@@ -62,7 +62,7 @@
   },
   "9": {
     "inputs": {
-      "seed": 477959944415781,
+      "seed": 1105221277646413,
       "steps": 25,
       "cfg": 7,
       "sampler_name": "euler_ancestral",

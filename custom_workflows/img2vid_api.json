@@ -1,23 +1,117 @@
 {
-  "1": {
+  "10": {
     "inputs": {
-      "ckpt_name": "juggernaut_reborn.safetensors"
+      "seed": [
+        "136",
+        0
+      ],
+      "steps": 6,
+      "cfg": 1.2000000000000002,
+      "sampler_name": "lcm",
+      "scheduler": "sgm_uniform",
+      "denoise": 0.85,
+      "preview_method": "none",
+      "vae_decode": "true",
+      "model": [
+        "224",
+        0
+      ],
+      "positive": [
+        "327",
+        0
+      ],
+      "negative": [
+        "327",
+        1
+      ],
+      "latent_image": [
+        "13",
+        3
+      ],
+      "optional_vae": [
+        "13",
+        4
+      ]
     },
-    "class_type": "CheckpointLoaderSimple",
+    "class_type": "KSampler (Efficient)",
     "_meta": {
-      "title": "Load Checkpoint"
+      "title": "KSampler (Efficient)"
     }
   },
-  "3": {
+  "13": {
     "inputs": {
-      "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
+      "ckpt_name": "photonLCM_v10.safetensors",
+      "vae_name": "Baked VAE",
+      "clip_skip": -1,
+      "lora_name": "None",
+      "lora_model_strength": -2.2600000000000002,
+      "lora_clip_strength": 0.14,
+      "positive": [
+        "459",
+        0
+      ],
+      "negative": "shutterstock, watermark, text, blurry, low-resolution, bad quality, ugly, embedding:BadDream.pt",
+      "token_normalization": "none",
+      "weight_interpretation": "comfy",
+      "empty_latent_width": [
+        "444",
+        1
+      ],
+      "empty_latent_height": [
+        "444",
+        2
+      ],
+      "batch_size": [
+        "441",
+        0
+      ]
     },
-    "class_type": "IPAdapterModelLoader",
+    "class_type": "Efficient Loader",
     "_meta": {
-      "title": "Load IPAdapter Model"
+      "title": "Efficient Loader"
     }
   },
-  "4": {
+  "16": {
+    "inputs": {
+      "model_name": "sd15_t2v_beta.ckpt",
+      "beta_schedule": "lcm >> sqrt_linear",
+      "motion_scale": 1.1,
+      "apply_v2_models_properly": false,
+      "model": [
+        "13",
+        0
+      ],
+      "context_options": [
+        "17",
+        0
+      ],
+      "sample_settings": [
+        "213",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffLoaderWithContext",
+    "_meta": {
+      "title": "AnimateDiff Loader [Legacy] 🎭🅐🅓①"
+    }
+  },
+  "17": {
+    "inputs": {
+      "context_length": 16,
+      "context_stride": 1,
+      "context_overlap": 4,
+      "closed_loop": true,
+      "fuse_method": "pyramid",
+      "use_on_equal_length": false,
+      "start_percent": 0,
+      "guarantee_steps": 1
+    },
+    "class_type": "ADE_LoopedUniformContextOptions",
+    "_meta": {
+      "title": "Context Options◆Looped Uniform 🎭🅐🅓"
+    }
+  },
+  "49": {
     "inputs": {
       "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
     },
@@ -26,32 +120,59 @@
       "title": "Load CLIP Vision"
     }
   },
-  "5": {
+  "50": {
     "inputs": {
-      "weight": 0.65,
+      "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
+    },
+    "class_type": "IPAdapterModelLoader",
+    "_meta": {
+      "title": "Load IPAdapter Model"
+    }
+  },
+  "136": {
+    "inputs": {
+      "seed": 248
+    },
+    "class_type": "Seed Everywhere",
+    "_meta": {
+      "title": "Seed Everywhere"
+    }
+  },
+  "213": {
+    "inputs": {
+      "batch_offset": 0,
+      "noise_type": "FreeNoise",
+      "seed_gen": "comfy",
+      "seed_offset": 0,
+      "adapt_denoise_steps": false
+    },
+    "class_type": "ADE_AnimateDiffSamplingSettings",
+    "_meta": {
+      "title": "Sample Settings 🎭🅐🅓"
+    }
+  },
+  "224": {
+    "inputs": {
+      "weight": 1.25,
       "noise": 0,
-      "weight_type": "original",
+      "weight_type": "channel penalty",
       "start_at": 0,
-      "end_at": 0.65,
+      "end_at": 0.8,
       "unfold_batch": false,
       "ipadapter": [
-        "3",
+        "50",
         0
       ],
       "clip_vision": [
-        "4",
+        "49",
         0
       ],
       "image": [
-        "116",
+        "444",
         0
       ],
       "model": [
-        "1",
-        0
-      ],
-      "attn_mask": [
-        "132",
+        "16",
         0
       ]
     },
@@ -60,186 +181,36 @@
       "title": "Apply IPAdapter"
     }
   },
-  "8": {
+  "237": {
     "inputs": {
-      "text": "text, watermark, low-quality, signature, padding, margins, white borders, padded border, moiré pattern, downsampling, aliasing, distorted, blurry, blur, jpeg artifacts, compression artifacts, poorly drawn, low-resolution, bad, grainy, error, bad-contrast",
-      "clip": [
-        "1",
-        1
-      ]
+      "interpolation": "LANCZOS",
+      "crop_position": "center",
+      "sharpening": 0.05
     },
-    "class_type": "CLIPTextEncode",
+    "class_type": "PrepImageForClipVision",
     "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
+      "title": "Prepare Image For Clip Vision"
     }
   },
-  "9": {
+  "327": {
     "inputs": {
-      "seed": 257,
-      "steps": 25,
-      "cfg": 6,
-      "sampler_name": "ddpm",
-      "scheduler": "exponential",
-      "denoise": 0.9500000000000001,
-      "model": [
-        "15",
-        0
-      ],
-      "positive": [
-        "35",
-        0
-      ],
-      "negative": [
-        "35",
-        1
-      ],
-      "latent_image": [
-        "131",
-        0
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "KSampler"
-    }
-  },
-  "11": {
-    "inputs": {
-      "samples": [
-        "9",
-        0
-      ],
-      "vae": [
-        "1",
-        2
-      ]
-    },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "VAE Decode"
-    }
-  },
-  "14": {
-    "inputs": {
-      "context_length": 16,
-      "context_stride": 1,
-      "context_overlap": 4,
-      "context_schedule": "uniform",
-      "closed_loop": true
-    },
-    "class_type": "ADE_AnimateDiffUniformContextOptions",
-    "_meta": {
-      "title": "Uniform Context Options 🎭🅐🅓"
-    }
-  },
-  "15": {
-    "inputs": {
-      "model_name": "v3_sd15_mm.ckpt",
-      "beta_schedule": "sqrt_linear (AnimateDiff)",
-      "motion_scale": 1.1500000000000001,
-      "apply_v2_models_properly": true,
-      "model": [
-        "26",
-        0
-      ],
-      "context_options": [
-        "14",
-        0
-      ]
-    },
-    "class_type": "ADE_AnimateDiffLoaderWithContext",
-    "_meta": {
-      "title": "AnimateDiff Loader 🎭🅐🅓"
-    }
-  },
-  "26": {
-    "inputs": {
-      "lora_name": "v3_sd15_adapter.ckpt",
-      "strength_model": 0.8,
-      "model": [
-        "5",
-        0
-      ]
-    },
-    "class_type": "LoraLoaderModelOnly",
-    "_meta": {
-      "title": "LoraLoaderModelOnly"
-    }
-  },
-  "27": {
-    "inputs": {
-      "image": [
-        "110",
-        0
-      ],
-      "vae": [
-        "1",
-        2
-      ],
-      "latent_size": [
-        "39",
-        0
-      ]
-    },
-    "class_type": "ACN_SparseCtrlRGBPreprocessor",
-    "_meta": {
-      "title": "RGB SparseCtrl 🛂🅐🅒🅝"
-    }
-  },
-  "28": {
-    "inputs": {
-      "sparsectrl_name": "v3_sd15_sparsectrl_rgb.ckpt",
-      "use_motion": true,
-      "motion_strength": 1.1,
-      "motion_scale": 1,
-      "sparse_method": [
-        "32",
-        0
-      ]
-    },
-    "class_type": "ACN_SparseCtrlLoaderAdvanced",
-    "_meta": {
-      "title": "Load SparseCtrl Model 🛂🅐🅒🅝"
-    }
-  },
-  "32": {
-    "inputs": {
-      "spread": "uniform"
-    },
-    "class_type": "ACN_SparseCtrlSpreadMethodNode",
-    "_meta": {
-      "title": "SparseCtrl Spread Method 🛂🅐🅒🅝"
-    }
-  },
-  "34": {
-    "inputs": {
-      "image": "a6a2def27bcb6efa9f4b9693c33a1a8f46092993e5b1d575c66d3f9e47dbb3c4 (3).png",
-      "upload": "image"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "Load Image"
-    }
-  },
-  "35": {
-    "inputs": {
-      "strength": 1,
+      "strength": 0.7000000000000001,
       "start_percent": 0,
-      "end_percent": 0.7000000000000001,
+      "end_percent": 0.8,
       "positive": [
-        "140",
-        0
+        "13",
+        1
       ],
       "negative": [
-        "8",
-        0
+        "13",
+        2
       ],
       "control_net": [
-        "28",
+        "328",
         0
       ],
       "image": [
-        "27",
+        "444",
         0
       ]
     },
@@ -248,53 +219,69 @@
       "title": "Apply ControlNet (Advanced)"
     }
   },
-  "36": {
+  "328": {
     "inputs": {
-      "width": 768,
-      "height": 768,
-      "interpolation": "lanczos",
-      "keep_proportion": true,
-      "condition": "always",
-      "image": [
-        "34",
-        0
-      ]
+      "control_net_name": "adiff_ControlGIF_controlnet.ckpt"
     },
-    "class_type": "ImageResize+",
+    "class_type": "ControlNetLoaderAdvanced",
     "_meta": {
-      "title": "🔧 Image Resize"
+      "title": "Load Advanced ControlNet Model 🛂🅐🅒🅝"
     }
   },
-  "37": {
+  "334": {
     "inputs": {
-      "pixels": [
-        "36",
+      "seed": [
+        "136",
         0
       ],
-      "vae": [
-        "1",
-        2
-      ]
-    },
-    "class_type": "VAEEncode",
-    "_meta": {
-      "title": "VAE Encode"
-    }
-  },
-  "39": {
-    "inputs": {
-      "amount": 28,
-      "samples": [
-        "37",
+      "steps": 8,
+      "cfg": 1.2000000000000002,
+      "sampler_name": "lcm",
+      "scheduler": "sgm_uniform",
+      "denoise": 0.55,
+      "preview_method": "none",
+      "vae_decode": "true",
+      "model": [
+        "10",
         0
+      ],
+      "positive": [
+        "10",
+        1
+      ],
+      "negative": [
+        "10",
+        2
+      ],
+      "latent_image": [
+        "335",
+        0
+      ],
+      "optional_vae": [
+        "10",
+        4
       ]
     },
-    "class_type": "RepeatLatentBatch",
+    "class_type": "KSampler (Efficient)",
     "_meta": {
-      "title": "Repeat Latent Batch"
+      "title": "KSampler (Efficient)"
     }
   },
-  "43": {
+  "335": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "scale_by": 1.5,
+      "samples": [
+        "10",
+        3
+      ]
+    },
+    "class_type": "LatentUpscaleBy",
+    "_meta": {
+      "title": "Upscale Latent By"
+    }
+  },
+  "353": {
     "inputs": {
       "model_name": "RealESRGAN_x2plus.pth"
     },
@@ -303,15 +290,15 @@
       "title": "Load Upscale Model"
     }
   },
-  "44": {
+  "354": {
     "inputs": {
       "upscale_model": [
-        "43",
+        "353",
         0
       ],
       "image": [
-        "11",
-        0
+        "334",
+        5
       ]
     },
     "class_type": "ImageUpscaleWithModel",
@@ -319,7 +306,7 @@
       "title": "Upscale Image (using Model)"
     }
   },
-  "45": {
+  "355": {
     "inputs": {
       "ckpt_name": "rife47.pth",
       "clear_cache_after_n_frames": 10,
@@ -327,9 +314,8 @@
       "fast_mode": true,
       "ensemble": true,
       "scale_factor": 1,
-      "cache_in_fp16": true,
       "frames": [
-        "44",
+        "354",
         0
       ]
     },
@@ -338,146 +324,34 @@
       "title": "RIFE VFI (recommend rife47 and rife49)"
     }
   },
-  "46": {
+  "440": {
     "inputs": {
-      "frame_rate": 12,
-      "loop_count": 0,
-      "filename_prefix": "HD",
-      "format": "video/h264-mp4",
-      "pix_fmt": "yuv420p",
-      "crf": 20,
-      "save_metadata": true,
-      "pingpong": false,
-      "save_output": true,
-      "images": [
-        "45",
-        0
-      ]
+      "image": "Eden-xander-A giant Kim Jong Un riding on an inter ballistic missile_ destroying the planet-65f3f26307ab875b0ddc9d02 (1).jpg",
+      "upload": "image"
     },
-    "class_type": "VHS_VideoCombine",
+    "class_type": "LoadImage",
     "_meta": {
-      "title": "Video Combine 🎥🅥🅗🅢"
+      "title": "Load Image"
     }
   },
-  "57": {
+  "441": {
     "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "center",
-      "sharpening": 0,
-      "image": [
-        "34",
-        0
-      ]
+      "value": 48
     },
-    "class_type": "PrepImageForClipVision",
+    "class_type": "SeargeIntegerConstant",
     "_meta": {
-      "title": "Prepare Image For Clip Vision"
+      "title": "Integer Constant"
     }
   },
-  "59": {
+  "444": {
     "inputs": {
-      "text": [
-        "124",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "76": {
-    "inputs": {
-      "mode": "fast",
-      "keep_model_alive": true,
-      "prepend_blip_caption": true,
-      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
-      "image": [
-        "57",
-        0
-      ]
-    },
-    "class_type": "CLIP_Interrogator",
-    "_meta": {
-      "title": "CLIP_Interrogator"
-    }
-  },
-  "110": {
-    "inputs": {
-      "image1": [
-        "36",
-        0
-      ],
-      "image2": [
-        "36",
-        0
-      ]
-    },
-    "class_type": "ImageBatch",
-    "_meta": {
-      "title": "Batch Images"
-    }
-  },
-  "116": {
-    "inputs": {
-      "interpolation": "LANCZOS",
-      "crop_position": "center",
-      "sharpening": 0,
-      "image": [
-        "34",
-        0
-      ]
-    },
-    "class_type": "PrepImageForClipVision",
-    "_meta": {
-      "title": "Prepare Image For Clip Vision"
-    }
-  },
-  "124": {
-    "inputs": {
-      "prompt1": [
-        "76",
-        0
-      ],
-      "separator": ", ",
-      "prompt2": "high quality texture, sharp details, 4k, "
-    },
-    "class_type": "SeargePromptCombiner",
-    "_meta": {
-      "title": "Prompt combiner"
-    }
-  },
-  "127": {
-    "inputs": {
-      "mask": [
-        "130",
-        0
-      ]
-    },
-    "class_type": "MaskToImage",
-    "_meta": {
-      "title": "Convert Mask to Image"
-    }
-  },
-  "128": {
-    "inputs": {
-      "width": [
-        "36",
-        1
-      ],
-      "height": [
-        "36",
-        2
-      ],
-      "interpolation": "lanczos",
-      "keep_proportion": false,
+      "width": 576,
+      "height": 576,
+      "interpolation": "nearest",
+      "keep_proportion": true,
       "condition": "always",
       "image": [
-        "127",
+        "440",
         0
       ]
     },
@@ -486,102 +360,55 @@
       "title": "🔧 Image Resize"
     }
   },
-  "130": {
+  "458": {
     "inputs": {
-      "amount": 6,
-      "mask": [
-        "145",
-        0
-      ]
-    },
-    "class_type": "MaskBlur+",
-    "_meta": {
-      "title": "🔧 Mask Blur"
-    }
-  },
-  "131": {
-    "inputs": {
-      "samples": [
-        "39",
-        0
-      ],
-      "mask": [
-        "132",
-        0
-      ]
-    },
-    "class_type": "SetLatentNoiseMask",
-    "_meta": {
-      "title": "Set Latent Noise Mask"
-    }
-  },
-  "132": {
-    "inputs": {
-      "channel": "red",
+      "mode": "fast",
+      "keep_model_alive": true,
+      "prepend_blip_caption": true,
+      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
       "image": [
-        "128",
+        "444",
         0
       ]
     },
-    "class_type": "ImageToMask",
+    "class_type": "CLIP_Interrogator",
     "_meta": {
-      "title": "Convert Image to Mask"
+      "title": "CLIP_Interrogator"
     }
   },
-  "137": {
+  "459": {
     "inputs": {
-      "prompt": ""
+      "prompt1": [
+        "458",
+        0
+      ],
+      "separator": ", ",
+      "prompt2": "stunning composition, 4k, sharp details, I can't believe how beautiful this is!!"
     },
-    "class_type": "SeargePromptText",
+    "class_type": "SeargePromptCombiner",
     "_meta": {
-      "title": "Optional prompt"
+      "title": "Prompt combiner"
     }
   },
-  "140": {
+  "466": {
     "inputs": {
-      "ANY": [
-        "137",
-        0
-      ],
-      "IF_TRUE": [
-        "142",
-        0
-      ],
-      "IF_FALSE": [
-        "59",
+      "frame_rate": 20,
+      "loop_count": 0,
+      "filename_prefix": "img2vid",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 16,
+      "save_metadata": true,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "355",
         0
       ]
     },
-    "class_type": "If ANY execute A else B",
+    "class_type": "VHS_VideoCombine",
     "_meta": {
-      "title": "If (Eden)"
-    }
-  },
-  "142": {
-    "inputs": {
-      "text": [
-        "137",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "145": {
-    "inputs": {
-      "image": "0.044670_00020 (1).jpg",
-      "channel": "red",
-      "upload": "image"
-    },
-    "class_type": "LoadImageMask",
-    "_meta": {
-      "title": "Load Image (as Mask)"
+      "title": "Video Combine 🎥🅥🅗🅢"
     }
   }
 }

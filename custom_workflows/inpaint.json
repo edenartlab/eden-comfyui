@@ -1102,7 +1102,7 @@
         "Node name for S&R": "IPAdapterModelLoader"
       },
       "widgets_values": [
-        "ip-adapter_sd15.safetensors"
+        "ipadapter_sd15.safetensors"
       ]
     },
     {

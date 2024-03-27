@@ -1,7 +1,7 @@
 {
   "1": {
     "inputs": {
-      "ckpt_name": "juggernaut_reborn-inpainting.safetensors"
+      "ckpt_name": "juggernaut_reborn.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -10,7 +10,7 @@
   },
   "3": {
     "inputs": {
-      "ipadapter_file": "ipadapter_sd15.safetensors"
+      "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
     },
     "class_type": "IPAdapterModelLoader",
     "_meta": {
@@ -28,11 +28,11 @@
   },
   "5": {
     "inputs": {
-      "weight": 0.3,
+      "weight": 0.65,
       "noise": 0,
       "weight_type": "original",
       "start_at": 0,
-      "end_at": 0.5,
+      "end_at": 0.65,
       "unfold_batch": false,
       "ipadapter": [
         "3",
@@ -51,7 +51,7 @@
         0
       ],
       "attn_mask": [
-        "149",
+        "132",
         0
       ]
     },
@@ -75,26 +75,26 @@
   },
   "9": {
     "inputs": {
-      "seed": 441,
-      "steps": 30,
-      "cfg": 8,
-      "sampler_name": "euler_ancestral",
+      "seed": 257,
+      "steps": 25,
+      "cfg": 6,
+      "sampler_name": "ddpm",
       "scheduler": "exponential",
-      "denoise": 1,
+      "denoise": 0.9500000000000001,
       "model": [
-        "5",
+        "15",
         0
       ],
       "positive": [
-        "140",
+        "35",
         0
       ],
       "negative": [
-        "8",
-        0
+        "35",
+        1
       ],
       "latent_image": [
-        "152",
+        "131",
         0
       ]
     },
@@ -119,9 +119,101 @@
       "title": "VAE Decode"
     }
   },
+  "14": {
+    "inputs": {
+      "context_length": 16,
+      "context_stride": 1,
+      "context_overlap": 4,
+      "context_schedule": "uniform",
+      "closed_loop": true
+    },
+    "class_type": "ADE_AnimateDiffUniformContextOptions",
+    "_meta": {
+      "title": "Uniform Context Options 🎭🅐🅓"
+    }
+  },
+  "15": {
+    "inputs": {
+      "model_name": "v3_sd15_mm.ckpt",
+      "beta_schedule": "sqrt_linear (AnimateDiff)",
+      "motion_scale": 1.1500000000000001,
+      "apply_v2_models_properly": true,
+      "model": [
+        "26",
+        0
+      ],
+      "context_options": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "ADE_AnimateDiffLoaderWithContext",
+    "_meta": {
+      "title": "AnimateDiff Loader 🎭🅐🅓"
+    }
+  },
+  "26": {
+    "inputs": {
+      "lora_name": "v3_sd15_adapter.ckpt",
+      "strength_model": 0.8,
+      "model": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "27": {
+    "inputs": {
+      "image": [
+        "110",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ],
+      "latent_size": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "ACN_SparseCtrlRGBPreprocessor",
+    "_meta": {
+      "title": "RGB SparseCtrl 🛂🅐🅒🅝"
+    }
+  },
+  "28": {
+    "inputs": {
+      "sparsectrl_name": "v3_sd15_sparsectrl_rgb.ckpt",
+      "use_motion": true,
+      "motion_strength": 1.1,
+      "motion_scale": 1,
+      "sparse_method": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "ACN_SparseCtrlLoaderAdvanced",
+    "_meta": {
+      "title": "Load SparseCtrl Model 🛂🅐🅒🅝"
+    }
+  },
+  "32": {
+    "inputs": {
+      "spread": "uniform"
+    },
+    "class_type": "ACN_SparseCtrlSpreadMethodNode",
+    "_meta": {
+      "title": "SparseCtrl Spread Method 🛂🅐🅒🅝"
+    }
+  },
   "34": {
     "inputs": {
-      "image": "clipspace/clipspace-mask-5656033.899999976.png [input]",
+      "image": "a6a2def27bcb6efa9f4b9693c33a1a8f46092993e5b1d575c66d3f9e47dbb3c4 (3).png",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -129,10 +221,37 @@
       "title": "Load Image"
     }
   },
+  "35": {
+    "inputs": {
+      "strength": 1,
+      "start_percent": 0,
+      "end_percent": 0.7000000000000001,
+      "positive": [
+        "140",
+        0
+      ],
+      "negative": [
+        "8",
+        0
+      ],
+      "control_net": [
+        "28",
+        0
+      ],
+      "image": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "Apply ControlNet (Advanced)"
+    }
+  },
   "36": {
     "inputs": {
-      "width": 1024,
-      "height": 1024,
+      "width": 768,
+      "height": 768,
       "interpolation": "lanczos",
       "keep_proportion": true,
       "condition": "always",
@@ -144,6 +263,100 @@
     "class_type": "ImageResize+",
     "_meta": {
       "title": "🔧 Image Resize"
+    }
+  },
+  "37": {
+    "inputs": {
+      "pixels": [
+        "36",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "39": {
+    "inputs": {
+      "amount": 28,
+      "samples": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "RepeatLatentBatch",
+    "_meta": {
+      "title": "Repeat Latent Batch"
+    }
+  },
+  "43": {
+    "inputs": {
+      "model_name": "RealESRGAN_x2plus.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "44": {
+    "inputs": {
+      "upscale_model": [
+        "43",
+        0
+      ],
+      "image": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "45": {
+    "inputs": {
+      "ckpt_name": "rife47.pth",
+      "clear_cache_after_n_frames": 10,
+      "multiplier": 2,
+      "fast_mode": true,
+      "ensemble": true,
+      "scale_factor": 1,
+      "cache_in_fp16": true,
+      "frames": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "RIFE VFI",
+    "_meta": {
+      "title": "RIFE VFI (recommend rife47 and rife49)"
+    }
+  },
+  "46": {
+    "inputs": {
+      "frame_rate": 12,
+      "loop_count": 0,
+      "filename_prefix": "HD",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 20,
+      "save_metadata": true,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
     }
   },
   "57": {
@@ -191,6 +404,22 @@
     "class_type": "CLIP_Interrogator",
     "_meta": {
       "title": "CLIP_Interrogator"
+    }
+  },
+  "110": {
+    "inputs": {
+      "image1": [
+        "36",
+        0
+      ],
+      "image2": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "ImageBatch",
+    "_meta": {
+      "title": "Batch Images"
     }
   },
   "116": {
@@ -259,15 +488,31 @@
   },
   "130": {
     "inputs": {
-      "amount": 5,
+      "amount": 6,
       "mask": [
-        "154",
+        "145",
         0
       ]
     },
     "class_type": "MaskBlur+",
     "_meta": {
       "title": "🔧 Mask Blur"
+    }
+  },
+  "131": {
+    "inputs": {
+      "samples": [
+        "39",
+        0
+      ],
+      "mask": [
+        "132",
+        0
+      ]
+    },
+    "class_type": "SetLatentNoiseMask",
+    "_meta": {
+      "title": "Set Latent Noise Mask"
     }
   },
   "132": {
@@ -328,76 +573,7 @@
       "title": "CLIP Text Encode (Prompt)"
     }
   },
-  "147": {
-    "inputs": {
-      "x": 0,
-      "y": 0,
-      "resize_source": false,
-      "destination": [
-        "36",
-        0
-      ],
-      "source": [
-        "11",
-        0
-      ],
-      "mask": [
-        "132",
-        0
-      ]
-    },
-    "class_type": "ImageCompositeMasked",
-    "_meta": {
-      "title": "ImageCompositeMasked"
-    }
-  },
-  "148": {
-    "inputs": {
-      "filename_prefix": "ComfyUI",
-      "images": [
-        "147",
-        0
-      ]
-    },
-    "class_type": "SaveImage",
-    "_meta": {
-      "title": "Save Image"
-    }
-  },
-  "149": {
-    "inputs": {
-      "mask": [
-        "132",
-        0
-      ]
-    },
-    "class_type": "InvertMask",
-    "_meta": {
-      "title": "InvertMask"
-    }
-  },
-  "152": {
-    "inputs": {
-      "grow_mask_by": 6,
-      "pixels": [
-        "36",
-        0
-      ],
-      "vae": [
-        "1",
-        2
-      ],
-      "mask": [
-        "132",
-        0
-      ]
-    },
-    "class_type": "VAEEncodeForInpaint",
-    "_meta": {
-      "title": "VAE Encode (for Inpainting)"
-    }
-  },
-  "154": {
+  "145": {
     "inputs": {
       "image": "0.044670_00020 (1).jpg",
       "channel": "red",
@@ -405,7 +581,7 @@
     },
     "class_type": "LoadImageMask",
     "_meta": {
-      "title": "Load Inpainting Mask"
+      "title": "Load Image (as Mask)"
     }
   }
 }

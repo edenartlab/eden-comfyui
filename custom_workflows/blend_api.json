@@ -1,0 +1,450 @@
+{
+  "4": {
+    "inputs": {
+      "ckpt_name": "photonLCM_v10.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": [
+        "202",
+        0
+      ],
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "watermark, nude, naked, text, blurry, jpeg artifacts, low-resolution, bad quality, ugly, distorted, padding, embedding:BadDream.pt",
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "58",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "24": {
+    "inputs": {
+      "ipadapter_file": "ip-adapter-plus_sd15.safetensors"
+    },
+    "class_type": "IPAdapterModelLoader",
+    "_meta": {
+      "title": "Load IPAdapter Model"
+    }
+  },
+  "25": {
+    "inputs": {
+      "clip_name": "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Load CLIP Vision"
+    }
+  },
+  "54": {
+    "inputs": {
+      "image": "da0a2e66a6557e4ac1cf702577b6681a (3).jpg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image B"
+    }
+  },
+  "58": {
+    "inputs": {
+      "seed": 244,
+      "steps": 12,
+      "cfg": 1,
+      "sampler_name": "lcm",
+      "scheduler": "sgm_uniform",
+      "denoise": 0.9500000000000001,
+      "model": [
+        "276",
+        0
+      ],
+      "positive": [
+        "342",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "394",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "62": {
+    "inputs": {
+      "upscale_model": [
+        "63",
+        0
+      ],
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "63": {
+    "inputs": {
+      "model_name": "RealESRGAN_x2plus.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "202": {
+    "inputs": {
+      "prompt1": [
+        "246",
+        0
+      ],
+      "separator": ", ",
+      "prompt2": "stunning, high quality, sharp details, 4k"
+    },
+    "class_type": "SeargePromptCombiner",
+    "_meta": {
+      "title": "Prompt combiner"
+    }
+  },
+  "246": {
+    "inputs": {
+      "mode": "fast",
+      "keep_model_alive": true,
+      "prepend_blip_caption": true,
+      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
+      "image": [
+        "304",
+        0
+      ]
+    },
+    "class_type": "CLIP_Interrogator",
+    "_meta": {
+      "title": "CLIP_Interrogator"
+    }
+  },
+  "276": {
+    "inputs": {
+      "weight": 1,
+      "weight_type": "original",
+      "start_at": 0,
+      "end_at": 0.7000000000000001,
+      "unfold_batch": false,
+      "ipadapter": [
+        "24",
+        0
+      ],
+      "embeds": [
+        "309",
+        0
+      ],
+      "model": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "IPAdapterApplyEncoded",
+    "_meta": {
+      "title": "Apply IPAdapter from Encoded"
+    }
+  },
+  "302": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "center",
+      "sharpening": 0,
+      "image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "304": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "pad",
+      "sharpening": 0,
+      "image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "309": {
+    "inputs": {
+      "ipadapter_plus": true,
+      "noise": 0,
+      "weight_1": [
+        "404",
+        0
+      ],
+      "weight_2": [
+        "388",
+        0
+      ],
+      "clip_vision": [
+        "25",
+        0
+      ],
+      "image_1": [
+        "312",
+        0
+      ],
+      "image_2": [
+        "302",
+        0
+      ]
+    },
+    "class_type": "IPAdapterEncoder",
+    "_meta": {
+      "title": "Encode IPAdapter Image"
+    }
+  },
+  "312": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "center",
+      "sharpening": 0,
+      "image": [
+        "341",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "341": {
+    "inputs": {
+      "image": "e009962c3ef89db31daa23b3325dc177 (13).jpeg",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image A"
+    }
+  },
+  "342": {
+    "inputs": {
+      "conditioning_to_strength": [
+        "404",
+        0
+      ],
+      "conditioning_to": [
+        "344",
+        0
+      ],
+      "conditioning_from": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "ConditioningAverage",
+    "_meta": {
+      "title": "ConditioningAverage"
+    }
+  },
+  "343": {
+    "inputs": {
+      "mode": "fast",
+      "keep_model_alive": true,
+      "prepend_blip_caption": true,
+      "save_prompt_to_txt_file": "clip_interrogator_prompt.txt",
+      "image": [
+        "349",
+        0
+      ]
+    },
+    "class_type": "CLIP_Interrogator",
+    "_meta": {
+      "title": "CLIP_Interrogator"
+    }
+  },
+  "344": {
+    "inputs": {
+      "text": [
+        "345",
+        0
+      ],
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "345": {
+    "inputs": {
+      "prompt1": [
+        "343",
+        0
+      ],
+      "separator": ", ",
+      "prompt2": "stunning, high quality, sharp details, 4k"
+    },
+    "class_type": "SeargePromptCombiner",
+    "_meta": {
+      "title": "Prompt combiner"
+    }
+  },
+  "349": {
+    "inputs": {
+      "interpolation": "LANCZOS",
+      "crop_position": "pad",
+      "sharpening": 0,
+      "image": [
+        "341",
+        0
+      ]
+    },
+    "class_type": "PrepImageForClipVision",
+    "_meta": {
+      "title": "Prepare Image For Clip Vision"
+    }
+  },
+  "378": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "62",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "388": {
+    "inputs": {
+      "op": "a - c",
+      "a": 1,
+      "b": 1,
+      "c": [
+        "404",
+        0
+      ]
+    },
+    "class_type": "SeargeFloatMath",
+    "_meta": {
+      "title": "Float Math"
+    }
+  },
+  "392": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "interpolation": "lanczos",
+      "keep_proportion": false,
+      "condition": "always",
+      "image": [
+        "393",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "393": {
+    "inputs": {
+      "image1_weight": [
+        "404",
+        0
+      ],
+      "image1": [
+        "341",
+        0
+      ],
+      "image2": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "IMG_blender",
+    "_meta": {
+      "title": "IMG_blender"
+    }
+  },
+  "394": {
+    "inputs": {
+      "pixels": [
+        "392",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "404": {
+    "inputs": {
+      "value": 0.5
+    },
+    "class_type": "SeargeFloatConstant",
+    "_meta": {
+      "title": "Img A Weight (0-1)"
+    }
+  }
+}
