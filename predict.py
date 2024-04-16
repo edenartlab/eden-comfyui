@@ -330,6 +330,8 @@ class Predictor(BasePredictor):
                     field = value["field"]
                     subfield = value["subfield"]
                     print(f"Overriding {node_id} {field} {subfield} -- with -- {arg_value}")
+                    # Make sure to escape all tabs and newlines for the JSON:
+                    arg_value = arg_value.replace("\t", "\\t").replace("\n", "\\n").replace("\r", "\\r")
                     config[node_id][field][subfield] = arg_value
 
         except FileNotFoundError:
