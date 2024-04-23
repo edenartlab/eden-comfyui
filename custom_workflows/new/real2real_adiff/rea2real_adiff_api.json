@@ -237,6 +237,7 @@
   },
   "536": {
     "inputs": {
+      "lora_name": null,
       "strength": 1
     },
     "class_type": "ADE_AnimateDiffLoRALoader",
