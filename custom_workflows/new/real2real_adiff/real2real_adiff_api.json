@@ -3,12 +3,12 @@
     "inputs": {
       "add_noise": "enable",
       "noise_seed": 261986541818834,
-      "steps": 25,
+      "steps": 20,
       "cfg": 8,
       "sampler_name": "euler_ancestral",
       "scheduler": "normal",
       "start_at_step": 0,
-      "end_at_step": 25,
+      "end_at_step": 20,
       "return_with_leftover_noise": "disable",
       "preview_method": "auto",
       "vae_decode": "true",
@@ -50,7 +50,7 @@
       "pingpong": false,
       "save_output": true,
       "images": [
-        "562",
+        "633",
         0
       ]
     },
@@ -62,10 +62,10 @@
   "342": {
     "inputs": {
       "context_length": 16,
-      "context_stride": 2,
+      "context_stride": 1,
       "context_overlap": 4,
       "context_schedule": "uniform",
-      "closed_loop": false,
+      "closed_loop": true,
       "fuse_method": "flat",
       "use_on_equal_length": false,
       "start_percent": 0,
@@ -74,22 +74,6 @@
     "class_type": "ADE_AnimateDiffUniformContextOptions",
     "_meta": {
       "title": "Context Options◆Looped Uniform 🎭🅐🅓"
-    }
-  },
-  "354": {
-    "inputs": {
-      "split_index": [
-        "624",
-        6
-      ],
-      "images": [
-        "207",
-        5
-      ]
-    },
-    "class_type": "VHS_SplitImages",
-    "_meta": {
-      "title": "Split Image Batch 🎥🅥🅗🅢"
     }
   },
   "369": {
@@ -134,18 +118,9 @@
       "title": "Preview Image"
     }
   },
-  "458": {
-    "inputs": {
-      "vae_name": "sdxl_vae.safetensors"
-    },
-    "class_type": "VAELoader",
-    "_meta": {
-      "title": "Load VAE"
-    }
-  },
   "461": {
     "inputs": {
-      "ckpt_name": "dreamshaper_8.safetensors"
+      "ckpt_name": "juggernaut_reborn.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -190,9 +165,9 @@
   },
   "468": {
     "inputs": {
-      "strength": 0.85,
+      "strength": 0.8,
       "start_percent": 0,
-      "end_percent": 0.4,
+      "end_percent": 0.7000000000000001,
       "positive": [
         "624",
         1
@@ -237,8 +212,8 @@
   },
   "536": {
     "inputs": {
-      "lora_name": null,
-      "strength": 1
+      "lora_name": "WAS26.safetensors",
+      "strength": 0.75
     },
     "class_type": "ADE_AnimateDiffLoRALoader",
     "_meta": {
@@ -248,17 +223,17 @@
   "541": {
     "inputs": {
       "text": "\"4\": \"\", \"36\": \"\", \"68\": \"\"",
-      "max_frames": 240,
+      "max_frames": 200,
       "current_frame": 0,
       "print_output": false,
-      "pre_text": "stunning, 4k, sharp details, I can't believe how beautiful this is",
+      "pre_text": "high quality, sharp details, stunning, 4k, UHD",
       "app_text": "",
       "pw_a": 0,
       "pw_b": 0,
       "pw_c": 0,
       "pw_d": 0,
       "clip": [
-        "461",
+        "638",
         1
       ]
     },
@@ -270,17 +245,17 @@
   "543": {
     "inputs": {
       "text": "\"4\": \"\", \"36\": \"\", \"68\": \"\"",
-      "max_frames": 240,
+      "max_frames": 200,
       "current_frame": 0,
       "print_output": false,
-      "pre_text": "watermark, text, nude, naked, nsfw, poorly drawn face, ugly, tiling, out of frame, blurry, blurred, grainy, signature, cut off, draft",
+      "pre_text": "watermark, nude, naked, text, blurry, jpeg artifacts, low-resolution, bad quality, ugly, distorted, padding",
       "app_text": "",
       "pw_a": 0,
       "pw_b": 0,
       "pw_c": 0,
       "pw_d": 0,
       "clip": [
-        "461",
+        "638",
         1
       ]
     },
@@ -307,6 +282,10 @@
       "end_percent": 1,
       "motion_model": [
         "546",
+        0
+      ],
+      "motion_lora": [
+        "536",
         0
       ],
       "scale_multival": [
@@ -351,7 +330,7 @@
   },
   "548": {
     "inputs": {
-      "text": "0:(1.20)",
+      "text": "0:(1.15)",
       "print_output": true,
       "num_latents": [
         "464",
@@ -363,28 +342,47 @@
       "title": "Batch Value Schedule (Latent Input) 📅🅕🅝"
     }
   },
-  "562": {
-    "inputs": {
-      "ckpt_name": "film_net_fp32.pt",
-      "clear_cache_after_n_frames": 10,
-      "multiplier": 2,
-      "frames": [
-        "615",
-        0
-      ]
-    },
-    "class_type": "FILM VFI",
-    "_meta": {
-      "title": "FILM VFI"
-    }
-  },
   "584": {
     "inputs": {
-      "Value": 768
+      "Value": 512
     },
     "class_type": "Integer",
     "_meta": {
-      "title": "Height"
+      "title": "Resolution"
+    }
+  },
+  "593": {
+    "inputs": {
+      "ipa_starts_at": 0,
+      "ipa_ends_at": 0.3,
+      "ipa_weight_type": "ease in-out",
+      "ipa_weight": 1,
+      "ipa_embeds_scaling": "V only",
+      "ipa_noise_strength": 0,
+      "use_image_for_noise": false,
+      "type_of_noise": "fade",
+      "noise_blur": 0
+    },
+    "class_type": "IpaConfiguration",
+    "_meta": {
+      "title": "IPA Configuration  🎞️🅢🅜"
+    }
+  },
+  "594": {
+    "inputs": {
+      "ipa_starts_at": 0.3,
+      "ipa_ends_at": 0.8,
+      "ipa_weight_type": "linear",
+      "ipa_weight": 1,
+      "ipa_embeds_scaling": "V only",
+      "ipa_noise_strength": 0,
+      "use_image_for_noise": false,
+      "type_of_noise": "fade",
+      "noise_blur": 0
+    },
+    "class_type": "IpaConfiguration",
+    "_meta": {
+      "title": "IPA Configuration  🎞️🅢🅜"
     }
   },
   "604": {
@@ -397,12 +395,12 @@
         "584",
         0
       ],
-      "interpolation": "bicubic",
+      "interpolation": "nearest",
       "keep_proportion": true,
       "condition": "always",
-      "multiple_of": 64,
+      "multiple_of": 32,
       "image": [
-        "632",
+        "636",
         0
       ]
     },
@@ -411,62 +409,17 @@
       "title": "🔧 Image Resize"
     }
   },
-  "614": {
-    "inputs": {
-      "images": [
-        "354",
-        2
-      ]
-    },
-    "class_type": "VHS_GetImageCount",
-    "_meta": {
-      "title": "Get Image Count 🎥🅥🅗🅢"
-    }
-  },
-  "615": {
-    "inputs": {
-      "split_index": [
-        "616",
-        0
-      ],
-      "images": [
-        "354",
-        2
-      ]
-    },
-    "class_type": "VHS_SplitImages",
-    "_meta": {
-      "title": "Split Image Batch 🎥🅥🅗🅢"
-    }
-  },
-  "616": {
-    "inputs": {
-      "value": "a-b",
-      "a": [
-        "614",
-        0
-      ],
-      "b": [
-        "624",
-        6
-      ]
-    },
-    "class_type": "SimpleMath+",
-    "_meta": {
-      "title": "🔧 Simple Math"
-    }
-  },
   "624": {
     "inputs": {
       "type_of_frame_distribution": "linear",
-      "linear_frame_distribution_value": 32,
-      "dynamic_frame_distribution_values": "0,9",
+      "linear_frame_distribution_value": 24,
+      "dynamic_frame_distribution_values": "",
       "type_of_key_frame_influence": "linear",
-      "linear_key_frame_influence_value": "0.9",
-      "dynamic_key_frame_influence_values": "(1.0,1.0),(1.0,1.5)(1.0,0.5)",
+      "linear_key_frame_influence_value": "0.8",
+      "dynamic_key_frame_influence_values": "",
       "type_of_strength_distribution": "linear",
-      "linear_strength_value": "(0.0,0.9)",
-      "dynamic_strength_values": "(0.0,1.0),(0.0,1.0),(0.0,1.0),(0.0,1.0)",
+      "linear_strength_value": "(0.0,1.0)",
+      "dynamic_strength_values": "",
       "buffer": 3,
       "high_detail_mode": true,
       "positive": [
@@ -482,7 +435,7 @@
         0
       ],
       "model": [
-        "461",
+        "638",
         0
       ],
       "ipadapter": [
@@ -492,6 +445,14 @@
       "clip_vision": [
         "370",
         0
+      ],
+      "base_ipa_advanced_settings": [
+        "593",
+        0
+      ],
+      "detail_ipa_advanced_settings": [
+        "594",
+        0
       ]
     },
     "class_type": "BatchCreativeInterpolation",
@@ -499,16 +460,78 @@
       "title": "Batch Creative Interpolation 🎞️🅢🅜"
     }
   },
-  "632": {
+  "633": {
     "inputs": {
-      "folder": "/home/rednax/SSD2TB/stored_CLIP_results/AAA_init_imgs/random/real2real/all/nature",
+      "ckpt_name": "rife47.pth",
+      "clear_cache_after_n_frames": 10,
+      "multiplier": 2,
+      "fast_mode": true,
+      "ensemble": true,
+      "scale_factor": 1,
+      "frames": [
+        "635",
+        0
+      ]
+    },
+    "class_type": "RIFE VFI",
+    "_meta": {
+      "title": "RIFE VFI (recommend rife47 and rife49)"
+    }
+  },
+  "634": {
+    "inputs": {
+      "model_name": "RealESRGAN_x2plus.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "635": {
+    "inputs": {
+      "upscale_model": [
+        "634",
+        0
+      ],
+      "image": [
+        "207",
+        5
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "636": {
+    "inputs": {
+      "folder": "/home/rednax/SSD2TB/stored_CLIP_results/AAA_init_imgs/01_remove/01",
       "n_images": 3,
-      "seed": 9616,
-      "sort": false
+      "seed": 1,
+      "sort": true
     },
     "class_type": "LoadRandomImage",
     "_meta": {
       "title": "LoadRandomImage"
+    }
+  },
+  "638": {
+    "inputs": {
+      "lora_name": "v3_sd15_adapter.ckpt",
+      "strength_model": 0.7000000000000001,
+      "strength_clip": 0.7000000000000001,
+      "model": [
+        "461",
+        0
+      ],
+      "clip": [
+        "461",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
     }
   }
 }

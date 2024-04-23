@@ -5,10 +5,6 @@
             "hash": "f9e0343f4c4606ee6365a9af4a7e16118f1c45e1",
             "disabled": false
         },
-        "https://github.com/dmarx/ComfyUI-AudioReactive.git": {
-            "hash": "e9c28aacd2395502e7ac468f66d396239739bce5",
-            "disabled": false
-        },
         "https://github.com/cubiq/ComfyUI_essentials": {
             "hash": "9e711779fc3e01f46d5e4fc49190ca30f6b02278",
             "disabled": false
