@@ -171,7 +171,7 @@
         "1": 118
       },
       "flags": {},
-      "order": 62,
+      "order": 61,
       "mode": 0,
       "inputs": [
         {
@@ -225,7 +225,7 @@
         "1": 278
       },
       "flags": {},
-      "order": 45,
+      "order": 47,
       "mode": 4,
       "inputs": [
         {
@@ -500,7 +500,7 @@
         26
       ],
       "flags": {},
-      "order": 43,
+      "order": 45,
       "mode": 0,
       "inputs": [
         {
@@ -1107,7 +1107,7 @@
         "1": 140.00003051757812
       },
       "flags": {},
-      "order": 63,
+      "order": 56,
       "mode": 0,
       "inputs": [
         {
@@ -1160,7 +1160,7 @@
         778
       ],
       "flags": {},
-      "order": 51,
+      "order": 69,
       "mode": 0,
       "inputs": [
         {
@@ -1226,7 +1226,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 66,
+      "order": 65,
       "mode": 0,
       "inputs": [
         {
@@ -1265,7 +1265,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 68,
+      "order": 66,
       "mode": 0,
       "inputs": [
         {
@@ -1456,7 +1456,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 64,
+      "order": 68,
       "mode": 0,
       "inputs": [
         {
@@ -1504,7 +1504,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 52,
+      "order": 64,
       "mode": 0,
       "inputs": [
         {
@@ -1607,7 +1607,7 @@
         26
       ],
       "flags": {},
-      "order": 65,
+      "order": 63,
       "mode": 0,
       "inputs": [
         {
@@ -1990,7 +1990,7 @@
         "1": 182
       },
       "flags": {},
-      "order": 61,
+      "order": 60,
       "mode": 0,
       "inputs": [
         {
@@ -2093,7 +2093,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 60,
+      "order": 58,
       "mode": 0,
       "inputs": [
         {
@@ -2144,7 +2144,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 48,
+      "order": 50,
       "mode": 4,
       "inputs": [
         {
@@ -2186,7 +2186,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 49,
+      "order": 52,
       "mode": 4,
       "inputs": [
         {
@@ -2333,7 +2333,7 @@
         26
       ],
       "flags": {},
-      "order": 46,
+      "order": 48,
       "mode": 0,
       "inputs": [
         {
@@ -2472,42 +2472,6 @@
       "bgcolor": "#000"
     },
     {
-      "id": 632,
-      "type": "LoadRandomImage",
-      "pos": [
-        -1519.5719333906254,
-        -1684.8695555234387
-      ],
-      "size": {
-        "0": 502.1759338378906,
-        "1": 154
-      },
-      "flags": {},
-      "order": 38,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            1156
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadRandomImage"
-      },
-      "widgets_values": [
-        "/home/rednax/SSD2TB/stored_CLIP_results/AAA_init_imgs/random/tall_real2real",
-        3,
-        76727,
-        "randomize",
-        false
-      ]
-    },
-    {
       "id": 436,
       "type": "PreviewImage",
       "pos": [
@@ -2533,74 +2497,6 @@
       }
     },
     {
-      "id": 464,
-      "type": "ADE_EmptyLatentImageLarge",
-      "pos": [
-        16,
-        -736
-      ],
-      "size": {
-        "0": 310.79998779296875,
-        "1": 74
-      },
-      "flags": {
-        "collapsed": false
-      },
-      "order": 54,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "width",
-          "type": "INT",
-          "link": 1157,
-          "widget": {
-            "name": "width"
-          },
-          "slot_index": 0
-        },
-        {
-          "name": "height",
-          "type": "INT",
-          "link": 1158,
-          "widget": {
-            "name": "height"
-          }
-        },
-        {
-          "name": "batch_size",
-          "type": "INT",
-          "link": 1137,
-          "widget": {
-            "name": "batch_size"
-          },
-          "slot_index": 2
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            876,
-            1006,
-            1022
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ADE_EmptyLatentImageLarge"
-      },
-      "widgets_values": [
-        512,
-        512,
-        52
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
       "id": 389,
       "type": "PreviewImage",
       "pos": [
@@ -2612,7 +2508,7 @@
         "1": 283.9859924316406
       },
       "flags": {},
-      "order": 47,
+      "order": 49,
       "mode": 0,
       "inputs": [
         {
@@ -2639,7 +2535,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 44,
+      "order": 46,
       "mode": 0,
       "inputs": [
         {
@@ -2717,7 +2613,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 39,
+      "order": 38,
       "mode": 0,
       "outputs": [
         {
@@ -2740,133 +2636,6 @@
       ]
     },
     {
-      "id": 543,
-      "type": "PromptSchedule",
-      "pos": [
-        1316,
-        -990
-      ],
-      "size": {
-        "0": 367.4313659667969,
-        "1": 364.0000305175781
-      },
-      "flags": {},
-      "order": 59,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 1108
-        },
-        {
-          "name": "max_frames",
-          "type": "INT",
-          "link": 1161,
-          "widget": {
-            "name": "max_frames"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "POS",
-          "type": "CONDITIONING",
-          "links": [],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "NEG",
-          "type": "CONDITIONING",
-          "links": [
-            1133
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "title": "Negative Prompt",
-      "properties": {
-        "Node name for S&R": "PromptSchedule"
-      },
-      "widgets_values": [
-        "\"4\": \"\", \"36\": \"\", \"68\": \"\"",
-        120,
-        0,
-        false,
-        "watermark, text, nude, naked, nsfw, poorly drawn face, ugly, tiling, out of frame, blurry, blurred, grainy, signature, cut off, draft",
-        "",
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "id": 541,
-      "type": "PromptSchedule",
-      "pos": [
-        875,
-        -998
-      ],
-      "size": {
-        "0": 389.9056396484375,
-        "1": 364.0000305175781
-      },
-      "flags": {},
-      "order": 58,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 1106
-        },
-        {
-          "name": "max_frames",
-          "type": "INT",
-          "link": 1160,
-          "widget": {
-            "name": "max_frames"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "POS",
-          "type": "CONDITIONING",
-          "links": [
-            1132
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "NEG",
-          "type": "CONDITIONING",
-          "links": null,
-          "shape": 3
-        }
-      ],
-      "title": "Positive Prompt",
-      "properties": {
-        "Node name for S&R": "PromptSchedule"
-      },
-      "widgets_values": [
-        "\"4\": \"\", \"36\": \"\", \"68\": \"\"",
-        120,
-        0,
-        false,
-        "stunning, 4k, sharp details, I can't believe how beautiful this is",
-        "",
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
       "id": 624,
       "type": "BatchCreativeInterpolation",
       "pos": [
@@ -2878,7 +2647,7 @@
         "1": 631.765625
       },
       "flags": {},
-      "order": 69,
+      "order": 51,
       "mode": 0,
       "inputs": [
         {
@@ -2972,9 +2741,7 @@
           "name": "BATCH_SIZE",
           "type": "INT",
           "links": [
-            1137,
-            1160,
-            1161
+            1137
           ],
           "shape": 3,
           "slot_index": 5
@@ -3019,7 +2786,7 @@
         "1": 351.772705078125
       },
       "flags": {},
-      "order": 56,
+      "order": 59,
       "mode": 0,
       "inputs": [
         {
@@ -3163,7 +2930,7 @@
         "1": 150
       },
       "flags": {},
-      "order": 55,
+      "order": 54,
       "mode": 0,
       "inputs": [
         {
@@ -3213,7 +2980,7 @@
       "flags": {
         "pinned": false
       },
-      "order": 50,
+      "order": 62,
       "mode": 0,
       "inputs": [
         {
@@ -3315,6 +3082,221 @@
       "color": "#222233",
       "bgcolor": "#333355",
       "shape": 1
+    },
+    {
+      "id": 632,
+      "type": "LoadRandomImage",
+      "pos": [
+        -1519.5719333906254,
+        -1684.8695555234387
+      ],
+      "size": {
+        "0": 502.1759338378906,
+        "1": 154
+      },
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1156
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadRandomImage"
+      },
+      "widgets_values": [
+        "/home/rednax/SSD2TB/stored_CLIP_results/AAA_init_imgs/random/real2real/all/nature",
+        3,
+        9616,
+        "randomize",
+        false
+      ]
+    },
+    {
+      "id": 464,
+      "type": "ADE_EmptyLatentImageLarge",
+      "pos": [
+        6,
+        -739
+      ],
+      "size": {
+        "0": 310.79998779296875,
+        "1": 74
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 55,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 1157,
+          "widget": {
+            "name": "width"
+          },
+          "slot_index": 0
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 1158,
+          "widget": {
+            "name": "height"
+          }
+        },
+        {
+          "name": "batch_size",
+          "type": "INT",
+          "link": 1137,
+          "widget": {
+            "name": "batch_size"
+          },
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            876,
+            1006,
+            1022
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ADE_EmptyLatentImageLarge"
+      },
+      "widgets_values": [
+        512,
+        512,
+        52
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 541,
+      "type": "PromptSchedule",
+      "pos": [
+        875,
+        -998
+      ],
+      "size": [
+        389.9056396484375,
+        364.0000305175781
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1106
+        }
+      ],
+      "outputs": [
+        {
+          "name": "POS",
+          "type": "CONDITIONING",
+          "links": [
+            1132
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "NEG",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "title": "Positive Prompt",
+      "properties": {
+        "Node name for S&R": "PromptSchedule"
+      },
+      "widgets_values": [
+        "\"4\": \"\", \"36\": \"\", \"68\": \"\"",
+        240,
+        0,
+        false,
+        "stunning, 4k, sharp details, I can't believe how beautiful this is",
+        "",
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 543,
+      "type": "PromptSchedule",
+      "pos": [
+        1315,
+        -989
+      ],
+      "size": [
+        367.4313659667969,
+        364.0000305175781
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1108
+        }
+      ],
+      "outputs": [
+        {
+          "name": "POS",
+          "type": "CONDITIONING",
+          "links": [],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "NEG",
+          "type": "CONDITIONING",
+          "links": [
+            1133
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "title": "Negative Prompt",
+      "properties": {
+        "Node name for S&R": "PromptSchedule"
+      },
+      "widgets_values": [
+        "\"4\": \"\", \"36\": \"\", \"68\": \"\"",
+        240,
+        0,
+        false,
+        "watermark, text, nude, naked, nsfw, poorly drawn face, ugly, tiling, out of frame, blurry, blurred, grainy, signature, cut off, draft",
+        "",
+        0,
+        0,
+        0,
+        0
+      ]
     }
   ],
   "links": [
@@ -3852,22 +3834,6 @@
       0,
       604,
       2,
-      "INT"
-    ],
-    [
-      1160,
-      624,
-      5,
-      541,
-      1,
-      "INT"
-    ],
-    [
-      1161,
-      624,
-      5,
-      543,
-      1,
       "INT"
     ]
   ],
