@@ -1,0 +1,10 @@
+{
+  "width": {"node_id": "210", "field": "inputs", "subfield": "width"},
+  "height": {"node_id": "210", "field": "inputs", "subfield": "height"},
+  "n_frames": {"node_id": "210", "field": "inputs", "subfield": "batch_size"},
+  "interpolation_texts": {"node_id": "221", "field": "inputs", "subfield": "text"},
+  "negative_prompt": {"node_id": "211", "field": "inputs", "subfield": "text"},
+  "seed": {"node_id": "10", "field": "inputs", "subfield": "seed"},
+  "loop": {"node_id": "17", "field": "inputs", "subfield": "closed_loop"},
+  "motion_scale": {"node_id": "16", "field": "inputs", "subfield": "motion_scale"}
+}
