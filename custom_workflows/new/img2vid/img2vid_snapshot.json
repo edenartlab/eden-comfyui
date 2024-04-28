@@ -1,5 +1,5 @@
 {
-    "comfyui": "45ec1cbe963055798765645c4f727122a7d3e35e",
+    "comfyui": "27d5808fc491c7174abc6f407e7dc11c6a7a1ec0",
     "git_custom_nodes": {
         "https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved": {
             "hash": "f9e0343f4c4606ee6365a9af4a7e16118f1c45e1",
@@ -15,6 +15,10 @@
         },
         "https://github.com/ltdrdata/ComfyUI-Manager.git": {
             "hash": "ed3403ca1a2bc5fa16561551db720417b8cab022",
+            "disabled": false
+        },
+        "https://github.com/Fannovel16/comfyui_controlnet_aux": {
+            "hash": "c0b33402d9cfdc01c4e0984c26e5aadfae948e05",
             "disabled": false
         },
         "https://github.com/ltdrdata/ComfyUI-Impact-Pack": {
@@ -67,22 +71,5 @@
             "filename": "websocket_image_save.py",
             "disabled": false
         }
-    ],
-    "downloads": {
-        "models/checkpoints/photonLCM_v10.safetensors": 
-            "https://edenartlab-lfs.s3.amazonaws.com/comfyui/models2/checkpoints/photonLCM_v10.safetensors",
-            
-        "models/checkpoints/photonLCM_v10.safetensors": 
-            "https://edenartlab-lfs.s3.amazonaws.com/comfyui/models2/checkpoints/photonLCM_v10.safetensors",
-
-        "models/animatediff_models/sd15_t2v_beta.ckpt": 
-            "https://edenartlab-lfs.s3.amazonaws.com/comfyui/models2/animatediff_models/sd15_t2v_beta.ckpt",
-
-        "models/upscale_models/RealESRGAN_x2plus.pth": 
-            "https://edenartlab-lfs.s3.amazonaws.com/comfyui/models2/upscale_models/RealESRGAN_x2plus.pth",
-
-        "custom_nodes/ComfyUI-Frame-Interpolation/ckpts/rife/rife47.pth":
-            "https://github.com/styler00dollar/VSGAN-tensorrt-docker/releases/download/models/rife47.pth"
-
-    }
+    ]
 }
